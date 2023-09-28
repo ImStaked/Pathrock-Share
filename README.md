@@ -55,3 +55,7 @@ spd up
 ```
 sqd process
 ```
+- Deploy
+```
+sqd deploy --org pathrocknetwork ./quest1
+```
