@@ -52,13 +52,32 @@ npm ci
 ```
 nano $HOME/quest1/src/processor.ts
 ```
-#### Launch Postgres and detach
+#### Launch Postgres docker container and detach
 ```
 spd up
 ```
-#### Inspect and run the processor
+#### Inspect and run the processor as a systemd service
 ```
-sqd process
+cat <<EOF >> /etc/systemd/system/subsquid_processor.service
+[Unit]
+Description=Subsquid Processor
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+User=root
+Type=simple
+Restart=always
+RestartSec=30
+ExecStart=/usr/bin/sqd process
+
+[Install]
+WantedBy=default.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable subsquid_processor
 ```
 - Deploy
 ```
