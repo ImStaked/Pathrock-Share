@@ -1,6 +1,11 @@
 # Subsquid setup
 
-- Install Nodejs
+### VPS specs
+  - CPU - AMD RYZEN 7
+  - VCPU - 4
+  - MEM - 8GB 
+
+#### Install Nodejs
 ```
 sudo mkdir -p /etc/apt/keyrings
 apt-key add /etc/apt/keyrings/nodesource.gpg
@@ -9,7 +14,7 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 sudo apt update && sudo apt upgrade -y
 sudo apt-get install nodejs -y
 ```
-- Install Docker
+#### Install Docker
 ```
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
@@ -24,34 +29,34 @@ echo \
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
 ```
-- Install the subsquid cli
+#### Install the subsquid cli
 ```
 npm install -g @subsquid/cli
 sqd --version
 ```
-- Set your aquarium deployment key available at https://app.subsquid.io/aquarium
+#### Set your aquarium deployment key available at https://app.subsquid.io/aquarium
 ```
 sqd auth -k sqd_?????????
 sqd deploy --help
 ```
-- Scaffold from the minimal evm template
+#### Scaffold from the minimal evm template
 ```
 sqd init quest1 --template evm
 cd quest1
 ```
-- Install dependencies
+#### Install dependencies
 ```
 npm ci
 ```
-- Set the network 
+#### Set the network 
 ```
 nano $HOME/quest1/src/processor.ts
 ```
-- Launch Postgres and detach
+#### Launch Postgres and detach
 ```
 spd up
 ```
-- Inspect and run the processor
+#### Inspect and run the processor
 ```
 sqd process
 ```
