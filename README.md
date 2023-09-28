@@ -53,7 +53,7 @@ nano $HOME/quest1/src/processor.ts
 ```
 #### Launch Postgres docker container and detach
 ```
-spd up
+sqd up
 ```
 #### Inspect and run the processor
 - CLI
