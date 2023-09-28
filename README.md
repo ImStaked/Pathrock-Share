@@ -9,5 +9,13 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 sudo apt update && sudo apt upgrade -y
 sudo apt-get install nodejs -y
 ```
-
-
+- Install the subsquid cli
+```
+npm install -g @subsquid/cli
+sqd --version
+```
+- Set your aquarium deployment key available at https://app.subsquid.io/aquarium
+```
+sqd auth -k sqd_?????????
+sqd deploy --help
+```
