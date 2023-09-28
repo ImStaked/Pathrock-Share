@@ -37,7 +37,6 @@ sqd --version
 #### Set your aquarium deployment key available at https://app.subsquid.io/aquarium
 ```
 sqd auth -k sqd_?????????
-sqd deploy --help
 ```
 #### Scaffold from the minimal evm template
 ```
