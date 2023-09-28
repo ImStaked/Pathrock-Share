@@ -56,7 +56,12 @@ nano $HOME/quest1/src/processor.ts
 ```
 spd up
 ```
-#### Inspect and run the processor as a systemd service
+#### Inspect and run the processor
+- CLI
+```
+sqd process
+```
+- Systemd
 ```
 cat <<EOF >> /etc/systemd/system/subsquid_processor.service
 [Unit]
@@ -78,8 +83,38 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl enable subsquid_processor
+sudo systemctl start subsquid_processor
 ```
-- Deploy
+#### Start the GraphQL server
+- CLI
+```
+sqd serve
+```
+- Systemd
+```
+cat <<EOF >> /etc/systemd/system/subsquid_graphql.service
+[Unit]
+Description=Subsquid GraphQL server
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+User=root
+Type=simple
+Restart=always
+RestartSec=30
+ExecStart=/usr/bin/sqd serve
+
+[Install]
+WantedBy=default.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable subsquid_graphql
+sudo systemctl start subsquid_graphql
+```
+#### Deploy
 ```
 sqd deploy --org pathrocknetwork ./quest1
 ```
