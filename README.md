@@ -74,6 +74,7 @@ User=root
 Type=simple
 Restart=always
 RestartSec=30
+WorkingDirectory=/root/quest1
 ExecStart=/usr/bin/sqd process
 
 [Install]
