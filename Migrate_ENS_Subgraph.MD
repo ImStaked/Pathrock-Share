@@ -40,11 +40,11 @@ sqd auth -k sqd_?????????
 sqd init ens --template evm
 cd ens
 ```
-#### Install dependencies
+- Install dependencies
 ```
 npm ci
 ```
-#### Setup the network 
+- Setup the network 
 ```
 nano $HOME/quest1/src/processor.ts
 ```
