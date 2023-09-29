@@ -58,7 +58,9 @@ cd ens
 ```
 
 - Copy the schema file 
-The minimal template already contains a dummy schema.graphql file. We replace it with the subgraph schema as is:
+The minimal template already contains a dummy schema.graphql file. 
+Because the default file was producing errors I edit it down to this which worked.
+But results will likely be incomplete.
 ```
 type Domain @entity {
   id: ID!
