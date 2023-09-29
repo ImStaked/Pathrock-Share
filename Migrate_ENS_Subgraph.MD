@@ -37,6 +37,8 @@ sqd --version
 ```
 sqd auth -k sqd_?????????
 ```
+- Initialize with basic evm template
+```
 sqd init ens --template evm
 cd ens
 ```
