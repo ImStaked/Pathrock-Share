@@ -46,6 +46,10 @@ sqd --version
 ```
 sqd auth -k sqd_?????????
 ```
+- Clone the ens subgraph repo
+```
+git clone https://github.com/ensdomains/ens-subgraph
+```
 
 - Initialize with basic evm template
 ```
@@ -220,6 +224,7 @@ screen -d
 ## Generate typings from ABI
 - Copy ./abis/Gravity.json from the subgraph project and paste it to ./abi folder in the subsquid project. To generate the typings, run:
 ```
+cp ~/ens-subgraph/abis/* ~/testing/abi/
 sqd typegen
 ```
 # Subscribe to EVM logs
