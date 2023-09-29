@@ -211,8 +211,10 @@ sqd build
 ```
 - After that, start the local database and generate migrations from the generated entities using the squid-typeorm-migration tool:
 ```
+screen
 sqd up
 sqd migration:generate
+screen -d
 ```
 
 ## Generate typings from ABI
