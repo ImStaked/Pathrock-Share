@@ -33,6 +33,22 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 npm install -g @subsquid/cli
 sqd --version
 ```
+- Set your aquarium deployment key available at https://app.subsquid.io/aquarium
+```
+sqd auth -k sqd_?????????
+```
+sqd init ens --template evm
+cd ens
+```
+#### Install dependencies
+```
+npm ci
+```
+#### Setup the network 
+```
+nano $HOME/quest1/src/processor.ts
+```
+
 
 ## Indexing Transfer events
 
@@ -42,22 +58,4 @@ sqd --version
 
 
 
------------------------------------------------------
 
-#### Set your aquarium deployment key available at https://app.subsquid.io/aquarium
-```
-sqd auth -k sqd_?????????
-```
-#### Scaffold from the ???? template
-```
-sqd init ens --template ???
-cd quest1
-```
-#### Install dependencies
-```
-npm ci
-```
-#### Set the network 
-```
-nano $HOME/quest1/src/processor.ts
-```
