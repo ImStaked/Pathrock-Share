@@ -46,7 +46,7 @@ sqd init ens --template evm
 cd ens
 ```
 
-- Copy the schema file and generate entities
+- Copy the schema file 
 The minimal template already contains a dummy schema.graphql file. We replace it with the subgraph schema as is:
 ```
 type Domain @entity {
@@ -501,6 +501,24 @@ type VersionChanged implements ResolverEvent @entity {
   version: BigInt!
 }
 ```
+- Next, we generate the entities from the schema using the squid-typeorm-codegen tool of the Squid SDK, then build the squid:
+```
+sqd codegen
+sqd build
+```
+- After that, start the local database and generate migrations from the generated entities using the squid-typeorm-migration tool:
+```
+sqd up
+sqd migration:generate
+```
+
+## Generate typings from ABI
+- Copy ./abis/Gravity.json from the subgraph project and paste it to ./abi folder in the subsquid project. To generate the typings, run:
+```
+sqd typegen
+```
+# Subscribe to EVM logs
+While in The Graph data source is defined in the manifest file subgraph.yaml, in Subsquid subscriptions to EVM data, including logs, are performed at the processor object definition customarily located at src/processor.ts. The processor is configured directly by the code, unlike subgraphs which require handlers and events to be defined in the manifest file.
 
 
 
