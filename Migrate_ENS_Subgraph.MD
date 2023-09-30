@@ -32,13 +32,13 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 - Install the subsquid cli
 ```
-npm install -g @subsquid/cli
+sudo npm install -g @subsquid/cli
 sqd --version
 ```
 - Create a new user and use that
 ```
-useradd -U -s /bin/bash -m -d /home/subsquid subsquid
-usermod -a -G docker subsquid
+sudo useradd -U -s /bin/bash -m -d /home/subsquid subsquid
+sudo usermod -a -G docker subsquid
 su subsquid && cd ~
 sqd --version
 ```
