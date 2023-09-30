@@ -127,12 +127,12 @@ sqd typegen
 - Subscribe to EVM logs
 Edit src/processor.ts you can remove the .addTransaction section
 ```
-import { events } from './abi/EnsRegistry'
-import { events } from './abi/Resolver'
-import { events } from './abi/BaseRegistrar'
-import { events } from './abi/EthRegistrarControllerOld'
-import { events } from './abi/EthRegistrarController'
-import { events } from './abi/NameWrapper'
+import = as ENS_registry from './abi/EnsRegistry'
+import = as ENS_resolver from './abi/Resolver' 
+import = as ENS_baseregistrar from './abi/BaseRegistrar'
+import = as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
+import = as ENS_registrar_controller from './abi/EthRegistrarController'
+import = as ENS_namewrapper from './abi/NameWrapper'
 ```
 - Next is events
 
