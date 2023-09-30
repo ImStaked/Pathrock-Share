@@ -62,55 +62,62 @@ cp ~/ens-subgraph/subgraph.yaml ~/ens-subsquid/
 ```
 - Copy addresses from subgraph.yaml into processor.ts
 ```
+import = as ENS_registry from './abi/EnsRegistry'
+import = as ENS_resolver from './abi/Resolver' 
+import = as ENS_baseregistrar from './abi/BaseRegistrar'
+import = as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
+import = as ENS_registrar_controller from './abi/EthRegistrarController'
+import = as ENS_namewrapper from './abi/NameWrapper'
+
     .addLog({
         address: ['0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'],
         topic0: [
-          events.Transfer.topic,
-          events.NewOwner.topic,
-          events.NewResolver.topic,
-          events.NewTTL.topic
+          ENS_registry.events.Transfer.topic,
+          ENS_registry.events.NewOwner.topic,
+          ENS_registry.events.NewResolver.topic,
+          ENS_registry.events.NewTTL.topic
         ]
     })
     .addLog({
         address: ['0x314159265dd8dbb310642f98f50c066173c1259b'],
         topic1: [
-          events.Transfer.topic,
-          events.NewOwner.topic,
-          events.NewResolver.topic,
-          events.NewTTL.topic
+          ENS_resolver.events.Transfer.topic,
+          ENS_resolver.events.NewOwner.topic,
+          ENS_resolver.events.NewResolver.topic,
+          ENS_resolver.events.NewTTL.topic
         ]
     })
     .addLog({
         address: ['0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85'],
         topic1: [
-          events.NameRegistered.topic,
-          events.NameRenewed.topic,
-          events.Transfer.topic,
+          ENS_baseregistrar.events.NameRegistered.topic,
+          ENS_baseregistrar.events.NameRenewed.topic,
+          ENS_baseregistrar.events.Transfer.topic,
         ]
     })
     .addLog({
         address: ['0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5'],
         topic1: [
-          events.NameRegistered.topic,
-          events.NameRenewed.topic,
+          ENS_registrar_controller_old.events.NameRegistered.topic,
+          ENS_registrar_controller_old.events.NameRenewed.topic,
         ]
     })
     .addLog({
         address: ['0x253553366Da8546fC250F225fe3d25d0C782303b'],
         topic1: [
-          events.NameRegistered.topic,
-          events.NameRenewed.topic,
+          ENS_registrar_controller.events.NameRegistered.topic,
+          ENS_registrar_controller.events.NameRenewed.topic,
         ]
     })
     .addLog({
         address: ['0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401'],
         topic0: [
-          events.NameWrapped.topic,
-          events.NameUnwrapped.topic,
-          events.FusesSet.topic,
-          events.ExpiryExtended.topic,
-          events.TransferSingle.topic,
-          events.TransferBatch.topic,
+          ENS_namewrapper.events.NameWrapped.topic,
+          ENS_namewrapper.events.NameUnwrapped.topic,
+          ENS_namewrapper.events.FusesSet.topic,
+          ENS_namewrapper.events.ExpiryExtended.topic,
+          ENS_namewrapper.events.TransferSingle.topic,
+          ENS_namewrapper.events.TransferBatch.topic,
         ]
     })
 ```
@@ -124,6 +131,8 @@ cp ~/ens-subgraph/abis/* ~/ens-subsquid/abi/
 npm i @subsquid/typeorm-codegen --save-dev
 sqd typegen
 ```
+
+- Next is events
 - Subscribe to EVM logs
 Edit src/processor.ts you can remove the .addTransaction section
 ```
@@ -134,8 +143,6 @@ import = as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
 import = as ENS_registrar_controller from './abi/EthRegistrarController'
 import = as ENS_namewrapper from './abi/NameWrapper'
 ```
-- Next is events
-
 
 
 
