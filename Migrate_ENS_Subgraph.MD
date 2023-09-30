@@ -92,7 +92,7 @@ npm i @subsquid/typeorm-codegen --save-dev
 sqd typegen
 ```
 - Subscribe to EVM logs
-Edit src/processor.ts
+Edit src/processor.ts you can remove the .addTransaction section
 ```
 import { events } from './abi/EnsRegistry'
 import { events } from './abi/Resolver'
@@ -101,6 +101,10 @@ import { events } from './abi/EthRegistrarControllerOld'
 import { events } from './abi/EthRegistrarController'
 import { events } from './abi/NameWrapper'
 ```
+- Next is events
+
+
+
 
 - Next, we generate the entities from the schema using the squid-typeorm-codegen tool of the Squid SDK, then build the squid:
 ```
@@ -116,8 +120,6 @@ screen -d
 ```
 
 
-# Subscribe to EVM logs
-While in The Graph data source is defined in the manifest file subgraph.yaml, in Subsquid subscriptions to EVM data, including logs, are performed at the processor object definition customarily located at src/processor.ts. The processor is configured directly by the code, unlike subgraphs which require handlers and events to be defined in the manifest file.
 
 
 
