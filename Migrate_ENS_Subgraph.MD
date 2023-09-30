@@ -69,6 +69,10 @@ import = as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
 import = as ENS_registrar_controller from './abi/EthRegistrarController'
 import = as ENS_namewrapper from './abi/NameWrapper'
 
+
+    .setBlockRange({
+        from: 3_332_417,
+    })
     .addLog({
         address: ['0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'],
         topic0: [
