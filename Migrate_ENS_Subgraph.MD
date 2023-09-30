@@ -88,6 +88,7 @@ cp ~/ens-subgraph/schema.graphql ~/ens-subsquid/
 - Generate typings from ABI
 ```
 cp ~/ens-subgraph/abis/* ~/ens-subsquid/abi/
+npm i @subsquid/typeorm-codegen --save-dev
 sqd typegen
 ```
 - Subscribe to EVM logs
@@ -103,7 +104,6 @@ import { events } from './abi/NameWrapper'
 
 - Next, we generate the entities from the schema using the squid-typeorm-codegen tool of the Squid SDK, then build the squid:
 ```
-npm i @subsquid/typeorm-codegen --save-dev
 sqd codegen
 sqd build
 ```
