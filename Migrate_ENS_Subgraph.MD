@@ -64,21 +64,54 @@ cp ~/ens-subgraph/subgraph.yaml ~/ens-subsquid/
 ```
     .addLog({
         address: ['0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'],
+        topic0: [
+          events.Transfer.topic,
+          events.NewOwner.topic,
+          events.NewResolver.topic,
+          events.NewTTL.topic
+        ]
     })
     .addLog({
         address: ['0x314159265dd8dbb310642f98f50c066173c1259b'],
+        topic1: [
+          events.Transfer.topic,
+          events.NewOwner.topic,
+          events.NewResolver.topic,
+          events.NewTTL.topic
+        ]
     })
     .addLog({
         address: ['0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85'],
+        topic1: [
+          events.NameRegistered.topic,
+          events.NameRenewed.topic,
+          events.Transfer.topic,
+        ]
     })
     .addLog({
         address: ['0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5'],
+        topic1: [
+          events.NameRegistered.topic,
+          events.NameRenewed.topic,
+        ]
     })
     .addLog({
         address: ['0x253553366Da8546fC250F225fe3d25d0C782303b'],
+        topic1: [
+          events.NameRegistered.topic,
+          events.NameRenewed.topic,
+        ]
     })
     .addLog({
         address: ['0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401'],
+        topic0: [
+          events.NameWrapped.topic,
+          events.NameUnwrapped.topic,
+          events.FusesSet.topic,
+          events.ExpiryExtended.topic,
+          events.TransferSingle.topic,
+          events.TransferBatch.topic,
+        ]
     })
 ```
 - The minimal template already contains a dummy schema.graphql file. Replace it with the schema from the graph
