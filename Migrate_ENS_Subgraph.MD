@@ -68,6 +68,9 @@ import = as ENS_baseregistrar from './abi/BaseRegistrar'
 import = as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
 import = as ENS_registrar_controller from './abi/EthRegistrarController'
 import = as ENS_namewrapper from './abi/NameWrapper'
+    .setBlockRange({
+        from: 3_332_417,
+    })
 
 
     .setBlockRange({
@@ -136,17 +139,34 @@ npm i @subsquid/typeorm-codegen --save-dev
 sqd typegen
 ```
 
-- Next is events
-- Subscribe to EVM logs
-Edit src/processor.ts you can remove the .addTransaction section
+- Import the 6 entities in main.ts and edit what looks like functions to me. One for each entity?
 ```
-import = as ENS_registry from './abi/EnsRegistry'
-import = as ENS_resolver from './abi/Resolver' 
-import = as ENS_baseregistrar from './abi/BaseRegistrar'
-import = as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
-import = as ENS_registrar_controller from './abi/EthRegistrarController'
-import = as ENS_namewrapper from './abi/NameWrapper'
+import {ENS_registry} from './model'
+import {ENS_resolver) from './model'
+import {ENS_baseregistrar) from './model'
+import {ENS_registrar_controller_old) from './model'
+import {ENS_registrar_controller) from './model'
+import {ENS_namewrapper) from './model'
+import = as ENS_registryABI from './abi/EnsRegistry'
+import = as ENS_resolverABI from './abi/Resolver' 
+import = as ENS_baseregistrarABI from './abi/BaseRegistrar'
+import = as ENS_registrar_controller_oldABI from './abi/EthRegistrarControllerOld'
+import = as ENS_registrar_controllerABI from './abi/EthRegistrarController'
+import = as ENS_namewrapperABI from './abi/NameWrapper'
+
+processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
+    const ens_registrys: ENS_registry[] = []
+    for (let c of ctx.blocks) {
+        for (let log of c.logs) {
+            // decode and normalize the log data
+            if(log.topics[0] === ENS_registryABI.events.Transfer.topic{
+              let(UGGG HAVE TO START OVER)
+            }
+        }
+    }
+
 ```
+
 
 
 
