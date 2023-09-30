@@ -53,16 +53,42 @@ git clone https://github.com/ensdomains/ens-subgraph
 
 - Initialize with basic evm template
 ```
-sqd init ens --template evm
-cd ens
+sqd init ens-subsquid --template evm
+cd ens-subsquid 
 ```
 - subgraph.yaml ( specifies data sources and events to index )
 ```
-cp ~/ens-subgraph/subgraph.yaml ~/ens/
+cp ~/ens-subgraph/subgraph.yaml ~/ens-subsquid/
+```
+- Copy addresses from subgraph.yaml into processor.ts
+```
+    .addLog({
+        address: ['0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'],
+    })
+    .addLog({
+        address: ['0x314159265dd8dbb310642f98f50c066173c1259b'],
+    })
+    .addLog({
+        address: ['0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85'],
+    })
+    .addLog({
+        address: ['0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5'],
+    })
+    .addLog({
+        address: ['0x253553366Da8546fC250F225fe3d25d0C782303b'],
+    })
+    .addLog({
+        address: ['0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401'],
+    })
 ```
 - The minimal template already contains a dummy schema.graphql file. Replace it with the schema from the graph
 ```
-cp ~/ens-subgraph/schema.graphql ~/ens/
+cp ~/ens-subgraph/schema.graphql ~/ens-subsquid/
+```
+- Generate typings from ABI
+```
+cp ~/ens-subgraph/abis/* ~/ens-subsquid/abi/
+sqd typegen
 ```
 - Next, we generate the entities from the schema using the squid-typeorm-codegen tool of the Squid SDK, then build the squid:
 ```
@@ -78,12 +104,7 @@ sqd migration:generate
 screen -d
 ```
 
-## Generate typings from ABI
-- Copy ./abis/Gravity.json from the subgraph project and paste it to ./abi folder in the subsquid project. To generate the typings, run:
-```
-cp ~/ens-subgraph/abis/* ~/testing/abi/
-sqd typegen
-```
+
 # Subscribe to EVM logs
 While in The Graph data source is defined in the manifest file subgraph.yaml, in Subsquid subscriptions to EVM data, including logs, are performed at the processor object definition customarily located at src/processor.ts. The processor is configured directly by the code, unlike subgraphs which require handlers and events to be defined in the manifest file.
 
