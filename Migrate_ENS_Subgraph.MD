@@ -56,6 +56,10 @@ git clone https://github.com/ensdomains/ens-subgraph
 sqd init ens-subsquid --template evm
 cd ens-subsquid 
 ```
+- The minimal template already contains a dummy schema.graphql file. Replace it with the schema from the graph
+```
+cp ~/ens-subgraph/schema.graphql ~/ens-subsquid/
+```
 - subgraph.yaml ( specifies data sources and events to index )
 ```
 cp ~/ens-subgraph/subgraph.yaml ~/ens-subsquid/
@@ -128,10 +132,7 @@ import = as ENS_namewrapper from './abi/NameWrapper'
         ]
     })
 ```
-- The minimal template already contains a dummy schema.graphql file. Replace it with the schema from the graph
-```
-cp ~/ens-subgraph/schema.graphql ~/ens-subsquid/
-```
+
 - Generate typings from ABI
 ```
 cp ~/ens-subgraph/abis/* ~/ens-subsquid/abi/
