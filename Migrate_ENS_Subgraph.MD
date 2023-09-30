@@ -79,7 +79,7 @@ import = as ENS_namewrapper from './abi/NameWrapper'
           ENS_registry.events.Transfer.topic,
           ENS_registry.events.NewOwner.topic,
           ENS_registry.events.NewResolver.topic,
-          ENS_registry.events.NewTTL.topic
+          ENS_registry.events.NewTTL.topic,
         ]
     })
     .addLog({
@@ -88,7 +88,7 @@ import = as ENS_namewrapper from './abi/NameWrapper'
           ENS_resolver.events.Transfer.topic,
           ENS_resolver.events.NewOwner.topic,
           ENS_resolver.events.NewResolver.topic,
-          ENS_resolver.events.NewTTL.topic
+          ENS_resolver.events.NewTTL.topic,
         ]
     })
     .addLog({
