@@ -56,56 +56,81 @@ git clone https://github.com/ensdomains/ens-subgraph
 sqd init ens-subsquid --template evm
 cd ens-subsquid 
 ```
-- The minimal template already contains a dummy schema.graphql file. Replace it with the schema from the graph. then Generate Entities
+- Copy Files
 ```
-cp ~/ens-subgraph/schema.graphql ~/ens-subsquid/
-sqd codegen
-sqd build
+cp ~/ens-subgraph/schema.graphql ~/ens-squid/
+cp ~/ens-subgraph/subgraph.yaml ~/ens-squid/
+cp ~/ens-subgraph/abis/* ~/ens-squid/abi/
 ```
-- subgraph.yaml ( specifies data sources and events to index )
-```
-cp ~/ens-subgraph/subgraph.yaml ~/ens-subsquid/
-```
+
 - Copy addresses from subgraph.yaml into processor.ts
 ```
-import = as ENS_registry from './abi/EnsRegistry'
-import = as ENS_resolver from './abi/Resolver' 
-import = as ENS_baseregistrar from './abi/BaseRegistrar'
-import = as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
-import = as ENS_registrar_controller from './abi/EthRegistrarController'
-import = as ENS_namewrapper from './abi/NameWrapper'
-    .setBlockRange({
-        from: 3_332_417,
+import * as EnsRegistry from './abi/Registry'
+import * as EnsResolver from './abi/PublicResolver' 
+import * as EnsBaseRegistrar from './abi/BaseRegistrar'
+import * as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
+import * as ENS_registrar_controller from './abi/EthRegistrarController'
+import * as ENS_namewrapper from './abi/NameWrapper'
+
+export const processor = new EvmBatchProcessor()
+    .setDataSource({
+        // Change the Archive endpoints for run the squid
+        // against the other EVM networks
+        // For a full list of supported networks and config options
+        // see https://docs.subsquid.io/evm-indexing/
+        archive: lookupArchive('eth-mainnet'),
+
+        // Must be set for RPC ingestion (https://docs.subsquid.io/evm-indexing/evm-processor/)
+        // OR to enable contract state queries (https://docs.subsquid.io/evm-indexing/query-state/)
+        chain: 'https://rpc.ankr.com/eth',
     })
-
-
+    .setFinalityConfirmation(75)
+    .setFields({
+        transaction: {
+            from: true,
+            value: true,
+            hash: true,
+        },
+    })
     .setBlockRange({
         from: 3_332_417,
     })
     .addLog({
         address: ['0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'],
         topic0: [
-          ENS_registry.events.Transfer.topic,
-          ENS_registry.events.NewOwner.topic,
-          ENS_registry.events.NewResolver.topic,
-          ENS_registry.events.NewTTL.topic,
+          EnsRegistry.events.NewOwner.topic,
+          EnsRegistry.events.NewResolver.topic,
+          EnsRegistry.events.NewTTL.topic,
+          EnsRegistry.events.Transfer.topic,
         ]
     })
     .addLog({
         address: ['0x314159265dd8dbb310642f98f50c066173c1259b'],
         topic1: [
-          ENS_resolver.events.Transfer.topic,
-          ENS_resolver.events.NewOwner.topic,
-          ENS_resolver.events.NewResolver.topic,
-          ENS_resolver.events.NewTTL.topic,
+          EnsRegistry.events.NewOwner.topic,
+          EnsRegistry.events.NewResolver.topic,
+          EnsRegistry.events.NewTTL.topic,
+          EnsRegistry.events.Transfer.topic,
+          EnsResolver.events.ABIChanged.topic,
+          EnsResolver.events.AddrChanged.topic,
+          EnsResolver.events.AddressChanged.topic,
+          EnsResolver.events.AuthorisationChanged.topic,
+          EnsResolver.events.ContenthashChanged.topic,
+          EnsResolver.events.InterfaceChanged.topic,
+          EnsResolver.events.NameChanged.topic,
+          EnsResolver.events.PubkeyChanged.topic,
+          EnsResolver.events['TextChanged(bytes32,string,string)'].topic,
+          EnsResolver.events['TextChanged(bytes32,string,string,string)'].topic,
+          EnsResolver.events.VersionChanged.topic,
         ]
     })
     .addLog({
         address: ['0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85'],
         topic1: [
-          ENS_baseregistrar.events.NameRegistered.topic,
-          ENS_baseregistrar.events.NameRenewed.topic,
-          ENS_baseregistrar.events.Transfer.topic,
+          EnsBaseRegistrar.events.NameRegistered.topic,
+          EnsBaseRegistrar.events.NameRenewed.topic,
+          EnsBaseRegistrar.events.Transfer.topic,
+
         ]
     })
     .addLog({
@@ -134,8 +159,11 @@ import = as ENS_namewrapper from './abi/NameWrapper'
         ]
     })
 ```
-
-
+- Run Typegen
+```
+npm i @subsquid/typeorm-codegen --save-dev
+sqd codegen
+```
 
 - Import the 6 entities in main.ts and edit what looks like functions to me. One for each entity?
 ```
