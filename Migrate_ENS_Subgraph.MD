@@ -179,7 +179,7 @@ export type ProcessorContext<Store> = DataHandlerContext<Store, Fields>
 - Run Typegen
 ```
 npm i @subsquid/typeorm-codegen --save-dev
-sqd codegen
+sqd typegen
 ```
 
 - Import the 6 entities in main.ts and edit what looks like functions to me. One for each entity?
