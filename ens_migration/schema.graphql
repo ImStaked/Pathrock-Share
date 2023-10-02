@@ -40,9 +40,6 @@ type Domain @entity {
   registration: Registration @derivedFrom(field: "domain")
   "The wrapped domain associated with the domain"
   wrappedDomain: WrappedDomain @derivedFrom(field: "domain")
-
-  "The events associated with the domain"
-  events: [DomainEvent!]! @derivedFrom(field: "domain")
 }
 
 interface DomainEvent {
@@ -196,8 +193,6 @@ type Registration @entity {
   registrant: Account!
   "The human-readable label name associated with the domain registration"
   labelName: String
-  "The events associated with the domain registration"
-  events: [RegistrationEvent!]! @derivedFrom(field: "registration")
 }
 
 interface RegistrationEvent {
@@ -293,8 +288,6 @@ type Resolver @entity {
   texts: [String!]
   "The set of observed SLIP-44 coin types for this resolver"
   coinTypes: [BigInt!]
-  "The events associated with this resolver"
-  events: [ResolverEvent!]! @derivedFrom(field: "resolver")
 }
 
 interface ResolverEvent {
