@@ -7,12 +7,12 @@ import {
     Log as _Log,
     Transaction as _Transaction,
 } from '@subsquid/evm-processor'
-import * as EnsRegistry from './abi/AuctionRegistrar'
+import * as EnsRegistry from './abi/Registry'
 import * as EnsResolver from './abi/PublicResolver' 
-import * as EnsBaseregistrar from './abi/BaseRegistrar'
+import * as EnsBaseRegistrar from './abi/BaseRegistrar'
 import * as EnsRegistrarControllerOld from './abi/EthRegistrarControllerOld'
 import * as EnsRegistrarController from './abi/EthRegistrarController'
-import * as EnsNamewrapper from './abi/NameWrapper'
+import * as ENSNamewrapper from './abi/NameWrapper'
 
 export const processor = new EvmBatchProcessor()
     .setDataSource({
@@ -37,18 +37,23 @@ export const processor = new EvmBatchProcessor()
     .setBlockRange({
         from: 3_332_417,
     })
+    
     .addLog({
         address: ['0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'],
         topic0: [
-          EnsRegistry.events.AuctionStarted.topic,
-          EnsRegistry.events.BidRevealed.topic,
-          EnsRegistry.events.HashInvalidated.topic,
-          EnsRegistry.events.NewBid.topic,
+          EnsRegistry.events.NewOwner.topic,
+          EnsRegistry.events.NewResolver.topic,
+          EnsRegistry.events.NewTTL.topic,
+          EnsRegistry.events.Transfer.topic,
         ]
     })
     .addLog({
         address: ['0x314159265dd8dbb310642f98f50c066173c1259b'],
         topic1: [
+          EnsRegistry.events.NewOwner.topic,
+          EnsRegistry.events.NewResolver.topic,
+          EnsRegistry.events.NewTTL.topic,
+          EnsRegistry.events.Transfer.topic,
           EnsResolver.events.ABIChanged.topic,
           EnsResolver.events.AddrChanged.topic,
           EnsResolver.events.AddressChanged.topic,
@@ -65,15 +70,10 @@ export const processor = new EvmBatchProcessor()
     .addLog({
         address: ['0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85'],
         topic1: [
-          EnsBaseregistrar.events.NameRegistered.topic,
-          EnsBaseregistrar.events.NameRenewed.topic,
-          EnsBaseregistrar.events.Transfer.topic,
-          EnsBaseregistrar.events.Approval.topic,
-          EnsBaseregistrar.events.ApprovalForAll.topic,
-          EnsBaseregistrar.events.ControllerAdded.topic,
-          EnsBaseregistrar.events.ControllerRemoved.topic,
-          EnsBaseregistrar.events.NameMigrated.topic,
-          EnsBaseregistrar.events.OwnershipTransferred.topic,
+          EnsBaseRegistrar.events.NameRegistered.topic,
+          EnsBaseRegistrar.events.NameRenewed.topic,
+          EnsBaseRegistrar.events.Transfer.topic,
+
         ]
     })
     .addLog({
@@ -81,8 +81,6 @@ export const processor = new EvmBatchProcessor()
         topic1: [
           EnsRegistrarControllerOld.events.NameRegistered.topic,
           EnsRegistrarControllerOld.events.NameRenewed.topic,
-          EnsRegistrarControllerOld.events.NewPriceOracle.topic,
-          EnsRegistrarControllerOld.events.OwnershipTransferred.topic,
         ]
     })
     .addLog({
@@ -90,22 +88,17 @@ export const processor = new EvmBatchProcessor()
         topic1: [
           EnsRegistrarController.events.NameRegistered.topic,
           EnsRegistrarController.events.NameRenewed.topic,
-          EnsRegistrarController.events.OwnershipTransferred.topic,
         ]
     })
     .addLog({
         address: ['0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401'],
         topic0: [
-          EnsNamewrapper.events.NameWrapped.topic,
-          EnsNamewrapper.events.NameUnwrapped.topic,
-          EnsNamewrapper.events.FusesSet.topic,
-          EnsNamewrapper.events.ExpiryExtended.topic,
-          EnsNamewrapper.events.TransferSingle.topic,
-          EnsNamewrapper.events.TransferBatch.topic,
-          EnsNamewrapper.events.ApprovalForAll.topic,
-          EnsNamewrapper.events.ControllerChanged.topic,
-          EnsNamewrapper.events.OwnershipTransferred.topic,
-          EnsNamewrapper.events.URI.topic,
+          ENSNamewrapper.events.NameWrapped.topic,
+          ENSNamewrapper.events.NameUnwrapped.topic,
+          ENSNamewrapper.events.FusesSet.topic,
+          ENSNamewrapper.events.ExpiryExtended.topic,
+          ENSNamewrapper.events.TransferSingle.topic,
+          ENSNamewrapper.events.TransferBatch.topic,
         ]
     })
 
