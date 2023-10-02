@@ -115,7 +115,7 @@ export const processor = new EvmBatchProcessor()
     })
     .addLog({
         address: ['0x314159265dd8dbb310642f98f50c066173c1259b'],
-        topic1: [
+        topic0: [
           EnsRegistry.events.NewOwner.topic,
           EnsRegistry.events.NewResolver.topic,
           EnsRegistry.events.NewTTL.topic,
@@ -135,7 +135,7 @@ export const processor = new EvmBatchProcessor()
     })
     .addLog({
         address: ['0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85'],
-        topic1: [
+        topic0: [
           EnsBaseRegistrar.events.NameRegistered.topic,
           EnsBaseRegistrar.events.NameRenewed.topic,
           EnsBaseRegistrar.events.Transfer.topic,
@@ -144,14 +144,14 @@ export const processor = new EvmBatchProcessor()
     })
     .addLog({
         address: ['0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5'],
-        topic1: [
+        topic0: [
           EnsRegistrarControllerOld.events.NameRegistered.topic,
           EnsRegistrarControllerOld.events.NameRenewed.topic,
         ]
     })
     .addLog({
         address: ['0x253553366Da8546fC250F225fe3d25d0C782303b'],
-        topic1: [
+        topic0: [
           EnsRegistrarController.events.NameRegistered.topic,
           EnsRegistrarController.events.NameRenewed.topic,
         ]
