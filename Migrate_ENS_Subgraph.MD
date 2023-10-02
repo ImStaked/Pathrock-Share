@@ -56,9 +56,11 @@ git clone https://github.com/ensdomains/ens-subgraph
 sqd init ens-subsquid --template evm
 cd ens-subsquid 
 ```
-- The minimal template already contains a dummy schema.graphql file. Replace it with the schema from the graph
+- The minimal template already contains a dummy schema.graphql file. Replace it with the schema from the graph. then Generate Entities
 ```
 cp ~/ens-subgraph/schema.graphql ~/ens-subsquid/
+sqd codegen
+sqd build
 ```
 - subgraph.yaml ( specifies data sources and events to index )
 ```
@@ -133,12 +135,7 @@ import = as ENS_namewrapper from './abi/NameWrapper'
     })
 ```
 
-- Generate typings from ABI
-```
-cp ~/ens-subgraph/abis/* ~/ens-subsquid/abi/
-npm i @subsquid/typeorm-codegen --save-dev
-sqd typegen
-```
+
 
 - Import the 6 entities in main.ts and edit what looks like functions to me. One for each entity?
 ```
