@@ -63,14 +63,23 @@ cp ~/ens-subgraph/subgraph.yaml ~/ens-squid/
 cp ~/ens-subgraph/abis/* ~/ens-squid/abi/
 ```
 
-- Copy addresses from subgraph.yaml into processor.ts
+- rm src/processor.ts && nano src/processor.ts
 ```
+import {lookupArchive} from '@subsquid/archive-registry'
+import {
+    BlockHeader,
+    DataHandlerContext,
+    EvmBatchProcessor,
+    EvmBatchProcessorFields,
+    Log as _Log,
+    Transaction as _Transaction,
+} from '@subsquid/evm-processor'
 import * as EnsRegistry from './abi/Registry'
 import * as EnsResolver from './abi/PublicResolver' 
 import * as EnsBaseRegistrar from './abi/BaseRegistrar'
-import * as ENS_registrar_controller_old from './abi/EthRegistrarControllerOld'
-import * as ENS_registrar_controller from './abi/EthRegistrarController'
-import * as ENS_namewrapper from './abi/NameWrapper'
+import * as EnsRegistrarControllerOld from './abi/EthRegistrarControllerOld'
+import * as EnsRegistrarController from './abi/EthRegistrarController'
+import * as ENSNamewrapper from './abi/NameWrapper'
 
 export const processor = new EvmBatchProcessor()
     .setDataSource({
@@ -136,28 +145,36 @@ export const processor = new EvmBatchProcessor()
     .addLog({
         address: ['0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5'],
         topic1: [
-          ENS_registrar_controller_old.events.NameRegistered.topic,
-          ENS_registrar_controller_old.events.NameRenewed.topic,
+          EnsRegistrarControllerOld.events.NameRegistered.topic,
+          EnsRegistrarControllerOld.events.NameRenewed.topic,
         ]
     })
     .addLog({
         address: ['0x253553366Da8546fC250F225fe3d25d0C782303b'],
         topic1: [
-          ENS_registrar_controller.events.NameRegistered.topic,
-          ENS_registrar_controller.events.NameRenewed.topic,
+          EnsRegistrarController.events.NameRegistered.topic,
+          EnsRegistrarController.events.NameRenewed.topic,
         ]
     })
     .addLog({
         address: ['0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401'],
         topic0: [
-          ENS_namewrapper.events.NameWrapped.topic,
-          ENS_namewrapper.events.NameUnwrapped.topic,
-          ENS_namewrapper.events.FusesSet.topic,
-          ENS_namewrapper.events.ExpiryExtended.topic,
-          ENS_namewrapper.events.TransferSingle.topic,
-          ENS_namewrapper.events.TransferBatch.topic,
+          ENSNamewrapper.events.NameWrapped.topic,
+          ENSNamewrapper.events.NameUnwrapped.topic,
+          ENSNamewrapper.events.FusesSet.topic,
+          ENSNamewrapper.events.ExpiryExtended.topic,
+          ENSNamewrapper.events.TransferSingle.topic,
+          ENSNamewrapper.events.TransferBatch.topic,
         ]
     })
+
+
+export type Fields = EvmBatchProcessorFields<typeof processor>
+export type Block = BlockHeader<Fields>
+export type Log = _Log<Fields>
+export type Transaction = _Transaction<Fields>
+export type ProcessorContext<Store> = DataHandlerContext<Store, Fields>
+
 ```
 - Run Typegen
 ```
