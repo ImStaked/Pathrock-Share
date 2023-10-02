@@ -53,8 +53,8 @@ git clone https://github.com/ensdomains/ens-subgraph
 
 - Initialize with basic evm template
 ```
-sqd init ens-subsquid --template evm
-cd ens-subsquid 
+sqd init ens-squid --template evm
+cd ens-squid 
 ```
 - Copy Files
 ```
@@ -63,7 +63,7 @@ cp ~/ens-subgraph/subgraph.yaml ~/ens-squid/
 cp ~/ens-subgraph/abis/* ~/ens-squid/abi/
 ```
 
-- rm src/processor.ts && nano src/processor.ts
+- rm ~/ens-squid/src/processor.ts && nano ~/ens-squid/src/processor.ts
 ```
 import {lookupArchive} from '@subsquid/archive-registry'
 import {
