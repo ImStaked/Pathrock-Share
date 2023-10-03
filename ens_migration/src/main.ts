@@ -42,9 +42,9 @@ processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
                     owner: owner,
                 });
         }
-          }
         }
     }
+}
 
     // apply vectorized transformations and aggregations
     const burned = EnsRegistrys.reduce((acc, b) => acc + b.value, 0n) / 1_000_000_000n
