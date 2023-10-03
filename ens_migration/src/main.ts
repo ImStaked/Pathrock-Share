@@ -1,7 +1,7 @@
 import {TypeormDatabase} from '@subsquid/typeorm-store'
 import {DomainEvent} from './model'
 import {ResolverEvent} from './model'
-import {} from './model'
+import {RegistrationEvent} from './model'
 import {} from './model'
 import {processor} from './processor'
 
@@ -41,10 +41,10 @@ processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
                     node: node,
                     owner: owner,
                 });
-        }
-          }
+            }
         }
     }
+}
 
     processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
         const ResolverEvents: ResolverEvent[] = []
@@ -124,11 +124,39 @@ processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
                     node: node,
                     newVersion: newVersion,
                     });
+                }
             }
+        }
+}
+processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
+    const DomainEvents: DomainEvent[] = []
+    for (let c of ctx.blocks) {
+        for (let log of c.logs) {
+        if(log.topics[0] === EnsBaseRegistrarABI.events.NameRegistered.topic){
+            let {id, owner, expires} = EnsBaseRegistrarABI.events.NameRegistered.decode(log); 
+            let newowner = RegistrationEvent({
+                id: id,
+                owner: owner,
+                expires: expires.
+                });
+        if(log.topics[0] === EnsBaseRegistrarABI.events.NameRenewed.topic){
+                let {id, expires} = EnsBaseRegistrarABI.events.NameRenewed.decode(log); 
+                let newresolver = RegistrationEvent({
+                    id: id,
+                    expires: expires, 
+                });   
+        if(log.topics[0] === EnsBaseRegistrarABI.events.Transfer.topic){
+                let {from,to,tokenId} = EnsBaseRegistrarABI.events.Transfer.decode(log); 
+                let newowner = RegistrationEvent({
+                    from: from,
+                    to: to,
+                    tokenId: tokenId,
+                });
             }
         }
     }
-    // apply vectorized transformations and aggregations
+}               
+// apply vectorized transformations and aggregations
     const burned = EnsRegistrys.reduce((acc, b) => acc + b.value, 0n) / 1_000_000_000n
     const startBlock = ctx.blocks.at(0)?.header.height
     const endBlock = ctx.blocks.at(-1)?.header.height
