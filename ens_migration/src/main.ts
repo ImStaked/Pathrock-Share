@@ -1,4 +1,5 @@
 import {TypeormDatabase} from '@subsquid/typeorm-store'
+
 import { Registration } from './model/generated/registration.model'
 import { RegistrationEvent } from './model/generated/registrationEvent.model'
 import { Domain } from './model/generated/domain.model'
