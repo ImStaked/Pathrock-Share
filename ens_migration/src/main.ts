@@ -1,8 +1,13 @@
 import {TypeormDatabase} from '@subsquid/typeorm-store'
-import {DomainEvent} from './model'
-import {ResolverEvent} from './model'
-import {RegistrationEvent} from './model'
-import {} from './model'
+import { Registration } from './model/generated/registration.model'
+import { RegistrationEvent } from './model/generated/registrationEvent.model'
+import { Domain } from './model/generated/domain.model'
+import { DomainEvent } from './model/generated/domainEvent.model'
+import { Account } from './model/generated/account.model'
+import { Resolver } from './model/generated/resolver.model'
+import { ResolverEvent } from './model/generated/resolverEvent.model'
+import { WrappedDomain } from './model/generated/wrappedDomain.model'
+
 import {processor} from './processor'
 
 import * as EsnRegistryABI from './abi/Registry'
@@ -11,151 +16,144 @@ import * as EnsBaseRegistrarABI from './abi/BaseRegistrar'
 import * as EnsRegistrarControllerOldABI from './abi/EthRegistrarControllerOld'
 import * as EnsRegistrarControllerABI from './abi/EthRegistrarController'
 import * as ENSNamewrapperABI from './abi/NameWrapper'
+import { id } from 'ethers'
 
 processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
-    const DomainEvents: DomainEvent[] = []
+    const Registrations: Registration[] = [];
     for (let c of ctx.blocks) {
         for (let log of c.logs) {
         if(log.topics[0] === EsnRegistryABI.events.NewOwner.topic){
-            let {node, label, owner} = EsnRegistryABI.events.NewOwner.decode(log); 
-            let newowner = DomainEvent({
+            let {node, label, owner} = EsnRegistryABI.events.NewOwner.decode(log);
+            let newowner = new Registration({
                 node: node,
                 label: label,
                 owner: owner, 
                 });
+                Registrations.push(newowner);
         if(log.topics[0] === EsnRegistryABI.events.NewResolver.topic){
                 let {node, resolver} = EsnRegistryABI.events.NewResolver.decode(log); 
-                let newresolver = DomainEvent({
+                let newresolver = new Registration({
                     node: node,
                     resolver: resolver, 
-                });   
+                });
+                Registrations.push(newresolver);
+   
         if(log.topics[0] === EsnRegistryABI.events.NewTTL.topic){
                 let {node,ttl} = EsnRegistryABI.events.NewTTL.decode(log); 
-                let newowner = DomainEvent({
+                let newTTL = new Registration({
                     node: node,
-                    ttl: ttl,
+                    ttl: ttl,Registration
                 });
+                Registrations.push(newTTL);
+
         if(log.topics[0] === EsnRegistryABI.events.Transfer.topic){
                 let {node,owner} = EsnRegistryABI.events.Transfer.decode(log); 
-                let newowner = DomainEvent({
+                let transfer = new Registration({
                     node: node,
                     owner: owner,
                 });
+                Registrations.push(transfer);
             }
         }
     }
 }
 
     processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
-        const ResolverEvents: ResolverEvent[] = []
+        const Resolvers: Resolver[] = []
         for (let c of ctx.blocks) {
             for (let log of c.logs) {
             if(log.topics[0] === EnsResolverABI.events.ABIChanged.topic){
                 let {node, contentType} = EnsResolverABI.events.ABIChanged.decode(log); 
-                let newowner = ResolverEvent({
-                    node: node,
+                let abiChanged = new Resolver({
+                    id: node,
                     contentType: contentType,
                     });
+                    Resolvers.push(abiChanged);
+
             if(log.topics[0] === EnsResolverABI.events.AddrChanged.topic){
                 let {node,a} = EnsResolverABI.events.AddrChanged.decode(log); 
-                let newowner = ResolverEvent({
+                let addrChanged = new Resolver({
                     node: node,
                     a: a,
                     });
+                    Resolvers.push(addrChanged);
+
             if(log.topics[0] === EnsResolverABI.events.AddressChanged.topic){
                 let {node,coinType,newAddress} = EnsResolverABI.events.AddressChanged.decode(log); 
-                let newowner = ResolverEvent({
+                let addressChanged = new Resolver({
                     node: node,
                     coinType: coinType,
                     newAddress: newAddress,
                     });
+                    Resolvers.push(addressChanged); 
+
             if(log.topics[0] === EnsResolverABI.events.AuthorisationChanged.topic){
                 let {node,owner,target,isAuthorised} = EnsResolverABI.events.AuthorisationChanged.decode(log); 
-                let newowner = ResolverEvent({
+                let AuthorisationChanged = new Resolver({
                     node: node,
                     owner: owner,
                     target: target,
                     isAuthorised: isAuthorised,
                     });
+                    Resolvers.push(AuthorisationChanged)
+
             if(log.topics[0] === EnsResolverABI.events.ContenthashChanged.topic){
                 let {node,hash} = EnsResolverABI.events.ContenthashChanged.decode(log); 
-                let newowner = ResolverEvent({
-                    node: node,
+                let ContenthashChanged = new Resolver({
+                    id: node,
                     hash: hash,
                     });
+                    Resolvers.push(ContenthashChanged)
+
             if(log.topics[0] === EnsResolverABI.events.InterfaceChanged.topic){
                 let {node,interfaceID,implementer} = EnsResolverABI.events.InterfaceChanged.decode(log); 
-                let newowner = ResolverEvent({
+                let InterfaceChanged = new Resolver({
                     node: node,
                     interfaceID: interfaceID,
                     implementer: implementer,
                     });
+                    Resolvers.push(InterfaceChanged)
+
             if(log.topics[0] === EnsResolverABI.events.NameChanged.topic){
                 let {node,name} = EnsResolverABI.events.NameChanged.decode(log); 
-                let newowner = ResolverEvent({
+                let NameChanged = new Resolver({
                     node: node,
                     name: name,
                     });
+                    Resolvers.push(NameChanged)
+
             if(log.topics[0] === EnsResolverABI.events.PubkeyChanged.topic){
                 let {node,x,y} = EnsResolverABI.events.PubkeyChanged.decode(log); 
-                let newowner = ResolverEvent({
-                    node: node,
+                let PubkeyChanged = new Resolver({
+                    id: node,
                     x: x,
                     y: y,
                     });
+                    Resolvers.push(PubkeyChanged)
+
             if(log.topics[0] === EnsResolverABI.events['TextChanged(bytes32,string,string)'].topic){
                 let {node,indexedKey,key} = EnsResolverABI.events['TextChanged(bytes32,string,string,string)'].decode(log); 
-                let newowner = ResolverEvent({
-                    node: node,
+                let TextChanged = new Resolver({
+                    id: node,
                     indexedKey: indexedKey,
                     key: key,
                     });
+                    Resolvers.push(TextChanged)
+
             if(log.topics[0] === EnsResolverABI.events['TextChanged(bytes32,string,string,string)'].topic){
                 let {node,indexedKey,key,value} = EnsResolverABI.events['TextChanged(bytes32,string,string,string)'].decode(log); 
-                let newowner = ResolverEvent({
-                    node: node,
+                let Text2Changed = new Resolver({
+                    id: node,
                     indexedKey: indexedKey,
                     key: key,
                     value: value,
                     });
-            if(log.topics[0] === EnsResolverABI.events.VersionChanged.topic){
-                let {node,newVersion} = EnsResolverABI.events.VersionChanged.decode(log); 
-                let newowner = ResolverEvent({
-                    node: node,
-                    newVersion: newVersion,
-                    });
-                }
+                    Resolvers.push(Text2Changed)
+
             }
         }
 }
-processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
-    const DomainEvents: DomainEvent[] = []
-    for (let c of ctx.blocks) {
-        for (let log of c.logs) {
-        if(log.topics[0] === EnsBaseRegistrarABI.events.NameRegistered.topic){
-            let {id, owner, expires} = EnsBaseRegistrarABI.events.NameRegistered.decode(log); 
-            let newowner = RegistrationEvent({
-                id: id,
-                owner: owner,
-                expires: expires.
-                });
-        if(log.topics[0] === EnsBaseRegistrarABI.events.NameRenewed.topic){
-                let {id, expires} = EnsBaseRegistrarABI.events.NameRenewed.decode(log); 
-                let newresolver = RegistrationEvent({
-                    id: id,
-                    expires: expires, 
-                });   
-        if(log.topics[0] === EnsBaseRegistrarABI.events.Transfer.topic){
-                let {from,to,tokenId} = EnsBaseRegistrarABI.events.Transfer.decode(log); 
-                let newowner = RegistrationEvent({
-                    from: from,
-                    to: to,
-                    tokenId: tokenId,
-                });
-            }
-        }
-    }
-}               
+       
 // apply vectorized transformations and aggregations
     const burned = EnsRegistrys.reduce((acc, b) => acc + b.value, 0n) / 1_000_000_000n
     const startBlock = ctx.blocks.at(0)?.header.height
