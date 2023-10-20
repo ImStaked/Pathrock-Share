@@ -164,3 +164,7 @@
   ```
   npm run-script codegen
   ```
+- Build the project
+  ```
+  npm run-script build
+  ```
