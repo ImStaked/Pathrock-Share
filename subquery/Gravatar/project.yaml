@@ -1,0 +1,42 @@
+---
+project: EthereumProject
+specVersion: 1.0.0
+version: 0.0.1
+name: subquery-example-gravatar
+description: "This project can be use as a starting point for developing your new Ethereum SubQuery project, it indexes all Gravatars on Ethereum"
+runner: 
+  - node: 
+    - name: "@subql/node-ethereum"
+    - version: ">=3.0.0"
+
+  - query: 
+    - name: "@subql/query"
+    - version: "*"
+
+  - schema: 
+    - file: "./schema.graphql"
+  network: 
+    - chainId: "1"
+    - endpoint: "https://eth.api.onfinality.io/public"
+    - dictionary: "https://gx.api.subquery.network/sq/subquery/eth-dictionary"
+
+dataSources: 
+  - kind: "EthereumDatasourceKind.Runtime"
+  - startBlock: 6175243
+  - options: 
+    - abi: "gravity"
+    - address: "0x2E645469f354BB4F5c8a05B3b30A929361cf77eC"
+
+assets: 
+  - mapping: 
+    - file: "./dist/index.js"
+    - handlers: 
+      - kind: "EthereumHandlerKind.Event"
+        - handler: "handleNewGravatar"
+        - filter: 
+          - topics: "NewGravatar(uint256,address,string,string)"
+
+      - kind: "EthereumHandlerKind.Event"
+        - handler: "handleUpdatedGravatar"
+        - filter: 
+          - topics: "UpdatedGravatar(uint256,address,string,string)"
