@@ -39,6 +39,7 @@ const project: EthereumProject = {
     endpoint: ["https://eth.api.onfinality.io/public"],
     dictionary: "https://gx.api.subquery.network/sq/subquery/eth-dictionary",
   },
+{
   dataSources: [
     {
       kind: EthereumDatasourceKind.Runtime,
@@ -71,8 +72,7 @@ const project: EthereumProject = {
       },
     },
   ],
-  repository: "https://github.com/subquery/ethereum-subql-starter",
-};
+}
 
 // Must set default to the project instance
 export default project;
