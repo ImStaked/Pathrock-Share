@@ -168,3 +168,23 @@
   ```
   npm run-script build
   ```
+- Run the Project Locally with Docker
+  ```
+  npm run-script start:docker
+  ```
+- Query the project
+  Go to http://localhost:3000. You should see a graphql playground and the schemas that are ready to query
+  - Example Query
+  ```
+  query {
+    gravatars(first: 2, orderBy: CREATED_BLOCK_DESC) {
+      nodes {
+        id
+        owner
+        displayName
+        imageUrl
+        createdBlock
+      }
+    }
+  }
+  ```
