@@ -21,6 +21,12 @@ function install_nodejs
     npm install --global yarn
 }
 
+function install_yarn
+{
+    corepack enable
+    yarn init -2
+}
+
 function install_docker
 {
     sudo apt-get update
@@ -37,6 +43,6 @@ function install_docker
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose -y
 }
 
-
 install_nodejs
+install_yarn
 install_docker
