@@ -38,11 +38,45 @@
     npm install
     ```
 ## Three files will need to be updated
-- Project Manifest File
+- Edit the datasources section of the project manifest file(project.ts) to look like this
   ```
-  project.ts
+  {
+    dataSources: [
+      {
+        kind: EthereumDatasourceKind.Runtime,
+        startBlock: 6175243,
+  
+        options: {
+          // Must be a key of assets
+          abi: "gravity",
+          address: "0x2E645469f354BB4F5c8a05B3b30A929361cf77eC",
+        },
+        assets: new Map([["gravity", { file: "./abis/Gravity.json" }]]),
+        mapping: {
+          file: "./dist/index.js",
+          handlers: [
+            {
+              kind: EthereumHandlerKind.Event,
+              handler: "handleNewGravatar",
+              filter: {
+                topics: ["NewGravatar(uint256,address,string,string)"],
+              },
+            },
+            {
+              kind: EthereumHandlerKind.Event,
+              handler: "handleUpdatedGravatar",
+              filter: {
+                topics: ["UpdatedGravatar(uint256,address,string,string)"],
+              },
+            },
+          ],
+        },
+      },
+    ],
+  }
   ```
 - GraphQL Schema
+  - Add the schema for Gravatar
   ```
   sudo tee $HOME/Gravitar/schema.graphql > /dev/null <<'EOF'
   type Gravatar @entity {
@@ -53,6 +87,10 @@
   createdBlock: BigInt!
   EOF
   ```
+  - Whenever changes are made to the schema file, please ensure that you regenerate your types directory.
+    ```
+    npm run-script codegen
+    ```
 - Mapping functions
   ```
   /src/mappings/
