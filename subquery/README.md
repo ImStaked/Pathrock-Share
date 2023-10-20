@@ -97,10 +97,60 @@
         ```
         npm run-script codegen
         ```
-- Mapping functions
-  ```
-  /src/mappings/
-  ``` 
+  - Mapping functions
+
+    > ./Gravatar/mappingHandlers.ts  
+      ```
+      import {
+      NewGravatarLog,
+      UpdatedGravatarLog,
+      } from "../types/abi-interfaces/Gravity";
+      import { Gravatar } from "../types";
+      import assert from "assert";
+
+      export async function handleNewGravatar(log: NewGravatarLog): Promise<void> {
+      logger.info("New Gravar at block " + log.blockNumber.toString());
+
+      assert(log.args, "Require args on the logs");
+
+      const gravatar = Gravatar.create({
+          id: log.args.id.toHexString()!,
+          owner: log.args.owner,
+          displayName: log.args.displayName,
+          imageUrl: log.args.imageUrl,
+          createdBlock: BigInt(log.blockNumber),
+      });
+
+      await gravatar.save();
+      }
+
+      export async function handleUpdatedGravatar(
+      log: UpdatedGravatarLog
+      ): Promise<void> {
+      logger.info("Updated Gravar at block " + log.blockNumber.toString());
+
+      assert(log.args, "Require args on the logs");
+
+      const id: string = log.args.id.toHexString()!;
+
+      // We first check if the Gravatar already exists, if not we create it
+      let gravatar = await Gravatar.get(id);
+      if (gravatar == null || gravatar == undefined) {
+          gravatar = Gravatar.create({
+          id,
+          createdBlock: BigInt(log.blockNumber),
+          owner: "",
+          displayName: "",
+          imageUrl: "",
+          });
+      }
+      // Update with new data
+      gravatar.owner = log.args.owner;
+      gravatar.displayName = log.args.displayName;
+      gravatar.imageUrl = log.args.imageUrl;
+      await gravatar.save();
+      } 
+      ``` 
 
 ## EVM Project Scaffolding
   - The Gravatar ABI code is located [here](https://etherscan.io/address/0x2e645469f354bb4f5c8a05b3b30a929361cf77ec#code)
@@ -110,3 +160,7 @@
     [{"constant":false,"inputs":[{"name":"_imageUrl","type":"string"}],"name":"updateGravatarImage","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"setMythicalGravatar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"owner","type":"address"}],"name":"getGravatar","outputs":[{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"gravatarToOwner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"ownerToGravatar","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_displayName","type":"string"}],"name":"updateGravatarName","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_displayName","type":"string"},{"name":"_imageUrl","type":"string"}],"name":"createGravatar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"gravatars","outputs":[{"name":"owner","type":"address"},{"name":"displayName","type":"string"},{"name":"imageUrl","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"id","type":"uint256"},{"indexed":false,"name":"owner","type":"address"},{"indexed":false,"name":"displayName","type":"string"},{"indexed":false,"name":"imageUrl","type":"string"}],"name":"NewGravatar","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"id","type":"uint256"},{"indexed":false,"name":"owner","type":"address"},{"indexed":false,"name":"displayName","type":"string"},{"indexed":false,"name":"imageUrl","type":"string"}],"name":"UpdatedGravatar","type":"event"}]
     EOF
     ```
+- Regenerate types directory
+  ```
+  npm run-script codegen
+  ```
