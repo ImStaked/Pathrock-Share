@@ -154,9 +154,10 @@
     ``` 
 - EVM Project Scaffolding
   - The Gravatar ABI code is located [here](https://etherscan.io/address/0x2e645469f354bb4f5c8a05b3b30a929361cf77ec#code)
-  - Copy Contract ABI section and Export the data as json. Save this as Gravity.json
+  - Copy Contract ABI section and Export the data as json. Save this as Gravity.json must register for etherscan.io api key
     ```
-    curl -s "https://api.etherscan.io/api?module=contract&action=getabi&address=0x2e645469f354bb4f5c8a05b3b30a929361cf77ec&apikey=WASC1BREZPBZQDWS9T6XX1KBMQ11FMX6FF" | jq -r .result > abis/Gravity.json
+    api_key=WASC1BREZPBZQDWS9T6XX1KBMQ11FMX6FF
+    curl -s "https://api.etherscan.io/api?module=contract&action=getabi&address=0x2e645469f354bb4f5c8a05b3b30a929361cf77ec&apikey=$api_key" | jq -r .result > abis/Gravity.json
     ```  
     
 - Regenerate types directory
