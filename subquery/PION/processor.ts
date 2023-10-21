@@ -40,7 +40,7 @@ import {
         {
           kind: EthereumDatasourceKind.Runtime,
           startBlock: 18280000,
-    
+// TierSetter
           options: {
             // Must be a key of assets
             abi: "TierSetter",
@@ -50,12 +50,19 @@ import {
           mapping: {
             file: "./dist/index.js",
             handlers: [
-              {
+                {
                 kind: EthereumHandlerKind.Event,
-                handler: "handleOwnershipTransfer",
+                handler: "handleSetTier",
                 filter: {
-                  topics: [""],
+                  topics: [""setTier(address,uint8,uint256,bytes)""],
                 },
+                    
+                {
+                kind: EthereumHandlerKind.Event,
+                handler: "handleOwnershipTransferred",
+                filter: {
+                  topics: [""OwnershipTransferred(address,address)""],
+                },                
               },           
             ]
           }
