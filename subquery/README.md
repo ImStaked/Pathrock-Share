@@ -80,7 +80,7 @@
     > ./Gravatar/schema.graphql  
     - Add the schema for Gravatar  
       ```
-      sudo tee $HOME/Gravitar/schema.graphql > /dev/null <<'EOF'
+      tee $HOME/Gravitar/schema.graphql > /dev/null <<'EOF'
       type Gravatar @entity {
       id: ID!
       owner: Bytes!
@@ -89,12 +89,12 @@
       createdBlock: BigInt!
       EOF
       ```
-      - Regenerate your types directory every time the schema is changed.
-        ```
-        npm run-script codegen
-        ```
+    - Regenerate your types directory every time the schema is changed.
+      ```
+      npm run-script codegen
+      ```
   3. Mapping functions
-     > ./Gravatar/mappingHandlers.ts  
+     > ./Gravatar/mappings/mappingHandlers.ts  
     ```
     import {
     NewGravatarLog,
@@ -150,8 +150,7 @@
   - The Gravatar ABI code is located [here](https://etherscan.io/address/0x2e645469f354bb4f5c8a05b3b30a929361cf77ec#code)
   - Copy Contract ABI section and Export the data as json. Save this as Gravity.json
     ```
-    mkdir -p abis
-    curl -s "https://api.etherscan.io/api?module=contract&action=getabi&address=0x2e645469f354bb4f5c8a05b3b30a929361cf77ec&apikey=WASC1BREZPBZQDWS9T6XX1KBMQ11FMX6FF" | jq .result > abis/Gravity.json
+    curl -s "https://api.etherscan.io/api?module=contract&action=getabi&address=0x2e645469f354bb4f5c8a05b3b30a929361cf77ec&apikey=WASC1BREZPBZQDWS9T6XX1KBMQ11FMX6FF" | jq -r .result > abis/Gravity.json
     ```  
     
 - Regenerate types directory
@@ -168,6 +167,7 @@
   ```
   npm run-script start:docker
   ```
+  do
 - Query the project
   - Query Address: ```http://HOST_ADDRESS:3000```  
   - You should see a graphql playground and the schemas that are ready to query
