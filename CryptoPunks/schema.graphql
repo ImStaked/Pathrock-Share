@@ -20,7 +20,7 @@ enum OfferType {
   ASK
 }
 
-interface NFT {
+type NFT @entity {
   id: ID!
   "Contract metadata"
   contract: Contract
@@ -45,7 +45,7 @@ interface NFT {
   currentBid: Bid
 }
 
-interface Event {
+type Event @entity {
   id: ID!
 
   "Contract metadata"
@@ -123,7 +123,7 @@ type Account @entity {
   accountUrl: String!
 }
 
-type Punk implements NFT @entity {
+type Punk @entity {
   "Punk ID"
   id: ID!
 
@@ -219,7 +219,7 @@ type Trait @entity {
   numberOfNfts: BigInt!
 }
 
-interface Offer {
+type Offer @entity {
   id: ID!
 
   "Punk owner"
@@ -243,7 +243,7 @@ interface Offer {
   offerType: OfferType!
 }
 
-type Ask implements Offer @entity {
+type Ask @entity {
   id: ID!
 
   "Account that created Ask"
@@ -267,7 +267,7 @@ type Ask implements Offer @entity {
   offerType: OfferType!
 }
 
-type Bid implements Offer @entity {
+type Bid @entity {
   id: ID!
 
   "Bidder"
@@ -314,7 +314,7 @@ type Contract @entity {
   imageHash: String
 }
 
-type Assign implements Event @entity(immutable: true) {
+type Assign @entity(immutable: true) {
   id: ID!
   "Contract metadata"
   contract: Contract
@@ -337,7 +337,7 @@ type Assign implements Event @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type Sale implements Event @entity(immutable: true) {
+type Sale @entity(immutable: true) {
   id: ID!
 
   "Punk buyer"
@@ -364,7 +364,7 @@ type Sale implements Event @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type AskCreated implements Event @entity(immutable: true) {
+type AskCreated @entity(immutable: true) {
   id: ID!
 
   "Account that created Ask"
@@ -391,7 +391,7 @@ type AskCreated implements Event @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type BidCreated implements Event @entity(immutable: true) {
+type BidCreated @entity(immutable: true) {
   id: ID!
 
   "Account that created Bid"
@@ -418,7 +418,7 @@ type BidCreated implements Event @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type BidRemoved implements Event @entity(immutable: true) {
+type BidRemoved @entity(immutable: true) {
   id: ID!
 
   "Account that removed Bid"
@@ -445,7 +445,7 @@ type BidRemoved implements Event @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type AskRemoved implements Event @entity(immutable: true) {
+type AskRemoved @entity(immutable: true) {
   id: ID!
 
   ask: Ask!
@@ -473,7 +473,7 @@ type AskRemoved implements Event @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type Transfer implements Event @entity(immutable: true) {
+type Transfer @entity(immutable: true) {
   id: ID!
 
   "Sender"
@@ -528,7 +528,7 @@ type CToken
   timestamp: BigInt!
 }
 
-type Wrap implements Event @entity(immutable: true) {
+type Wrap @entity(immutable: true) {
   id: ID!
 
   "Account that wrapped Punk"
@@ -552,7 +552,7 @@ type Wrap implements Event @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type Unwrap implements Event @entity(immutable: true) {
+type Unwrap @entity(immutable: true) {
   id: ID!
   "Account that unwrapped Punk"
   from: Account
