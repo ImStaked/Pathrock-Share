@@ -36,7 +36,7 @@ const project: EthereumProject = {
      * Public nodes may be rate limited, which can affect indexing speed
      * When developing your project we suggest getting a private API key
      */
-    endpoint: ["https://eth.api.onfinality.io/public"],
+    endpoint: ["https://rpc.ankr.com/eth"],
     dictionary: "https://gx.api.subquery.network/sq/subquery/eth-dictionary",
   },
   dataSources: [
