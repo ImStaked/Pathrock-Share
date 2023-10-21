@@ -87,11 +87,12 @@
       ```
       tee $HOME/Gravitar/schema.graphql > /dev/null <<'EOF'
       type Gravatar @entity {
-      id: ID!
-      owner: Bytes!
-      displayName: String!
-      imageUrl: String!
-      createdBlock: BigInt!
+        id: ID!
+        owner: Bytes!
+        displayName: String!
+        imageUrl: String!
+        createdBlock: BigInt!
+      }
       EOF
       ```
     - Regenerate your types directory every time the schema is changed.
