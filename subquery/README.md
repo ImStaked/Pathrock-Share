@@ -1,6 +1,6 @@
 # Subquery Learning Excersise
 
-## Prepare System
+### Prepare System
 - Add User Account and log in
   ```
   useradd -U -s /bin/bash -m -d /home/subquery subquery
@@ -22,29 +22,25 @@
   sudo npm install -g @subql/cli
   ```
 
-## Initialize Subquery Project
-- Usage
+### Create Gravatar Project
+- Initialize a project named Gravatar
   ```
-  subql init [PROJECTNAME] [-f] [-l <value>] [--install-dependencies] [--npm] [--abiPath <value>]
+  subql init Gravatar
+  cd Gravatar
   ```
-- Example
-  * Initialize a project named Gravatar
-    ```
-    subql init Gravatar
-    cd Gravatar
-    ```
-  #### Install the new project’s dependencies
-    ```
-    npm install
-    ```
-## Three files will need to be updated
-  - Project Manifest File
+  
+- Install the new project’s dependencies
+  ```
+  npm install
+  ```
+    
+- Three files will need to be updated
+  1. Project Manifest File
   
       > ./Gravatar/project.ts
  
     - Update the datasources section of the project manifest file
       ```
-      {
         dataSources: [
           {
             kind: EthereumDatasourceKind.Runtime,
@@ -79,7 +75,7 @@
         ],
       }
       ```
-  - GraphQL Schema File
+  2. GraphQL Schema File
 
     > ./Gravatar/schema.graphql  
     - Add the schema for Gravatar  
@@ -97,68 +93,65 @@
         ```
         npm run-script codegen
         ```
-  - Mapping functions
+  3. Mapping functions
+     > ./Gravatar/mappingHandlers.ts  
+    ```
+    import {
+    NewGravatarLog,
+    UpdatedGravatarLog,
+    } from "../types/abi-interfaces/Gravity";
+    import { Gravatar } from "../types";
+    import assert from "assert";
 
-    > ./Gravatar/mappingHandlers.ts  
-      ```
-      import {
-      NewGravatarLog,
-      UpdatedGravatarLog,
-      } from "../types/abi-interfaces/Gravity";
-      import { Gravatar } from "../types";
-      import assert from "assert";
+    export async function handleNewGravatar(log: NewGravatarLog): Promise<void> {
+    logger.info("New Gravar at block " + log.blockNumber.toString());
 
-      export async function handleNewGravatar(log: NewGravatarLog): Promise<void> {
-      logger.info("New Gravar at block " + log.blockNumber.toString());
+    assert(log.args, "Require args on the logs");
 
-      assert(log.args, "Require args on the logs");
+    const gravatar = Gravatar.create({
+        id: log.args.id.toHexString()!,
+        owner: log.args.owner,
+        displayName: log.args.displayName,
+        imageUrl: log.args.imageUrl,
+        createdBlock: BigInt(log.blockNumber),
+    });
 
-      const gravatar = Gravatar.create({
-          id: log.args.id.toHexString()!,
-          owner: log.args.owner,
-          displayName: log.args.displayName,
-          imageUrl: log.args.imageUrl,
-          createdBlock: BigInt(log.blockNumber),
-      });
+    await gravatar.save();
+    }
 
-      await gravatar.save();
-      }
+    export async function handleUpdatedGravatar(
+    log: UpdatedGravatarLog
+    ): Promise<void> {
+    logger.info("Updated Gravar at block " + log.blockNumber.toString());
 
-      export async function handleUpdatedGravatar(
-      log: UpdatedGravatarLog
-      ): Promise<void> {
-      logger.info("Updated Gravar at block " + log.blockNumber.toString());
+    assert(log.args, "Require args on the logs");
 
-      assert(log.args, "Require args on the logs");
+    const id: string = log.args.id.toHexString()!;
 
-      const id: string = log.args.id.toHexString()!;
-
-      // We first check if the Gravatar already exists, if not we create it
-      let gravatar = await Gravatar.get(id);
-      if (gravatar == null || gravatar == undefined) {
-          gravatar = Gravatar.create({
-          id,
-          createdBlock: BigInt(log.blockNumber),
-          owner: "",
-          displayName: "",
-          imageUrl: "",
-          });
-      }
-      // Update with new data
-      gravatar.owner = log.args.owner;
-      gravatar.displayName = log.args.displayName;
-      gravatar.imageUrl = log.args.imageUrl;
-      await gravatar.save();
-      } 
-      ``` 
-
-## EVM Project Scaffolding
+    // We first check if the Gravatar already exists, if not we create it
+    let gravatar = await Gravatar.get(id);
+    if (gravatar == null || gravatar == undefined) {
+        gravatar = Gravatar.create({
+        id,
+        createdBlock: BigInt(log.blockNumber),
+        owner: "",
+        displayName: "",
+        imageUrl: "",
+        });
+    }
+    // Update with new data
+    gravatar.owner = log.args.owner;
+    gravatar.displayName = log.args.displayName;
+    gravatar.imageUrl = log.args.imageUrl;
+    await gravatar.save();
+    } 
+    ``` 
+- EVM Project Scaffolding
   - The Gravatar ABI code is located [here](https://etherscan.io/address/0x2e645469f354bb4f5c8a05b3b30a929361cf77ec#code)
   - Copy Contract ABI section and Export the data as json. Save this as Gravity.json
     ```
-    sudo tee $HOME/Gravatar/Gravity.json > /dev/null <<'EOF'
-    [{"constant":false,"inputs":[{"name":"_imageUrl","type":"string"}],"name":"updateGravatarImage","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"setMythicalGravatar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"owner","type":"address"}],"name":"getGravatar","outputs":[{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"gravatarToOwner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"ownerToGravatar","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_displayName","type":"string"}],"name":"updateGravatarName","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_displayName","type":"string"},{"name":"_imageUrl","type":"string"}],"name":"createGravatar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"gravatars","outputs":[{"name":"owner","type":"address"},{"name":"displayName","type":"string"},{"name":"imageUrl","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"id","type":"uint256"},{"indexed":false,"name":"owner","type":"address"},{"indexed":false,"name":"displayName","type":"string"},{"indexed":false,"name":"imageUrl","type":"string"}],"name":"NewGravatar","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"id","type":"uint256"},{"indexed":false,"name":"owner","type":"address"},{"indexed":false,"name":"displayName","type":"string"},{"indexed":false,"name":"imageUrl","type":"string"}],"name":"UpdatedGravatar","type":"event"}]
-    EOF
+    mkdir -p abis
+    curl -s "https://api.etherscan.io/api?module=contract&action=getabi&address=0x2e645469f354bb4f5c8a05b3b30a929361cf77ec&apikey=WASC1BREZPBZQDWS9T6XX1KBMQ11FMX6FF" | jq .result > abis/Gravity.json
     ```  
     
 - Regenerate types directory
