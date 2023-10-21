@@ -27,7 +27,6 @@ type NFT @entity {
   numberOfSales: BigInt!
   tokenId: BigInt!
   owner: Account!
-  "All events"
   events: [Event!]! @derivedFrom(field: "nft")
   currentAsk: Ask
   currentBid: Bid
@@ -49,7 +48,7 @@ type Event @entity {
 }
 
 type Account @entity {
-  id: Bytes!
+  id: ID!
   punksOwned: [Punk!] @derivedFrom(field: "owner")
   bought: [Sale!]! @derivedFrom(field: "to")
   nftsOwned: [NFT!]! @derivedFrom(field: "owner")
@@ -79,7 +78,7 @@ type Punk @entity {
   tokenId: BigInt!
   owner: Account!
   wrapped: Boolean!
-  events: [Event!]! @derivedFrom(field: "nft")
+  events: Event
   currentAsk: Ask
   currentBid: Bid
   currentAskCreated: AskCreated
@@ -100,7 +99,7 @@ type MetaData @entity {
   svg: String
   contractURI: String!
   punk: Punk!
-  traits: [Trait!]!
+  traits: Trait!
 }
 
 type Trait @entity {
@@ -153,7 +152,7 @@ type Contract @entity {
   imageHash: String
 }
 
-type Assign @entity(immutable: true) {
+type Assign @entity {
   id: ID!
   contract: Contract
   nft: NFT
@@ -168,7 +167,7 @@ type Assign @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type Sale @entity(immutable: true) {
+type Sale @entity {
   id: ID!
   to: Account
   amount: BigInt
@@ -183,7 +182,7 @@ type Sale @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type AskCreated @entity(immutable: true) {
+type AskCreated @entity {
   id: ID!
   from: Account
   to: Account
@@ -199,7 +198,7 @@ type AskCreated @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type BidCreated @entity(immutable: true) {
+type BidCreated @entity {
   id: ID!
   from: Account
   to: Account
@@ -215,7 +214,7 @@ type BidCreated @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type BidRemoved @entity(immutable: true) {
+type BidRemoved @entity {
   id: ID!
   from: Account
   to: Account
@@ -231,7 +230,7 @@ type BidRemoved @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type AskRemoved @entity(immutable: true) {
+type AskRemoved @entity {
   id: ID!
   ask: Ask!
   from: Account
@@ -247,7 +246,7 @@ type AskRemoved @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type Transfer @entity(immutable: true) {
+type Transfer @entity {
   id: ID!
   from: Account
   to: Account
@@ -278,7 +277,7 @@ type CToken
   timestamp: BigInt!
 }
 
-type Wrap @entity(immutable: true) {
+type Wrap @entity {
   id: ID!
   from: Account
   to: Account
@@ -293,7 +292,7 @@ type Wrap @entity(immutable: true) {
   timestamp: BigInt!
 }
 
-type Unwrap @entity(immutable: true) {
+type Unwrap @entity {
   id: ID!
   from: Account
   to: Account
