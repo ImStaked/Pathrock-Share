@@ -7,20 +7,18 @@ type Node @entity {
   tier: uint8
 }
 
-type tier @entity {
-
-}
-
-
+"
 type OwnershipTransferredEvent @entity {
   "The unique identifier of the event"
   id: ID!
   "Staker Address"
-  name: address
+  stakerAddress: address
   "The address that currently owns the node"
   newOwner: address
   "The previous ower"
   previousOwner: address
 }
+"
+
 
 
