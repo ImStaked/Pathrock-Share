@@ -5,10 +5,14 @@ type Node @entity {
   stakerAddress: string
   "Staking Tier Level"
   tier: uint8
+  "Staked Amount"
+  staked: int
+  "Rewards"
+  
 }
 
 "
-type OwnershipTransferredEvent @entity {
+interface OwnershipTransferredEvent {
   "The unique identifier of the event"
   id: ID!
   "Staker Address"
@@ -18,6 +22,22 @@ type OwnershipTransferredEvent @entity {
   "The previous ower"
   previousOwner: address
 }
+
+interface RewardClaimedEvent @entity {
+  owner: 
+  "The rewardAmount with the event"
+  rewardAmount: uint256
+  "The block number of the event"
+  blockNumber: String
+  "The transaction ID associated with the event"
+  transactionID: String
+  "The account that registered the name"
+  claimer: Account! (  claimer: uint256)
+  "The expiry date of the registration"
+  expiryDate: BigInt!
+  tokenId: uint256
+}
+
 "
 
 
