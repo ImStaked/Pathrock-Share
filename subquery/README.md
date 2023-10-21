@@ -41,8 +41,8 @@
 
        [Completed example of project.ts](https://github.com/ImStaked/Pathrock-Share/blob/main/subquery/Gravatar/project.ts)
 
-    - Change the public rpc server to one that is private / functional
-      example:    ```endpoint: ["https://eth.api.onfinality.io/public"],```
+    - Set the RPC server to a hopefully private url  
+      example: ```endpoint: ["https://eth.api.onfinality.io/public"],```
       
     - Update the datasources section of the project manifest file
       ```
