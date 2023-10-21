@@ -8,9 +8,9 @@ import {
   const project: EthereumProject = {
     specVersion: "1.0.0",
     version: "0.0.1",
-    name: "subquery-example-gravatar",
+    name: "pionNodes",
     description:
-      "This project can be use as a starting point for developing your new Ethereum SubQuery project, it indexes all Gravatars on Ethereum",
+      "This project indexes all Nodes on Pion",
     runner: {
       node: {
         name: "@subql/node-ethereum",
@@ -25,10 +25,6 @@ import {
       file: "./schema.graphql",
     },
     network: {
-      /**
-       * chainId is the EVM Chain ID, for Ethereum this is 1
-       * https://chainlist.org/chain/1
-       */
       chainId: "1",
       /**
        * These endpoint(s) should be public non-pruned archive node
@@ -36,7 +32,7 @@ import {
        * Public nodes may be rate limited, which can affect indexing speed
        * When developing your project we suggest getting a private API key
        */
-      endpoint: ["https://eth.api.onfinality.io/public"],
+      endpoint: [""],
       dictionary: "https://gx.api.subquery.network/sq/subquery/eth-dictionary",
     },
 
@@ -47,7 +43,22 @@ import {
     
           options: {
             // Must be a key of assets
-            abi: "TierSetter.json",
+            abi: "TierSetter",
             address: "0xF904Bf8eC671c548b6A8C69ABC27D65955E6472E",
           },
-          
+           assets: new Map([["TierSetter", { file: "./abis/TierSetter.json" }]]),
+          mapping: {
+            file: "./dist/index.js",
+            handlers: [
+              {
+                kind: EthereumHandlerKind.Event,
+                handler: "handleOwnershipTransfer",
+                filter: {
+                  topics: [""],
+                },
+              },           
+            ]
+          }
+
+// Must set default to the project instance
+export default project;
