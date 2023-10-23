@@ -31,6 +31,16 @@ DOMAIN="sq.pathrocknetwork.org"
 EMAIL="pathrock@pathrocknetwork.org"
 certbot certonly -d $DOMAIN --non-interactive --agree-tos --email $EMAIL --nginx
 ```
+
+### Setup the firewall
+```
+ADMIN_IP=
+PROMETHEUS_SERVER=
+sudo iptables -A INPUT -s $ADMIN_IP -j ACCEPT
+sudo iptables -A INPUT -s $PROMETHEUS_SERVER -j ACCEPT
+sudo iptables -p tcp -m tcp --dport 8011 -j DROP
+```
+
 ### Create the new site and enable it
 ```
 cat <<EOF >> /etc/nginx/sites-available/sq.pathrocknetwork.org 
