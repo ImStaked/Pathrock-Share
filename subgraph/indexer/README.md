@@ -60,7 +60,7 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/sq.pathrocknetwork.org/privkey.pem;
     location / {
 
-    proxy_pass http://127.0.0.1:1080;
+    proxy_pass http://127.0.0.1:8000;
 
     }
 
