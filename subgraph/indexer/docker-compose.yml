@@ -10,7 +10,7 @@ services:
     volumes:
       - .data/postgres:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: <ENTER_PASSWORD>
+      POSTGRES_PASSWORD: gPfpuTq4xRHkRJqLd
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U postgres']
       interval: 5s
@@ -35,11 +35,11 @@ services:
       - --network=kepler # Change to the network you want to index [testnet | kepler | mainnet]
       - --postgres-host=postgres
       - --ws-endpoint=http://127.0.0.1:9933
-      - --postgres-password=<ENTER_PASSWORD> # Change to your postgres password
+      - --postgres-password=gPfpuTq4xRHkRJqLd # Change to your postgres password
       - --postgres-port=5432
       - --port=8000
       - --start-port=3100 # The start port number for the indexer node, by default: 3001
-      - --secret-key=<a random str> # Change to your own secret key to encrypt the controller privatekey which store in db
+      - --secret-key=NMQjCc74qgMZjXSMV # Change to your own secret key to encrypt the controller privatekey which store in db
       - --ipfs=http://indexer_ipfs:8080/api/v0/ # Use docker/local ipfs endpoint or
       #- --ipfs=https://unauthipfs.subquery.network/ipfs/api/v0 # subquery's ipfs (heavily ratelimited)
     healthcheck:
@@ -75,23 +75,20 @@ services:
     ports:
       - 7370:7370/udp
       - 1080:1080
-    depends_on:
-      'coordinator':
-        condition: service_healthy
     command:
       - --host=0.0.0.0
       - --port=1080
       - --auth
       - --network=kepler # network type, need to be same with coordinator
-      - --jwt-secret=<a random str> # change to any random string value
-      - --secret-key=<a random str> # keep same with coordinator secret key
-      - --service-url=http://indexer_coordinator:8000
-      - --network-endpoint=http://127.0.0.1:9933 # network endpoint, ASTAR
+      - --jwt-secret=NMQjCc74qgMZjXSMV # change to any random string value
+      - --secret-key=NMQjCc74qgMZjXSMV # keep same with coordinator secret key
+      - --service-url=http://127.0.0.1:8000
+      - --network-endpoint=http://127.0.0.1:9933 # Private Astar network endpoint
       - --token-duration=24 # query auth token validity [hours]
       - --redis-endpoint=redis://indexer_cache
       - --metrics-token=thisismyAuthtoken # change to any random string value
     healthcheck:
-      test: ['CMD-SHELL', 'curl http://localhost:80/healthy >/dev/null 2>&1 || exit 1']
+      test: ['CMD-SHELL', 'curl http://localhost:1080/healthy >/dev/null 2>&1 || exit 1']
       interval: 30s
       timeout: 30s
       retries: 5
