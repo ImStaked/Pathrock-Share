@@ -1,77 +1,116 @@
-# Indexer Setup
+version: '3'
 
-### Install Docker
-```
-sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: indexer_db
+    restart: always
+    expose:
+      - 5432
+    volumes:
+      - .data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: gPfpuTq4xRHkRJqLd
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
-echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose -y
-sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
-```  
+  coordinator:
+    image: subquerynetwork/indexer-coordinator:v1.3.13
+    container_name: indexer_coordinator
+    restart: always
+    ports:
+      - 127.0.0.1:8000:8000
+    depends_on:
+      'postgres':
+        condition: service_healthy
+      'ipfs':
+        condition: service_healthy
+    volumes:
+      - .projects:/usr/projects
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      - --network=kepler # Change to the network you want to index [testnet | kepler | mainnet]
+      - --postgres-host=postgres
+      - --ws-endpoint=http://127.0.0.1:9933
+      - --postgres-password=gPfpuTq4xRHkRJqLd # Change to your postgres password
+      - --postgres-port=5432
+      - --port=8000
+      - --start-port=3100 # The start port number for the indexer node, by default: 3001
+      - --secret-key=NMQjCc74qgMZjXSMV # Change to your own secret key to encrypt the controller privatekey which store in db
+      - --ipfs=http://indexer_ipfs:8080/api/v0/ # Use docker/local ipfs endpoint or
+      #- --ipfs=https://unauthipfs.subquery.network/ipfs/api/v0 # subquery's ipfs (heavily ratelimited)
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'curl',
+          '-i',
+          '-X POST',
+          'http://127.0.0.1:8000/graphql',
+          "-H 'Content-Type: application/json'",
+          '-d ''{ "query": "query { accountMetadata { network } }" }''',
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
-###  Get docker compose file 
-```
-mkdir subquery-indexer && cd subquery-indexer
-curl https://raw.githubusercontent.com/imstaked//Pathrock-Share/main/subgraph/indexer/docker-compose.yml -o docker-compose.yml
-```
+  redis:
+    image: redis:7-alpine
+    container_name: indexer_cache
+    restart: always
+    expose:
+      - 6379
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
 
-### Install NGINX and certbot then get certificate
-```
-sudo apt install nginx
-snap install certbot --classic
-DOMAIN="sq.pathrocknetwork.org"
-EMAIL="pathrock@pathrocknetwork.org"
-certbot certonly -d $DOMAIN --non-interactive --agree-tos --email $EMAIL --nginx
-```
-### Create the new site and enable it
-```
-cat <<EOF >> /etc/nginx/sites-available/sq.pathrocknetwork.org 
-# Indexer Proxy
-#
-server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
+  proxy:
+    image: subquerynetwork/indexer-proxy:v1.2.6
+    container_name: indexer_proxy
+    restart: always
+    ports:
+      - 7370:7370/udp
+      - 127.0.0.1:1080:1080
+    command:
+      - --host=127.0.0.1
+      - --port=1080
+      - --auth
+      - --network=kepler # network type, need to be same with coordinator
+      - --jwt-secret=NMQjCc74qgMZjXSMV # change to any random string value
+      - --secret-key=NMQjCc74qgMZjXSMV # keep same with coordinator secret key
+      - --service-url=http://127.0.0.1:8000
+      - --network-endpoint=http://127.0.0.1:9933 # Private Astar network endpoint
+      - --token-duration=24 # query auth token validity [hours]
+      - --redis-endpoint=redis://indexer_cache
+      - --metrics-token=thisismyAuthtoken # change to any random string value
+    healthcheck:
+      test: ['CMD-SHELL', 'curl http://localhost:1080/healthy >/dev/null 2>&1 || exit 1']
+      interval: 30s
+      timeout: 30s
+      retries: 5
 
-    server_name sq.pathrocknetwork.org;
-    ssl_certificate     /etc/letsencrypt/live/sq.pathrocknetwork.org/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/sq.pathrocknetwork.org/privkey.pem;
-    location / {
+  ipfs:
+    image: ipfs/kubo:v0.20.0
+    container_name: indexer_ipfs
+    environment:
+      IPFS_PROFILE: server
+    volumes:
+      - .data/ipfs/export:/export
+      - .data/ipfs/data:/data/ipfs
+      - ./ipfs/ipfs.sh:/container-init.d/ipfs.sh
+    ports:
+      - 4001:4001
+      - 4001:4001/udp
+      - 127.0.0.1:5001:5001
+      - 127.0.0.1:8080:8080
 
-    proxy_pass http://127.0.0.1:1080;
-
-    }
-
-}
-# Admin Proxy
-server {
-    listen 8010 ssl;
-    listen [::]:8010 ssl;
-
-    server_name sq.pathrocknetwork.org;
-    ssl_certificate     /etc/letsencrypt/live/sq.pathrocknetwork.org/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/sq.pathrocknetwork.org/privkey.pem;
-    location / {
-
-    proxy_pass http://127.0.0.1:1080;
-
-    }
-
-}
-EOF
-sudo ln -s /etc/nginx/sites-available/sq.pathrocknetwork.org /etc/nginx/sites-enabled/sq.pathrocknetwork.org
-sudo systemctl reload nginx
-```
-
-
-
+networks:
+  default:
+    name: indexer_services
 
 
 
