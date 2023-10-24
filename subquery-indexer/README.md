@@ -90,7 +90,7 @@ sudo iptables -A INPUT -d $PUBLIC_ip -p tcp -m tcp --dport 5432 -j DROP
 ### Create the new site and enable it
 ```
 cat <<EOF >> /etc/nginx/sites-available/sq.pathrocknetwork.org 
-# Indexer Proxy
+# Indexer Proxy Endpoint
 # Provides SSL endpoint to query the indexer
 server {
     listen 443 ssl;
@@ -106,7 +106,7 @@ server {
     }
 
 }
-# Admin Proxy
+# Administrative Access
 # Provides ssl endpoint for admin to use the indexer
 server {
     listen 8010 ssl;
@@ -153,7 +153,21 @@ sudo ln -s /etc/nginx/sites-available/sq.pathrocknetwork.org /etc/nginx/sites-en
 sudo rm /etc/nginx/sites-enabled/default
 sudo systemctl reload nginx
 ```
+### prometheus.yml configuration
+```
+  - job_name: query_coordinator_stats
+    scheme: http   
+    metrics_path: /
+    static_configs:
+      - targets: ['sq.pathrocknetwork.org:10080'] # this is targeting coordinator endpoint.
 
+  - job_name: query_count 
+    metrics_path: /       
+    scheme: http
+    bearer_token: 'thisismyAuthtoken'          # this is same as proxy metrics-token
+    static_configs:
+      - targets: ['sq.pathrocknetwork.org::8011']   # this is targeting proxy endpoint.
+```
 
 
 
