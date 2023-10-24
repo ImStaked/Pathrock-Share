@@ -124,9 +124,20 @@ server {
 }
 
 # Indexer Proxy Metrics
-# Exposes metrics from administratove port without exposing any other paths.
+# Exposes metrics from proxy port 
 server {
     listen 10080;
+    server_name sq.pathrocknetwork.org;
+    location /metrics/ {
+
+    proxy_pass http://127.0.0.1:1080/metrics/;
+
+    }
+
+}
+# Exposes metrics from administratove port without exposing any other paths.
+server {
+    listen 8011;
     server_name sq.pathrocknetwork.org;
     location /metrics/ {
 
@@ -135,6 +146,7 @@ server {
     }
 
 }
+
 EOF
 
 sudo ln -s /etc/nginx/sites-available/sq.pathrocknetwork.org /etc/nginx/sites-enabled/sq.pathrocknetwork.org
