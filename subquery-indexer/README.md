@@ -76,14 +76,12 @@ ADMIN_IP=
 PROMETHEUS_SERVER=
 # Allow the admins ip unrestricted access
 sudo iptables -A INPUT -s $ADMIN_IP -j ACCEPT
-# Permit the prometheus server to access metrics
-sudo iptables -A INPUT -s $PROMETHEUS_SERVER -p tcp -m tcp --dport 10080 -j ACCEPT
-# Block public access to admin port and admin proxy port because the admin has been granted full access above.
+# Permit the prometheus server to access metrics and drop public requests
+sudo iptables -A INPUT -s $PROMETHEUS_SERVER -p tcp -m multiport --dport 8011,10080 -j ACCEPT
+sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m multiport --ports 8011,10080 -j DROP
+# Block public access to admin port,admin proxy port, and db port 
 sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --dport 8000 -j DROP
 sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --dport 8010 -j DROP
-# Block public access to metrics port because prometheus ip is allowed above
-sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --dport 10080 -j DROP
-# Since the database is hosted locally we will block access to the db port on the public ip address
 sudo iptables -A INPUT -d $PUBLIC_ip -p tcp -m tcp --dport 5432 -j DROP
 ```
 
