@@ -9,6 +9,7 @@ services:
       - 5432
     volumes:
       - .data/postgres:/var/lib/postgresql/data
+    # Set database password
     environment:
       POSTGRES_PASSWORD: gPfpuTq4xRHkRJqLd
     healthcheck:
@@ -21,6 +22,8 @@ services:
     image: subquerynetwork/indexer-coordinator:v1.3.13
     container_name: indexer_coordinator
     restart: always
+    # Due to security concerns only expose port 8000 locally. 
+    # The nginx proxy will serve this on port 8010
     ports:
       - 127.0.0.1:8000:8000
     depends_on:
@@ -32,16 +35,23 @@ services:
       - .projects:/usr/projects
       - /var/run/docker.sock:/var/run/docker.sock
     command:
-      - --network=kepler # Change to the network you want to index [testnet | kepler | mainnet]
-      - --postgres-host=postgres
-      - --ws-endpoint=http://127.0.0.1:9933
+      # Change to the network you want to index [testnet | kepler | mainnet]
+      - --network=kepler 
+      # Set database host to local address
+      - --postgres-host=127.0.0.1
+      # Changed the websocket endpoint to http as websockets do not appear to work yet.
+      - --network-endpoint=http://sq.pathrocknetwork.org:9933
+      # Set to correct db password from above
       - --postgres-password=gPfpuTq4xRHkRJqLd # Change to your postgres password
       - --postgres-port=5432
       - --port=8000
       - --start-port=3100 # The start port number for the indexer node, by default: 3001
-      - --secret-key=NMQjCc74qgMZjXSMV # Change to your own secret key to encrypt the controller privatekey which store in db
-      - --ipfs=http://indexer_ipfs:8080/api/v0/ # Use docker/local ipfs endpoint or
-      #- --ipfs=https://unauthipfs.subquery.network/ipfs/api/v0 # subquery's ipfs (heavily ratelimited)
+      # Change to your own secret key to encrypt the controller privatekey which store in db
+      - --secret-key=NMQjCc74qgMZjXSMV 
+      # Use docker/local ipfs endpoint 
+      - --ipfs=http://indexer_ipfs:8080/api/v0/ 
+      # subquery's ipfs (heavily ratelimited)
+      #- --ipfs=https://unauthipfs.subquery.network/ipfs/api/v0 
     healthcheck:
       test:
         [
@@ -74,19 +84,25 @@ services:
     restart: always
     ports:
       - 7370:7370/udp
+      # Set to run on localhost because the proxy will forward traffic
       - 127.0.0.1:1080:1080
     command:
+      # Set to run on localhost because the proxy will forward traffic
       - --host=127.0.0.1
       - --port=1080
       - --auth
-      - --network=kepler # network type, need to be same with coordinator
-      - --jwt-secret=NMQjCc74qgMZjXSMV # change to any random string value
-      - --secret-key=NMQjCc74qgMZjXSMV # keep same with coordinator secret key
+      # network type, need to be same with coordinator
+      - --network=kepler 
+      # change to any random string value. 
+      - --jwt-secret=NMQjCc74qgMZjXSMV 
+      # keep same with coordinator secret key
+      - --secret-key=NMQjCc74qgMZjXSMV 
       - --service-url=http://127.0.0.1:8000
-      - --network-endpoint=http://127.0.0.1:9933 # Private Astar network endpoint
+      - --network-endpoint=http://sq.pathrocknetwork.org:9933 # Private Astar network endpoint
       - --token-duration=24 # query auth token validity [hours]
       - --redis-endpoint=redis://indexer_cache
-      - --metrics-token=thisismyAuthtoken # change to any random string value
+      # change to any random string value. I did not change because its just metrics.
+      - --metrics-token=thisismyAuthtoken  
     healthcheck:
       test: ['CMD-SHELL', 'curl http://localhost:1080/healthy >/dev/null 2>&1 || exit 1']
       interval: 30s
