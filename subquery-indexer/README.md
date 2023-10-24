@@ -79,8 +79,8 @@ server {
 }
 # Coordinator Metrics Proxy
 server {
-    listen 8010;
-#    listen [::]:8010 ssl;
+    listen 8011;
+#    listen [::]:8011 ssl;
     server_name sq.pathrocknetwork.org;
 #    ssl_certificate     /etc/letsencrypt/live/sq.pathrocknetwork.org/fullchain.pem;
 #    ssl_certificate_key /etc/letsencrypt/live/sq.pathrocknetwork.org/privkey.pem;
