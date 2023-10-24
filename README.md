@@ -1,10 +1,5 @@
 # Subsquid setup
 
-### VPS specs
-  - CPU - AMD RYZEN 7
-  - VCPU - 4
-  - MEM - 8GB 
-
 #### Install Nodejs
 ```
 sudo mkdir -p /etc/apt/keyrings
@@ -28,6 +23,7 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose -y
+curl -SL https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-linux-x86_64 -o /usr/bin/docker-compose
 ```
 #### Install the subsquid cli
 ```
@@ -43,6 +39,7 @@ sqd auth -k sqd_?????????
 sqd init quest1 --template evm
 cd quest1
 ```
+
 #### Install dependencies
 ```
 npm ci
@@ -51,69 +48,23 @@ npm ci
 ```
 nano $HOME/quest1/src/processor.ts
 ```
+
 #### Launch Postgres docker container and detach
 ```
 sqd up
 ```
+
 #### Inspect and run the processor
 - CLI
 ```
 sqd process
 ```
-- Systemd
-```
-cat <<EOF >> /etc/systemd/system/subsquid_processor.service
-[Unit]
-Description=Subsquid Processor
-After=network.target
-StartLimitIntervalSec=60
-StartLimitBurst=3
 
-[Service]
-User=root
-Type=simple
-Restart=always
-RestartSec=30
-WorkingDirectory=/root/quest1
-ExecStart=/usr/bin/sqd process
-
-[Install]
-WantedBy=default.target
-EOF
-
-sudo systemctl daemon-reload
-sudo systemctl enable subsquid_processor
-sudo systemctl start subsquid_processor
-```
 #### Start the GraphQL server
-- CLI
 ```
 sqd serve
 ```
-- Systemd
-```
-cat <<EOF >> /etc/systemd/system/subsquid_graphql.service
-[Unit]
-Description=Subsquid GraphQL server
-After=network.target
-StartLimitIntervalSec=60
-StartLimitBurst=3
 
-[Service]
-User=root
-Type=simple
-Restart=always
-RestartSec=30
-ExecStart=/usr/bin/sqd serve
-
-[Install]
-WantedBy=default.target
-EOF
-
-sudo systemctl daemon-reload
-sudo systemctl enable subsquid_graphql
-sudo systemctl start subsquid_graphql
-```
 #### Deploy
 ```
 sqd deploy --org pathrocknetwork ./quest1
