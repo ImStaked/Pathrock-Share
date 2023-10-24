@@ -77,8 +77,8 @@ PROMETHEUS_SERVER=
 # Allow the admins ip unrestricted access
 sudo iptables -A INPUT -s $ADMIN_IP -j ACCEPT
 # Permit the prometheus server to access metrics and drop public requests
-sudo iptables -A INPUT -s $PROMETHEUS_SERVER -p tcp -m multiport --dport 8011,10080 -j ACCEPT
-sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m multiport --ports 8011,10080 -j DROP
+sudo iptables -A INPUT -s $PROMETHEUS_SERVER -p tcp -m tcp --dport 8011 -j ACCEPT
+sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --ports 8011-j DROP
 # Block public access to admin port,admin proxy port, and db port 
 sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --dport 8000 -j DROP
 sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --dport 8010 -j DROP
@@ -121,18 +121,6 @@ server {
 
 }
 
-# Indexer Proxy Metrics
-# Exposes metrics from proxy port 
-server {
-    listen 10080;
-    server_name sq.pathrocknetwork.org;
-    location /metrics/ {
-
-    proxy_pass http://127.0.0.1:1080/metrics/;
-
-    }
-
-}
 # Exposes metrics from administratove port without exposing any other paths.
 server {
     listen 8011;
@@ -155,16 +143,16 @@ sudo systemctl reload nginx
 ```
   - job_name: query_coordinator_stats
     scheme: http   
-    metrics_path: /
+    metrics_path: /metrics
     static_configs:
-      - targets: ['sq.pathrocknetwork.org:10080'] # this is targeting coordinator endpoint.
+      - targets: ['sq.pathrocknetwork.org:8011'] # this is targeting coordinator endpoint.
 
   - job_name: query_count 
-    metrics_path: /       
+    metrics_path: /metrics   
     scheme: http
     bearer_token: 'thisismyAuthtoken'          # this is same as proxy metrics-token
     static_configs:
-      - targets: ['sq.pathrocknetwork.org::8011']   # this is targeting proxy endpoint.
+      - targets: ['https://sq.pathrocknetwork.org:443']   # this is targeting proxy endpoint.
 ```
 
 
