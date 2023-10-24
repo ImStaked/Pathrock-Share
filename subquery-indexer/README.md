@@ -91,56 +91,47 @@ sudo iptables -A INPUT -d $PUBLIC_ip -p tcp -m tcp --dport 5432 -j DROP
 ```
 cat <<EOF >> /etc/nginx/sites-available/sq.pathrocknetwork.org 
 # Indexer Proxy
-#
-server (
-    listen 80;
-    listen [::]:80;
-    server_name sq.pathrocknetwork.org;
-    location / {
-    proxy_pass http://127.0.0.1:1080;
-    }
-
-}
+# Provides SSL endpoint to query the indexer
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
+
     server_name sq.pathrocknetwork.org;
     ssl_certificate     /etc/letsencrypt/live/sq.pathrocknetwork.org/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/sq.pathrocknetwork.org/privkey.pem;
     location / {
+
     proxy_pass http://127.0.0.1:1080;
+
     }
 
 }
 # Admin Proxy
+# Provides ssl endpoint for admin to use the indexer
 server {
     listen 8010 ssl;
     listen [::]:8010 ssl;
+
     server_name sq.pathrocknetwork.org;
     ssl_certificate     /etc/letsencrypt/live/sq.pathrocknetwork.org/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/sq.pathrocknetwork.org/privkey.pem;
     location / {
+
     proxy_pass http://127.0.0.1:8000;
+
     }
-}
-# Coordinator Metrics Proxy
-server {
-    listen 8011;
-#    listen [::]:8011 ssl;
-    server_name sq.pathrocknetwork.org;
-#    ssl_certificate     /etc/letsencrypt/live/sq.pathrocknetwork.org/fullchain.pem;
-#    ssl_certificate_key /etc/letsencrypt/live/sq.pathrocknetwork.org/privkey.pem;
-    location / {
-    proxy_pass http://127.0.0.1:??;
-    }
+
 }
 
 # Indexer Proxy Metrics
+# Exposes metrics from administratove port without exposing any other paths.
 server {
     listen 10080;
     server_name sq.pathrocknetwork.org;
-    location / {
-    proxy_pass http://127.0.0.1:1081;
+    location /metrics/ {
+
+    proxy_pass http://127.0.0.1:8000/metrics/;
+
     }
 
 }
