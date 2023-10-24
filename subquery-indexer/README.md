@@ -23,6 +23,42 @@ mkdir subquery-indexer && cd subquery-indexer
 curl https://raw.githubusercontent.com/imstaked//Pathrock-Share/main/subgraph/indexer/docker-compose.yml -o docker-compose.yml
 ```
 
+### Configure Subquery Indexer service
+- Configure docker logging
+  ```
+  sudo <<EOF >> /etc/docker/daemon.json
+  {
+      ...
+      "log-driver": "journald"
+  }
+  EOF
+  ```
+- Create systemd service
+```
+sudo <<EOF >> /etc/systemd/system/subquery.service
+[Unit]
+Description="SubQuery Indexer"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+User=subquery
+SyslogIdentifier=subquery
+SyslogFacility=local7
+KillSignal=SIGHUP
+WorkingDirectory=/home/subquery/subquery-indexer
+ExecStart=/usr/bin/docker-compose up -d
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl enable subquery
+```
+
 ### Install NGINX and certbot then get certificate
 ```
 sudo apt install nginx
