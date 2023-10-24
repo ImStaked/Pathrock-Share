@@ -31,7 +31,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ```
 #### Install the subsquid cli
 ```
-npm install -g @subsquid/cli
+npm install --global @subsquid/cli@latest
 sqd --version
 ```
 #### Set your aquarium deployment key available at https://app.subsquid.io/aquarium
