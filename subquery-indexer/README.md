@@ -77,8 +77,7 @@ PROMETHEUS_SERVER=
 # Allow the admins ip unrestricted access
 sudo iptables -A INPUT -s $ADMIN_IP -j ACCEPT
 # Permit the prometheus server to access metrics and drop public requests
-sudo iptables -A INPUT -s $PROMETHEUS_SERVER -p tcp -m tcp --dport 8011 -j ACCEPT
-sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --ports 8011-j DROP
+sudo iptables -A INPUT -s $PROMETHEUS_SERVER -p tcp -m multiport --dport 8010 -j ACCEPT
 # Block public access to admin port,admin proxy port, and db port 
 sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --dport 8000 -j DROP
 sudo iptables -A INPUT -d $PUBLIC_IP -p tcp -m tcp --dport 8010 -j DROP
@@ -88,7 +87,7 @@ sudo iptables -A INPUT -d $PUBLIC_ip -p tcp -m tcp --dport 5432 -j DROP
 ### Create the new site and enable it
 ```
 cat <<EOF >> /etc/nginx/sites-available/sq.pathrocknetwork.org 
-# Indexer Proxy Endpoint
+# Indexer Proxy
 # Provides SSL endpoint to query the indexer
 server {
     listen 443 ssl;
@@ -104,8 +103,8 @@ server {
     }
 
 }
-# Administrative Access
-# Provides ssl endpoint for admin to use the indexer
+# Admin Proxy
+# Provides ssl endpoint for administrtor to use the indexer
 server {
     listen 8010 ssl;
     listen [::]:8010 ssl;
@@ -121,17 +120,7 @@ server {
 
 }
 
-# Exposes metrics from administratove port without exposing any other paths.
-server {
-    listen 8011;
-    server_name sq.pathrocknetwork.org;
-    location /metrics/ {
 
-    proxy_pass http://127.0.0.1:8000/metrics/;
-
-    }
-
-}
 
 EOF
 
@@ -142,17 +131,17 @@ sudo systemctl reload nginx
 ### prometheus.yml configuration
 ```
   - job_name: query_coordinator_stats
-    scheme: http   
+    scheme: https
     metrics_path: /metrics
     static_configs:
-      - targets: ['sq.pathrocknetwork.org:8011'] # this is targeting coordinator endpoint.
+      - targets: ['sq.pathrocknetwork.org:8010'] # this is targeting coordinator endpoint.
 
-  - job_name: query_count 
-    metrics_path: /metrics   
-    scheme: http
+  - job_name: query_count
+    metrics_path: /metrics
+    scheme: https
     bearer_token: 'thisismyAuthtoken'          # this is same as proxy metrics-token
     static_configs:
-      - targets: ['https://sq.pathrocknetwork.org:443']   # this is targeting proxy endpoint.
+      - targets: ['sq.pathrocknetwork.org:443']   # this is targeting proxy endpoint.
 ```
 
 
