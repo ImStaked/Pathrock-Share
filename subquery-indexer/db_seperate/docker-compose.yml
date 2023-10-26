@@ -1,7 +1,7 @@
 version: '3'
 
   coordinator:
-    image: subquerynetwork/indexer-coordinator:v1.3.13
+    image: subquerynetwork/indexer-coordinator:latest
     container_name: indexer_coordinator
     restart: always
     ports:
@@ -52,7 +52,7 @@ version: '3'
       test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
 
   proxy:
-    image: subquerynetwork/indexer-proxy:v1.2.6
+    image: subquerynetwork/indexer-proxy:latest
     container_name: indexer_proxy
     restart: always
     ports:
@@ -80,7 +80,7 @@ version: '3'
       retries: 5
 
   ipfs:
-    image: ipfs/kubo:v0.20.0
+    image: ipfs/kubo:latest
     container_name: indexer_ipfs
     environment:
       IPFS_PROFILE: server
