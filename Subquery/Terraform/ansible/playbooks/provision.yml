@@ -1,0 +1,11 @@
+---
+- name: Provision
+  hosts: all
+  gather_facts: yes
+  become: yes
+  roles:
+    - ubuntu
+    - subquery
+    - config
+  environment: 
+    LD_LIBRARY_PATH: /home/subquery

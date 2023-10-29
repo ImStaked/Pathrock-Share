@@ -1,0 +1,18 @@
+---
+- name: Show facts available on the system
+  ansible.builtin.debug:
+    var: ansible_facts      
+- name: Create the subquery user
+  user:
+    name: "{{ _subquery_system_user }}"
+    group: "{{ _subquery_system_group }}"
+    shell: /bin/bash
+    create_home: true
+    home: /home/subquery
+  when: _subquery_system_user != "root"
+- name: Create the subquery group
+  group:
+    name: "{{ _subquery_system_group }}"
+    state: present
+    system: true
+  when: _subquery_system_group != "root"
