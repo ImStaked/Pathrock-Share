@@ -1,0 +1,38 @@
+# Graphql Subscriptions 
+
+# The managed service supports subscriptions for paid plans, you must enable subscription support when deploying your project in our service under "Advanced Settings"
+# The subscription feature works on SubQuery's Managed Service when you directly call the listed GraphQL endpoint. It will not work within the in-browser GraphQL playground.
+
+# Create a subscription example
+subscription {
+  # Subscribe to the transfer entity
+  transfer {
+    # Specify what data you want to receive via your subscription when the transfer table is update
+    id
+    # Note that the mutation filter can be one of INSERT, UPDATE or DELETE.
+    mutation_type
+    _entity
+  }
+}
+
+# Filtering is also supported on subscriptions
+# Two types of filters are supported
+
+type Balances {
+  id: ID! # someone's account, eg. 15rb4HVycC1KLHsdaSdV1x2TJAmUkD7PhubmhL3PnGv7RiGY
+  amount: Int! # the balance of this account
+}
+
+# If we want to subscribe to any balance updates that affect a specific account, 
+# we can specify the subscription filter as follows:
+subscription {
+  balances(
+    id: "15rb4HVycC1KLHsdaSdV1x2TJAmUkD7PhubmhL3PnGv7RiGY"
+    # Note that the mutation filter can be one of INSERT, UPDATE or DELETE.
+    mutation: UPDATE
+  ) {
+    id
+    mutation_type
+    _entity
+  }
+}
