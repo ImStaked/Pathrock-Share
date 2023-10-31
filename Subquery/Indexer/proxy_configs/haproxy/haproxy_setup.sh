@@ -1,17 +1,10 @@
 #!/bin/bash
+DOMAIN="rpc1.pathrocknetwork.org"
+# Use the haproxyx configuration in this folder.
 
-# Snapd automatically handles renewing the certificate
-echo "Please enter your fully qualified domain name or a comma seperated list of domains"
-read DOMAIN
-
-echo "Please enter your email address"
-read EMAIL
-
-sudo apt update && sudo apt upgrade -y
-sudo apt install snapd nginx -y
 snap install certbot --classic
 
-certbot certonly -d $DOMAIN --non-interactive --agree-tos --email $EMAIL --nginx
+sudo certbot certonly --standalone -d rpc1.pathrocknetwork.org --non-interactive --agree-tos --email pathrock@protonmail.com --http-01-port=80
 
 sudo mkdir -p /etc/ssl/"$DOMAIN"
 
@@ -22,6 +15,7 @@ bash -c "cat /etc/letsencrypt/live/"$DOMAIN"/fullchain.pem /etc/letsencrypt/live
 # Create Script that runs daily
 touch /opt/update-certs.sh
 cat > /opt/update-certs.sh <<EOF
+DOMAIN="rpc1.pathrocknetwork.org"
 bash -c "cat /etc/letsencrypt/live/"$DOMAIN"/fullchain.pem /etc/letsencrypt/live/"$DOMAIN"/privkey.pem > /etc/ssl/"$DOMAIN"/"$DOMAIN".pem"
 service haproxy reload
 EOF
