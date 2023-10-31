@@ -1,8 +1,24 @@
 version: '3'
 
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: indexer_db
+    restart: always
+    expose:
+      - 5432
+    volumes:
+      - .data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: PASSWORD
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   coordinator:
-    image: subquerynetwork/indexer-coordinator:v1.3.13
+    image: subquerynetwork/indexer-coordinator:v1.4.4
     container_name: indexer_coordinator
     restart: always
     ports:
@@ -18,14 +34,15 @@ services:
     command:
       - --network=kepler # Change to the network you want to index [testnet | kepler | mainnet]
       - --postgres-host=postgres
-      - --ws-endpoint=wss://polygon-mainnet.public.blastapi.io
-      - --postgres-password=db_pass # Change to your postgres password
+      - --network-endpoint=https://polygon-mainnet.public.blastapi.io
+      - --postgres-password=PASSWORD # Change to your postgres password
       - --postgres-port=5432
+      - --batch-size=100
+      - --workers=4
       - --port=8000
       - --start-port=3100 # The start port number for the indexer node, by default: 3001
-      - --secret-key=secret_key # Change to your own secret key to encrypt the controller privatekey which store in db
-      - --ipfs=http://indexer_ipfs:8080/api/v0/ # Use docker/local ipfs endpoint or
-      #- --ipfs=https://unauthipfs.subquery.network/ipfs/api/v0 # subquery's ipfs (heavily ratelimited)
+      - --secret-key=SECRET # Change to your own secret key to encrypt the controller privatekey which store in db
+      - --ipfs=https://rpc1.pathrocknetwork.org:5512/api/v0/ # Private IPFS node
     healthcheck:
       test:
         [
@@ -53,8 +70,8 @@ services:
       test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
 
   proxy:
-    image: subquerynetwork/indexer-proxy:v1.2.6
-    container_name: indexer_proxygPfpuTq4xRHkRJqLd
+    image: subquerynetwork/indexer-proxy:v1.3.3
+    container_name: indexer_proxy
     restart: always
     ports:
       - 7370:7370/udp
@@ -64,11 +81,11 @@ services:
       - --port=1080
       - --auth
       - --network=kepler # network type, need to be same with coordinator
-      - --jwt-secret=secret_key # change to any random string value
-      - --secret-key=secret_key # keep same with coordinator secret key
+      - --jwt-secret=SECRET # change to any random string value
+      - --secret-key=SECRET # keep same with coordinator secret key
       - --service-url=http://127.0.0.1:8000
-      - --ws-endpoint=wss://polygon-mainnet.public.blastapi.io
-      - --token-duration=24 # query auth token validity [hours]
+      - --network-endpoint=http://polygon-mainnet.public.blastapi.io
+      - --token-duration=24 # New Node query auth token validity [hours]
       - --redis-endpoint=redis://indexer_cache
       - --metrics-token=thisismyAuthtoken # change to any random string value
     healthcheck:
@@ -77,22 +94,6 @@ services:
       timeout: 30s
       retries: 5
 
-  ipfs:
-    image: ipfs/kubo:v0.20.0
-    container_name: indexer_ipfs
-    environment:
-      IPFS_PROFILE: server
-    volumes:
-      - .data/ipfs/export:/export
-      - .data/ipfs/data:/data/ipfs
-      - ./ipfs/ipfs.sh:/container-init.d/ipfs.sh
-    ports:
-      - 4001:4001
-      - 4001:4001/udp
-      - 127.0.0.1:5001:5001
-      - 127.0.0.1:8080:8080
-
 networks:
   default:
     name: indexer_services
-
