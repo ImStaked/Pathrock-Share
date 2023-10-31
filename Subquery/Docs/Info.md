@@ -10,9 +10,9 @@
 ```
 
 
-### MoonBeam RPC
+### IPFS
 ```
-
+https://rpc1.pathrocknetwork.org:5001/webui
 ```
 
 
@@ -22,3 +22,6 @@
 ```
 
 ### Proxy Server
+```
+https://rpc1.pathrocknetwork.org:1976/
+```
