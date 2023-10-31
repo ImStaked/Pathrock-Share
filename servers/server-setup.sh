@@ -26,9 +26,5 @@ zpool create \
     -O normalization=formD \
     datapool2 /dev/nvme0n1p3
 
-# Haproxy
-sudo apt install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.8 -y
-sudo apt install haproxy=2.8
 
 
