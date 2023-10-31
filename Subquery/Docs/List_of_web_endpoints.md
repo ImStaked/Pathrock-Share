@@ -6,7 +6,7 @@
 
 ### Astar RPC
 ```
-
+https://rpc1.pathrocknetwork.org:8844
 ```
 
 
@@ -15,13 +15,7 @@
 https://rpc1.pathrocknetwork.org:5001/webui
 ```
 
-
-### MoonRiver RPC
-```
-
-```
-
-### Proxy Server
+### Proxy Server Stats
 ```
 https://rpc1.pathrocknetwork.org:1976/
 ```
