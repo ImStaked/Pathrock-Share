@@ -1,0 +1,4 @@
+/usr/share/netfilter-persistent/plugins.d/10-ipset save
+/usr/share/netfilter-persistent/plugins.d/15-ip4tables save
+/usr/share/netfilter-persistent/plugins.d/25-ip6tables save
+/usr/share/netfilter-persistent/plugins.d/40-ipset save
