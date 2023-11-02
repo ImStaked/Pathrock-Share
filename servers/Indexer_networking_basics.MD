@@ -8,9 +8,6 @@ Proxy: 8010/tcp - Administrative Access Only *see above port scan*
 
 ## Host = rpc1.pathrocknetwork.org  
 ```
-wscat --connect wss://rpc1.pathrocknetwork.org:8844
-Connected (press CTRL+C to quit)
-```
 Proxy: 5512/tcp - Should not be publicly available
 proxy: 5511/tcp - Should not be publicly available
 ```
