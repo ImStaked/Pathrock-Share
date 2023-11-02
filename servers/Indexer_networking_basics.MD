@@ -11,6 +11,6 @@ Proxy: 8010/tcp - Administrative Access Only *see above port scan*
 
 ## Host = rpc1.pathrocknetwork.org  
 ```
-Proxy: 5512/tcp - Should not be publicly available
-proxy: 5511/tcp - Should not be publicly available
+Proxy: 5512/tcp - Should not be publicly available but is available to all of the workers.
+proxy: 5511/tcp - Adminisrative access only available to the 2 of us
 ```
