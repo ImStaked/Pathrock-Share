@@ -1,6 +1,7 @@
 # Network Configuration
 
-This setup has 4 generally available proxy server endpoints. I will reference them by the port they listen on.
+This setup has 4 generally available proxy server endpoints. I will reference them by the port they listen on.  
+I can draw a picture if it would be helpful.
 
 ## Host = sq.pathrocknetwork.org
 ```
