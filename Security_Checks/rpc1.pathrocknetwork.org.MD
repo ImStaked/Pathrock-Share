@@ -1,7 +1,8 @@
 #  162.55.85.47  -- rpc1.pathrocknetwork.org 
 
 ### Testing all ports FROM an anonymous IP address. This is what the public sees. 
-  - ```nmap -Pn rpc1.pathrocknetwork.org```
+  - IPv4  
+    ```nmap -Pn rpc1.pathrocknetwork.org```
     ```
     PORT     STATE  SERVICE
     22/tcp   open   ssh
@@ -21,7 +22,8 @@
 
 
 ### Scan from my admin ip  
-  - ```nmap -Pn rpc1.pathrocknetwork.org```
+    - IPv4  
+    ```nmap -Pn rpc1.pathrocknetwork.org```
     ```
     PORT     STATE    SERVICE
     22/tcp   open     ssh
