@@ -1,5 +1,6 @@
+## 141.95.97.30 - sq.pathrocknetwork.org 
 
-## Scam from random public ip  
+### Scam from random public ip  
   - ```nmap -Pn rpc1.pathrocknetwork.org```
     ```
     PORT     STATE  SERVICE
@@ -8,7 +9,17 @@
     4001/tcp open   newoak
     8080/tcp closed http-proxy
     ``` 
-## Scan from my admin ip  
+
+  - IPv6  
+    ```nmap -6Pn -T4 2a01:4f8:271:1505::2```
+    ```
+    PORT     STATE  SERVICE
+    53/tcp   closed domain
+    4001/tcp open   newoak
+    8011/tcp closed unknown
+    8080/tcp closed http-proxy
+    ```
+### Scan from my admin ip  
   - ```nmap -Pn rpc1.pathrocknetwork.org```
     ```
     PORT     STATE    SERVICE
