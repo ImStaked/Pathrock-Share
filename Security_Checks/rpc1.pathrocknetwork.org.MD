@@ -1,4 +1,4 @@
-#  rpc1.pathrocknetwork.org - 162.55.85.47
+#  162.55.85.47  -- rpc1.pathrocknetwork.org 
 
 ### Testing all ports FROM an anonymous IP address. This is what the public sees. 
   - ```nmap -Pn rpc1.pathrocknetwork.org```
