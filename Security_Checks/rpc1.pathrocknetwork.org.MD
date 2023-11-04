@@ -10,6 +10,7 @@
     ``` 
 ## Scan from my admin ip  
   - ```nmap -Pn rpc1.pathrocknetwork.org```
+    ```
     PORT     STATE    SERVICE
     22/tcp   open     ssh
     80/tcp   open     http
@@ -17,3 +18,4 @@
     4001/tcp open     newoak
     8443/tcp open     https-alt
     9100/tcp open     jetdirect
+    ```
