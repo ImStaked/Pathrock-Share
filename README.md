@@ -1,6 +1,6 @@
 # Subgraph setup
 
-## Determining node requirements from [here](https://thegraph.com/docs/en/operating-graph-node)
+## Determining node requirements  
   ```
   If eth_calls are made - will require an archive node which supports EIP-1898
   ```
@@ -10,6 +10,7 @@
   ```
   If neither of the above statements is true then a full node will suffice
   ```
+  source: [here](https://thegraph.com/docs/en/operating-graph-node)
 
 #### Install Nodejs
 ```
