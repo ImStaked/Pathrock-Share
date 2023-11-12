@@ -9,7 +9,9 @@
       ```
       echo vm.nr_hugepages=1120 >> /etc/sysctl.conf
       sysctl -p
-      ``` 
+      ```
+    - Using the current database to calculate the machine would need 24gb of memory for hugepages which are only useful for databases and a few other things
+      
 # Database settings
   - Path: .data/postgres/postgresql.conf
   - [Parameter Explaination](https://postgresqlco.nf/doc/en/param/)
