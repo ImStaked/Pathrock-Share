@@ -1,4 +1,4 @@
-# Subsquid setup
+# Subgraph setup
 
 ## Determining node requirements from [here](https://thegraph.com/docs/en/operating-graph-node)
   ```
@@ -35,48 +35,4 @@ echo \
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose -y
 curl -SL https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-linux-x86_64 -o /usr/bin/docker-compose
-```
-#### Install the subsquid cli
-```
-npm install --global @subsquid/cli@latest
-sqd --version
-```
-#### Set your aquarium deployment key available at https://app.subsquid.io/aquarium
-```
-sqd auth -k sqd_?????????
-```
-#### Scaffold from the minimal evm template
-```
-sqd init quest1 --template evm
-cd quest1
-```
-
-#### Install dependencies
-```
-npm ci
-```
-#### Set the network 
-```
-nano $HOME/quest1/src/processor.ts
-```
-
-#### Launch Postgres docker container and detach
-```
-sqd up
-```
-
-#### Inspect and run the processor
-- CLI
-```
-sqd process
-```
-
-#### Start the GraphQL server
-```
-sqd serve
-```
-
-#### Deploy
-```
-sqd deploy --org pathrocknetwork ./quest1
 ```
