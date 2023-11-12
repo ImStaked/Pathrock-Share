@@ -1,5 +1,16 @@
 # Subsquid setup
 
+## Determining node requirements from [here](https://thegraph.com/docs/en/operating-graph-node)
+  ```
+  If eth_calls are made - will require an archive node which supports EIP-1898
+  ```
+  ```
+  If there query has callHandlers, or blockHandlers with a call filter, require trace_filter support
+  ```
+  ```
+  If neither of the above statements is true then a full node will suffice
+  ```
+
 #### Install Nodejs
 ```
 sudo mkdir -p /etc/apt/keyrings
