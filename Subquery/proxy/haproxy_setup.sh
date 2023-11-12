@@ -1,11 +1,5 @@
 #!/bin/bash
 DOMAIN="rpc1.pathrocknetwork.org"
-# Use the haproxyx configuration in this folder.
-
-# Haproxy Latest Version
-sudo apt install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.8 -y
-sudo apt install haproxy=2.8
 
 # Install Certbot
 snap install certbot --classic
