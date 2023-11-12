@@ -1,7 +1,15 @@
 # Performance Tuning and Optimization
   - [Explaination and Tips](https://www.enterprisedb.com/postgres-tutorials/introduction-postgresql-performance-tuning-and-optimization)
-  - Huge Tables 
- 
+  - HugePages might boost performance
+    - Calculate number of HugePages required
+      ```
+      VmPeak(4340360) / HugePage_size(2048) =  1120
+      ```
+    - Enable hugepages  
+      ```
+      echo vm.nr_hugepages=1120 >> /etc/sysctl.conf
+      sysctl -p
+      ``` 
 # Database settings
   - Path: .data/postgres/postgresql.conf
   - [Parameter Explaination](https://postgresqlco.nf/doc/en/param/)
