@@ -1,4 +1,4 @@
-# Subgraph setup
+# Subquery setup
 
 ## Determining node requirements  
   ```
