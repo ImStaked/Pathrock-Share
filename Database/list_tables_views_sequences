@@ -1,0 +1,371 @@
+               Table "pg_catalog.pg_aggregate"
+      Column      |   Type   | Collation | Nullable | Default 
+------------------+----------+-----------+----------+---------
+ aggfnoid         | regproc  |           | not null | 
+ aggkind          | "char"   |           | not null | 
+ aggnumdirectargs | smallint |           | not null | 
+ aggtransfn       | regproc  |           | not null | 
+ aggfinalfn       | regproc  |           | not null | 
+ aggcombinefn     | regproc  |           | not null | 
+ aggserialfn      | regproc  |           | not null | 
+ aggdeserialfn    | regproc  |           | not null | 
+ aggmtransfn      | regproc  |           | not null | 
+ aggminvtransfn   | regproc  |           | not null | 
+ aggmfinalfn      | regproc  |           | not null | 
+ aggfinalextra    | boolean  |           | not null | 
+ aggmfinalextra   | boolean  |           | not null | 
+ aggfinalmodify   | "char"   |           | not null | 
+ aggmfinalmodify  | "char"   |           | not null | 
+ aggsortop        | oid      |           | not null | 
+ aggtranstype     | oid      |           | not null | 
+ aggtransspace    | integer  |           | not null | 
+ aggmtranstype    | oid      |           | not null | 
+ aggmtransspace   | integer  |           | not null | 
+ agginitval       | text     | C         |          | 
+ aggminitval      | text     | C         |          | 
+Indexes:
+    "pg_aggregate_fnoid_index" PRIMARY KEY, btree (aggfnoid)
+
+Index "pg_catalog.pg_aggregate_fnoid_index"
+  Column  |  Type   | Key? | Definition 
+----------+---------+------+------------
+ aggfnoid | regproc | yes  | aggfnoid
+primary key, btree, for table "pg_catalog.pg_aggregate"
+
+               Table "pg_catalog.pg_am"
+  Column   |  Type   | Collation | Nullable | Default 
+-----------+---------+-----------+----------+---------
+ oid       | oid     |           | not null | 
+ amname    | name    |           | not null | 
+ amhandler | regproc |           | not null | 
+ amtype    | "char"  |           | not null | 
+Indexes:
+    "pg_am_oid_index" PRIMARY KEY, btree (oid)
+    "pg_am_name_index" UNIQUE CONSTRAINT, btree (amname)
+
+ Index "pg_catalog.pg_am_name_index"
+ Column |  Type   | Key? | Definition 
+--------+---------+------+------------
+ amname | cstring | yes  | amname
+unique, btree, for table "pg_catalog.pg_am"
+
+Index "pg_catalog.pg_am_oid_index"
+ Column | Type | Key? | Definition 
+--------+------+------+------------
+ oid    | oid  | yes  | oid
+primary key, btree, for table "pg_catalog.pg_am"
+
+                 Table "pg_catalog.pg_amop"
+     Column     |   Type   | Collation | Nullable | Default 
+----------------+----------+-----------+----------+---------
+ oid            | oid      |           | not null | 
+ amopfamily     | oid      |           | not null | 
+ amoplefttype   | oid      |           | not null | 
+ amoprighttype  | oid      |           | not null | 
+ amopstrategy   | smallint |           | not null | 
+ amoppurpose    | "char"   |           | not null | 
+ amopopr        | oid      |           | not null | 
+ amopmethod     | oid      |           | not null | 
+ amopsortfamily | oid      |           | not null | 
+Indexes:
+    "pg_amop_oid_index" PRIMARY KEY, btree (oid)
+    "pg_amop_fam_strat_index" UNIQUE CONSTRAINT, btree (amopfamily, amoplefttype, amoprighttype, amopstrategy)
+    "pg_amop_opr_fam_index" UNIQUE CONSTRAINT, btree (amopopr, amoppurpose, amopfamily)
+
+   Index "pg_catalog.pg_amop_fam_strat_index"
+    Column     |   Type   | Key? |  Definition   
+---------------+----------+------+---------------
+ amopfamily    | oid      | yes  | amopfamily
+ amoplefttype  | oid      | yes  | amoplefttype
+ amoprighttype | oid      | yes  | amoprighttype
+ amopstrategy  | smallint | yes  | amopstrategy
+unique, btree, for table "pg_catalog.pg_amop"
+
+Index "pg_catalog.pg_amop_oid_index"
+ Column | Type | Key? | Definition 
+--------+------+------+------------
+ oid    | oid  | yes  | oid
+primary key, btree, for table "pg_catalog.pg_amop"
+
+ Index "pg_catalog.pg_amop_opr_fam_index"
+   Column    |  Type  | Key? | Definition  
+-------------+--------+------+-------------
+ amopopr     | oid    | yes  | amopopr
+ amoppurpose | "char" | yes  | amoppurpose
+ amopfamily  | oid    | yes  | amopfamily
+unique, btree, for table "pg_catalog.pg_amop"
+
+                Table "pg_catalog.pg_amproc"
+     Column      |   Type   | Collation | Nullable | Default 
+-----------------+----------+-----------+----------+---------
+ oid             | oid      |           | not null | 
+ amprocfamily    | oid      |           | not null | 
+ amproclefttype  | oid      |           | not null | 
+ amprocrighttype | oid      |           | not null | 
+ amprocnum       | smallint |           | not null | 
+ amproc          | regproc  |           | not null | 
+Indexes:
+    "pg_amproc_oid_index" PRIMARY KEY, btree (oid)
+    "pg_amproc_fam_proc_index" UNIQUE CONSTRAINT, btree (amprocfamily, amproclefttype, amprocrighttype, amprocnum)
+
+     Index "pg_catalog.pg_amproc_fam_proc_index"
+     Column      |   Type   | Key? |   Definition    
+-----------------+----------+------+-----------------
+ amprocfamily    | oid      | yes  | amprocfamily
+ amproclefttype  | oid      | yes  | amproclefttype
+ amprocrighttype | oid      | yes  | amprocrighttype
+ amprocnum       | smallint | yes  | amprocnum
+unique, btree, for table "pg_catalog.pg_amproc"
+
+Index "pg_catalog.pg_amproc_oid_index"
+ Column | Type | Key? | Definition 
+--------+------+------+------------
+ oid    | oid  | yes  | oid
+primary key, btree, for table "pg_catalog.pg_amproc"
+
+              Table "pg_catalog.pg_attrdef"
+ Column  |     Type     | Collation | Nullable | Default 
+---------+--------------+-----------+----------+---------
+ oid     | oid          |           | not null | 
+ adrelid | oid          |           | not null | 
+ adnum   | smallint     |           | not null | 
+ adbin   | pg_node_tree | C         | not null | 
+Indexes:
+    "pg_attrdef_oid_index" PRIMARY KEY, btree (oid)
+    "pg_attrdef_adrelid_adnum_index" UNIQUE CONSTRAINT, btree (adrelid, adnum)
+
+Index "pg_catalog.pg_attrdef_adrelid_adnum_index"
+ Column  |   Type   | Key? | Definition 
+---------+----------+------+------------
+ adrelid | oid      | yes  | adrelid
+ adnum   | smallint | yes  | adnum
+unique, btree, for table "pg_catalog.pg_attrdef"
+
+Index "pg_catalog.pg_attrdef_oid_index"
+ Column | Type | Key? | Definition 
+--------+------+------+------------
+ oid    | oid  | yes  | oid
+primary key, btree, for table "pg_catalog.pg_attrdef"
+
+               Table "pg_catalog.pg_attribute"
+     Column     |   Type    | Collation | Nullable | Default 
+----------------+-----------+-----------+----------+---------
+ attrelid       | oid       |           | not null | 
+ attname        | name      |           | not null | 
+ atttypid       | oid       |           | not null | 
+ attlen         | smallint  |           | not null | 
+ attnum         | smallint  |           | not null | 
+ attcacheoff    | integer   |           | not null | 
+ atttypmod      | integer   |           | not null | 
+ attndims       | smallint  |           | not null | 
+ attbyval       | boolean   |           | not null | 
+ attalign       | "char"    |           | not null | 
+ attstorage     | "char"    |           | not null | 
+ attcompression | "char"    |           | not null | 
+ attnotnull     | boolean   |           | not null | 
+ atthasdef      | boolean   |           | not null | 
+ atthasmissing  | boolean   |           | not null | 
+ attidentity    | "char"    |           | not null | 
+ attgenerated   | "char"    |           | not null | 
+ attisdropped   | boolean   |           | not null | 
+ attislocal     | boolean   |           | not null | 
+ attinhcount    | smallint  |           | not null | 
+ attstattarget  | smallint  |           | not null | 
+ attcollation   | oid       |           | not null | 
+ attacl         | aclitem[] |           |          | 
+ attoptions     | text[]    | C         |          | 
+ attfdwoptions  | text[]    | C         |          | 
+ attmissingval  | anyarray  |           |          | 
+Indexes:
+    "pg_attribute_relid_attnum_index" PRIMARY KEY, btree (attrelid, attnum)
+    "pg_attribute_relid_attnam_index" UNIQUE CONSTRAINT, btree (attrelid, attname)
+
+Index "pg_catalog.pg_attribute_relid_attnam_index"
+  Column  |  Type   | Key? | Definition 
+----------+---------+------+------------
+ attrelid | oid     | yes  | attrelid
+ attname  | cstring | yes  | attname
+unique, btree, for table "pg_catalog.pg_attribute"
+
+Index "pg_catalog.pg_attribute_relid_attnum_index"
+  Column  |   Type   | Key? | Definition 
+----------+----------+------+------------
+ attrelid | oid      | yes  | attrelid
+ attnum   | smallint | yes  | attnum
+primary key, btree, for table "pg_catalog.pg_attribute"
+
+            Table "pg_catalog.pg_auth_members"
+     Column     |  Type   | Collation | Nullable | Default 
+----------------+---------+-----------+----------+---------
+ oid            | oid     |           | not null | 
+ roleid         | oid     |           | not null | 
+ member         | oid     |           | not null | 
+ grantor        | oid     |           | not null | 
+ admin_option   | boolean |           | not null | 
+ inherit_option | boolean |           | not null | 
+ set_option     | boolean |           | not null | 
+Indexes:
+    "pg_auth_members_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_auth_members_grantor_index" btree (grantor), tablespace "pg_global"
+    "pg_auth_members_member_role_index" UNIQUE CONSTRAINT, btree (member, roleid, grantor), tablespace "pg_global"
+    "pg_auth_members_role_member_index" UNIQUE CONSTRAINT, btree (roleid, member, grantor), tablespace "pg_global"
+Tablespace: "pg_global"
+
+Index "pg_catalog.pg_auth_members_grantor_index"
+ Column  | Type | Key? | Definition 
+---------+------+------+------------
+ grantor | oid  | yes  | grantor
+btree, for table "pg_catalog.pg_auth_members"
+Tablespace: "pg_global"
+
+Index "pg_catalog.pg_auth_members_member_role_index"
+ Column  | Type | Key? | Definition 
+---------+------+------+------------
+ member  | oid  | yes  | member
+ roleid  | oid  | yes  | roleid
+ grantor | oid  | yes  | grantor
+unique, btree, for table "pg_catalog.pg_auth_members"
+Tablespace: "pg_global"
+
+Index "pg_catalog.pg_auth_members_oid_index"
+ Column | Type | Key? | Definition 
+--------+------+------+------------
+ oid    | oid  | yes  | oid
+primary key, btree, for table "pg_catalog.pg_auth_members"
+Tablespace: "pg_global"
+
+Index "pg_catalog.pg_auth_members_role_member_index"
+ Column  | Type | Key? | Definition 
+---------+------+------+------------
+ roleid  | oid  | yes  | roleid
+ member  | oid  | yes  | member
+ grantor | oid  | yes  | grantor
+unique, btree, for table "pg_catalog.pg_auth_members"
+Tablespace: "pg_global"
+
+                        Table "pg_catalog.pg_authid"
+     Column     |           Type           | Collation | Nullable | Default 
+----------------+--------------------------+-----------+----------+---------
+ oid            | oid                      |           | not null | 
+ rolname        | name                     |           | not null | 
+ rolsuper       | boolean                  |           | not null | 
+ rolinherit     | boolean                  |           | not null | 
+ rolcreaterole  | boolean                  |           | not null | 
+ rolcreatedb    | boolean                  |           | not null | 
+ rolcanlogin    | boolean                  |           | not null | 
+ rolreplication | boolean                  |           | not null | 
+ rolbypassrls   | boolean                  |           | not null | 
+ rolconnlimit   | integer                  |           | not null | 
+ rolpassword    | text                     | C         |          | 
+ rolvaliduntil  | timestamp with time zone |           |          | 
+Indexes:
+    "pg_authid_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_authid_rolname_index" UNIQUE CONSTRAINT, btree (rolname), tablespace "pg_global"
+Tablespace: "pg_global"
+
+Index "pg_catalog.pg_authid_oid_index"
+ Column | Type | Key? | Definition 
+--------+------+------+------------
+ oid    | oid  | yes  | oid
+primary key, btree, for table "pg_catalog.pg_authid"
+Tablespace: "pg_global"
+
+Index "pg_catalog.pg_authid_rolname_index"
+ Column  |  Type   | Key? | Definition 
+---------+---------+------+------------
+ rolname | cstring | yes  | rolname
+unique, btree, for table "pg_catalog.pg_authid"
+Tablespace: "pg_global"
+
+   View "pg_catalog.pg_available_extension_versions"
+   Column    |  Type   | Collation | Nullable | Default 
+-------------+---------+-----------+----------+---------
+ name        | name    |           |          | 
+ version     | text    |           |          | 
+ installed   | boolean |           |          | 
+ superuser   | boolean |           |          | 
+ trusted     | boolean |           |          | 
+ relocatable | boolean |           |          | 
+ schema      | name    |           |          | 
+ requires    | name[]  |           |          | 
+ comment     | text    |           |          | 
+
+         View "pg_catalog.pg_available_extensions"
+      Column       | Type | Collation | Nullable | Default 
+-------------------+------+-----------+----------+---------
+ name              | name |           |          | 
+ default_version   | text |           |          | 
+ installed_version | text | C         |          | 
+ comment           | text |           |          | 
+
+       View "pg_catalog.pg_backend_memory_contexts"
+    Column     |  Type   | Collation | Nullable | Default 
+---------------+---------+-----------+----------+---------
+ name          | text    |           |          | 
+ ident         | text    |           |          | 
+ parent        | text    |           |          | 
+ level         | integer |           |          | 
+ total_bytes   | bigint  |           |          | 
+ total_nblocks | bigint  |           |          | 
+ free_bytes    | bigint  |           |          | 
+ free_chunks   | bigint  |           |          | 
+ used_bytes    | bigint  |           |          | 
+
+              Table "pg_catalog.pg_cast"
+   Column    |  Type  | Collation | Nullable | Default 
+-------------+--------+-----------+----------+---------
+ oid         | oid    |           | not null | 
+ castsource  | oid    |           | not null | 
+ casttarget  | oid    |           | not null | 
+ castfunc    | oid    |           | not null | 
+ castcontext | "char" |           | not null | 
+ castmethod  | "char" |           | not null | 
+Indexes:
+    "pg_cast_oid_index" PRIMARY KEY, btree (oid)
+    "pg_cast_source_target_index" UNIQUE CONSTRAINT, btree (castsource, casttarget)
+
+Index "pg_catalog.pg_cast_oid_index"
+ Column | Type | Key? | Definition 
+--------+------+------+------------
+ oid    | oid  | yes  | oid
+primary key, btree, for table "pg_catalog.pg_cast"
+
+Index "pg_catalog.pg_cast_source_target_index"
+   Column   | Type | Key? | Definition 
+------------+------+------+------------
+ castsource | oid  | yes  | castsource
+ casttarget | oid  | yes  | casttarget
+unique, btree, for table "pg_catalog.pg_cast"
+
+                     Table "pg_catalog.pg_class"
+       Column        |     Type     | Collation | Nullable | Default 
+---------------------+--------------+-----------+----------+---------
+ oid                 | oid          |           | not null | 
+ relname             | name         |           | not null | 
+ relnamespace        | oid          |           | not null | 
+ reltype             | oid          |           | not null | 
+ reloftype           | oid          |           | not null | 
+ relowner            | oid          |           | not null | 
+ relam               | oid          |           | not null | 
+ relfilenode         | oid          |           | not null | 
+ reltablespace       | oid          |           | not null | 
+ relpages            | integer      |           | not null | 
+ reltuples           | real         |           | not null | 
+ relallvisible       | integer      |           | not null | 
+ reltoastrelid       | oid          |           | not null | 
+ relhasindex         | boolean      |           | not null | 
+ relisshared         | boolean      |           | not null | 
+ relpersistence      | "char"       |           | not null | 
+ relkind             | "char"       |           | not null | 
+ relnatts            | smallint     |           | not null | 
+ relchecks           | smallint     |           | not null | 
+ relhasrules         | boolean      |           | not null | 
+ relhastriggers      | boolean      |           | not null | 
+ relhassubclass      | boolean      |           | not null | 
+ relrowsecurity      | boolean      |           | not null | 
+ relforcerowsecurity | boolean      |           | not null | 
+ relispopulated      | boolean      |           | not null | 
+ relreplident        | "char"       |           | not null | 
+ relispartition      | boolean      |           | not null | 
+ relrewrite          | oid          |           | not null | 
+ relfrozenxid        | xid          |           | not null | 
