@@ -1,3 +1,4 @@
+\d
                Table "pg_catalog.pg_aggregate"
       Column      |   Type   | Collation | Nullable | Default 
 ------------------+----------+-----------+----------+---------
