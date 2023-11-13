@@ -1,5 +1,4 @@
-# PG_ADMIN
-
+# CLI HELP
 
 # psgl CLI
 - Connect to the database useing one of these
