@@ -2,11 +2,6 @@
 
 # CLI
 
-- postgres-client --help
-```
-
-
-
 - Connect to the database useing one of these
     ```
     sudo -u postgres psql
@@ -14,7 +9,7 @@
     psql -U postgres –W –d postgres –h 127.0.0.1
     ```
 - Postgres cli Client
-```
+
 
 General
   \bind [PARAM]...       set query parameters
