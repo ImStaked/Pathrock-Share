@@ -1,13 +1,19 @@
 # PG_ADMIN
 
-# CLI
 
+# psgl CLI
 - Connect to the database useing one of these
     ```
-    sudo -u postgres psql
+    sudo -u postgres psql 
     psql -U postgres –W –d postgres
     psql -U postgres –W –d postgres –h 127.0.0.1
     ```
+- List databases
+```
+sudo -u postgres psql --list
+```
+
+
 
 - psgl options
 ```
