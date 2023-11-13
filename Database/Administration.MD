@@ -10,7 +10,7 @@
     ```
 - Postgres cli Client
 
-
+```
 General
   \bind [PARAM]...       set query parameters
   \copyright             show PostgreSQL usage and distribution terms
