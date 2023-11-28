@@ -1,0 +1,72 @@
+version: "3"
+
+services:
+  node_qmeeqbhdvu7iynh:
+    image: onfinality/subql-node:v3.0.4
+    container_name: node_qmeeqbhdvu7iynh
+    restart: always
+    cpus: 3
+    expose:
+      - 3100
+    environment:
+      DB_USER: postgres
+      DB_PASS: gPfpuTq4xRHkRJqLd
+      DB_DATABASE: postgres
+      DB_HOST: https://sqidb1.pathrocknetwork.org
+      DB_PORT: 5432
+    volumes:
+      - /home/poi/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t:/home/poi/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
+    command:
+#      - -f=ipfs://QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
+      - -d=
+      - --ipfs=https://rpc1.pathrocknetwork.org:5512/api/v0/
+      - --network-endpoint=wss://moonbeam.unitedbloc.com
+      - --network-endpoint=https://moonbeam.unitedbloc.com
+      - --primary-network-endpoint=wss://moonbeam.unitedbloc.com
+      - --db-schema=schema_qmeeqbhdvu7iynh
+      - --port=3100
+      - --batch-size=75
+      - --timeout=1800
+      - --workers=3
+      - --store-cache-threshold=500
+      - --proof-of-index=true
+      - --mmr-store-type=file
+      - -m=/home/poi/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t/.mmr
+      - --disable-historical=false
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://node_qmeeqbhdvu7iynh:3100/ready"
+        ]
+      interval: 3s
+      timeout: 5s
+      retries: 100
+
+  query_qmeeqbhdvu7iynh:
+    image: onfinality/subql-query:v2.6.0
+    container_name: query_qmeeqbhdvu7iynh
+    expose:
+      - 3100
+    depends_on:
+      "node_qmeeqbhdvu7iynh":
+        condition: service_healthy
+    restart: always
+    environment:
+      DB_USER: postgres
+      DB_PASS: gPfpuTq4xRHkRJqLd
+      DB_DATABASE: postgres
+      DB_HOST: https://sqidb1.pathrocknetwork.org
+      DB_PORT: 5432
+    command:
+      - --name=schema_qmeeqbhdvu7iynh
+      - --playground
+      - --indexer=http://node_qmeeqbhdvu7iynh:3100
+      - --port=3100
+      - --query-limit=2000
+
+networks:
+  default:
+    name: indexer_services
