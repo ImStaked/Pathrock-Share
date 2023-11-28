@@ -19,7 +19,7 @@ services:
       - --port=8000
       - --start-port=3100 # The start port number for the indexer node, by default: 3001
       - --secret-key=NMQjCc74qgMZjXSMV # Change to your own secret key to encrypt the controller privatekey which store in db
-      - --ipfs=https://rpc1.pathrocknetwork.org:5512/api/v0/ # New Node
+      - --ipfs=https://rpc1.pathrocknetwork.org:5512/api/v0/
     healthcheck:
       test:
         [
