@@ -1,6 +1,9 @@
 # Indexer Setup
 
 [Indexer Services Source with some CLI setup instructions](https://github.com/subquery/network-indexer-services)
+[Near Dictionary Source](https://github.com/subquery/near-dictionary)
+[Near Subql](https://github.com/subquery/subql-near)
+
 
 ### Install Docker
 ```
