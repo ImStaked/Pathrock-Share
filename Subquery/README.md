@@ -1,6 +1,6 @@
 # Indexer Setup
 
-[Indexer Services Source](https://github.com/subquery/network-indexer-services)
+[Indexer Services Source with some CLI setup instructions](https://github.com/subquery/network-indexer-services)
 
 ### Install Docker
 ```
