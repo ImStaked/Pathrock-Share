@@ -39,11 +39,61 @@
    crontab -e  
    0 0 * * 0 root bash /opt/update-certs.sh >> /root/scripts/update-cert.log
    ```
-3. Frontend config  
+3. Haproxy config
    ```
-
+   CONFIG_FILE=/etc/haproxy/haproxy.cfg
    ```
-4. Backend config  
+   - Stats Page
+   ```
+   ############### 
+   # Proxy Stats
+   ########
+   listen stats
+       bind :::1976 v4v6 ssl crt /etc/ssl/rpc1.pathrocknetwork.org/rpc1.pathrocknetwork.org.pem
+       mode http
+       stats enable
+       stats hide-version
+       stats realm Haproxy\ Statistics
+       stats uri /
+       # Basic Auth user:pass
+       stats auth Pathrock:Network
+   ```
+   Prometheus
+   ```
+   frontend prometheus
+      bind :::8405 v4v6 ssl crt /etc/ssl/rpc1.pathrocknetwork.org/rpc1.pathrocknetwork.org.pem
+      http-request use-service prometheus-exporter
+      no log
+   ```
+   Astar
+   ```
+   ###################### 
+   # Astar
+   ########
+   frontend astar
+       bind :::8844 v4v6 ssl crt /etc/ssl/rpc1.pathrocknetwork.org/rpc1.pathrocknetwork.org.pem
+       maxconn 5000
+       option forwardfor
+       http-request redirect scheme https unless { ssl_fc }
+       acl hdr_connection_upgrade hdr(Connection)  -i upgrade
+       acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
+       use_backend astar_websocket_backend if hdr_connection_upgrade hdr_upgrade_websocket
+       default_backend astar_backend
+   
+   backend astar_websocket_backend
+       balance roundrobin
+       option forwardfor
+       option http-server-close
+       server pathrock_astar_ws 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_ws
+       server imstaked_astar_ws 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_ws
+       
+   backend astar_backend
+       balance roundrobin
+       option forwardfor
+       server pathrock_astar_rpc 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_rpc
+       server imstaked_astar_rpc 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_rpc
+   ```
+5. Backend config  
    ```
 
    ```
