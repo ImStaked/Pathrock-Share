@@ -58,54 +58,56 @@
        stats uri /
        # Basic Auth user:pass
        stats auth Pathrock:Network
-   ```
-   Prometheus
-   ```
-   frontend prometheus
-      bind :::8405 v4v6 ssl crt /etc/ssl/rpc1.pathrocknetwork.org/rpc1.pathrocknetwork.org.pem
-      http-request use-service prometheus-exporter
-      no log
-   ```
-   Astar
-   ```
-   ###################### 
-   # Astar
-   ########
-   frontend astar
-       bind :::8844 v4v6 ssl crt /etc/ssl/rpc1.pathrocknetwork.org/rpc1.pathrocknetwork.org.pem
-       maxconn 5000
-       option forwardfor
-
-       # Only permit ssl connections 
-       http-request redirect scheme https unless { ssl_fc }
-
-       # Use an ACL to upgrade websocket connections
-       acl hdr_connection_upgrade hdr(Connection)  -i upgrade
-       acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
-
-       # Upgraded connections are directed to specific backend
-       use_backend astar_websocket_backend if hdr_connection_upgrade hdr_upgrade_websocket
-
-       # All other requests go to a different backend that requires different options than http backend
-       default_backend astar_backend
+      ```
    
-   backend astar_websocket_backend
-       # Load balancing method to use possible options are roundrobin, leastconn, and source
-       balance roundrobin
-       option forwardfor
+      - Prometheus
+      ```
+      frontend prometheus
+         bind :::8405 v4v6 ssl crt /etc/ssl/rpc1.pathrocknetwork.org/rpc1.pathrocknetwork.org.pem
+         http-request use-service prometheus-exporter
+         no log
+      ```
+      
+      - Astar
+      ```
+      ###################### 
+      # Astar
+      ########
+      frontend astar
+          bind :::8844 v4v6 ssl crt /etc/ssl/rpc1.pathrocknetwork.org/rpc1.pathrocknetwork.org.pem
+          maxconn 5000
+          option forwardfor
    
-       # Websocket Setting
-       option http-server-close
-
-       # 
-       server pathrock_astar_ws 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_ws
-       server imstaked_astar_ws 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_ws
-       
-   backend astar_backend
-       balance roundrobin
-       option forwardfor
-       server pathrock_astar_rpc 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_rpc
-       server imstaked_astar_rpc 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_rpc
-   ```
+          # Only permit ssl connections 
+          http-request redirect scheme https unless { ssl_fc }
+   
+          # Use an ACL to upgrade websocket connections
+          acl hdr_connection_upgrade hdr(Connection)  -i upgrade
+          acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
+   
+          # Upgraded connections are directed to specific backend
+          use_backend astar_websocket_backend if hdr_connection_upgrade hdr_upgrade_websocket
+   
+          # All other requests go to a different backend that requires different options than http backend
+          default_backend astar_backend
+      
+      backend astar_websocket_backend
+          # Load balancing method to use possible options are roundrobin, leastconn, and source
+          balance roundrobin
+          option forwardfor
+      
+          # Websocket Setting
+          option http-server-close
+   
+          # 
+          server pathrock_astar_ws 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_ws
+          server imstaked_astar_ws 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_ws
+          
+      backend astar_backend
+          balance roundrobin
+          option forwardfor
+          server pathrock_astar_rpc 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_rpc
+          server imstaked_astar_rpc 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_rpc
+      ```
 
    
