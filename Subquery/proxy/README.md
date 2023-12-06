@@ -42,7 +42,9 @@
 3. Haproxy config.  
    For a more detailed basic explaination on the general concepts please refer to [this guide](https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts)   
    
-   [Examples and Explaination for common use cases ](https://www.haproxy.com/documentation/haproxy-configuration-tutorials/)
+   [Examples and Explaination](https://www.haproxy.com/documentation/haproxy-configuration-tutorials/-) for common use cases
+
+   - RPC1 Config
    ```
    CONFIG_FILE=/etc/haproxy/haproxy.cfg
    ```
