@@ -145,8 +145,8 @@
           option http-server-close
 
           # To check http application by uri request -- UNTESTED NEVER USED IN PRODUCTION
-          option httpchk
-          http-check send meth GET  uri /status
+          #option httpchk
+          #http-check send meth GET  uri /status
    
           server pathrock_astar_ws 10.241.140.3:9933 check maxconn 1250 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_ws
           server imstaked_astar_ws 65.108.68.51:9933 check maxconn 1250 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_ws
