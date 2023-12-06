@@ -1,6 +1,6 @@
 # Haproxy Setup  
 
-1. Install haproxy  
+1. Install haproxy with the built in prometheus module
    ```
    VERSION=2.8
    sudo apt install --no-install-recommends software-properties-common
@@ -39,7 +39,8 @@
    crontab -e  
    0 0 * * 0 root bash /opt/update-certs.sh >> /root/scripts/update-cert.log
    ```
-3. Haproxy config
+3. Haproxy config.  
+   For a more detailed basic explaination on the general concepts please refer to [this guide](https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts)  
    ```
    CONFIG_FILE=/etc/haproxy/haproxy.cfg
    ```
@@ -75,10 +76,10 @@
        maxconn 5000
        option forwardfor
 
-       # Only permit ssl connections
+       # Only permit ssl connections 
        http-request redirect scheme https unless { ssl_fc }
 
-       # This code upgrades websocket connections 
+       # Use an ACL to upgrade websocket connections
        acl hdr_connection_upgrade hdr(Connection)  -i upgrade
        acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
 
@@ -89,9 +90,14 @@
        default_backend astar_backend
    
    backend astar_websocket_backend
+       # Load balancing method to use possible options are roundrobin, leastconn, and source
        balance roundrobin
        option forwardfor
+   
+       # Websocket Setting
        option http-server-close
+
+       # 
        server pathrock_astar_ws 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_ws
        server imstaked_astar_ws 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_ws
        
