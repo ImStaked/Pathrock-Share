@@ -72,7 +72,8 @@
 
    - Default options for fronteneds and backends can be explicityly stated in either to override
    ```
-   log     global
+   defaults
+        log     global
         mode    http
         option  httplog
         option  dontlognull
