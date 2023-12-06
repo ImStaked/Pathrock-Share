@@ -1,4 +1,4 @@
-# Near Subquery Node
+# Near Subquery
 
 # Links  
 [Source Code](https://github.com/subquery/near-dictionary/blob/main/src/mappings/mappingHandlers.ts)
