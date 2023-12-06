@@ -45,21 +45,27 @@
    CONFIG_FILE=/etc/haproxy/haproxy.cfg
    ```
 
-   - Global Options
+   - Global Options 
    ```
    global
         log /dev/log    local0
         log /dev/log    local1 notice
    #    log /var/lib/haproxy/dev/log local2 warn
+
         chroot /var/lib/haproxy
         stats socket /run/haproxy/admin.sock mode 660 level admin
         stats timeout 30s
         user haproxy
         group haproxy
         daemon
+
+        # Default SSL material locations
+        ca-base /etc/ssl/certs
+        crt-base /etc/ssl/private
+
    ```
 
-   - Default Settings
+   - Default options for fronteneds and backends can be explicityly stated in either to override
    ```
    log     global
         mode    http
@@ -75,6 +81,7 @@
         timeout http-request    15s
         timeout queue           30s
         timeout tarpit          60s
+   
    ```
    
    - Stats Page
@@ -125,6 +132,7 @@
           default_backend astar_backend
       
       backend astar_websocket_backend
+          maxconn 2500
           # Load balancing method to use possible options are roundrobin, leastconn, and source
           balance roundrobin
           option forwardfor
@@ -133,14 +141,15 @@
           option http-server-close
    
           # 
-          server pathrock_astar_ws 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_ws
-          server imstaked_astar_ws 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_ws
+          server pathrock_astar_ws 10.241.140.3:9933 check maxconn 1250 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_ws
+          server imstaked_astar_ws 65.108.68.51:9933 check maxconn 1250 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_ws
           
       backend astar_backend
+          maxconn 2500
           balance roundrobin
           option forwardfor
-          server pathrock_astar_rpc 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_rpc
-          server imstaked_astar_rpc 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_rpc
+          server pathrock_astar_rpc 10.241.140.3:9933 check maxconn 1250 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_rpc
+          server imstaked_astar_rpc 65.108.68.51:9933 check maxconn 1250 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_rpc
       ```
 
    
