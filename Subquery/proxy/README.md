@@ -124,7 +124,7 @@
           maxconn 5000
           option forwardfor
    
-          # Only permit ssl connections 
+          # redirect all http requests to HTTPS 
           http-request redirect scheme https unless { ssl_fc }
    
           # Use an ACL to upgrade websocket connections
