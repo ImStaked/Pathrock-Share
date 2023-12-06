@@ -74,10 +74,18 @@
        bind :::8844 v4v6 ssl crt /etc/ssl/rpc1.pathrocknetwork.org/rpc1.pathrocknetwork.org.pem
        maxconn 5000
        option forwardfor
+
+       # Only permit ssl connections
        http-request redirect scheme https unless { ssl_fc }
+
+       # This code upgrades websocket connections 
        acl hdr_connection_upgrade hdr(Connection)  -i upgrade
        acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
+
+       # Upgraded connections are directed to specific backend
        use_backend astar_websocket_backend if hdr_connection_upgrade hdr_upgrade_websocket
+
+       # All other requests go to a different backend that requires different options than http backend
        default_backend astar_backend
    
    backend astar_websocket_backend
@@ -93,8 +101,5 @@
        server pathrock_astar_rpc 10.241.140.3:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie pathrock_astar_rpc
        server imstaked_astar_rpc 65.108.68.51:9933 check maxconn 1000 inter 5s fall 3 rise 10 weight 10 cookie imstaked_astar_rpc
    ```
-5. Backend config  
-   ```
 
-   ```
    
