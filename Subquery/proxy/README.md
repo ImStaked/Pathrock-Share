@@ -70,7 +70,7 @@
 
    ```
 
-   - Default options   *can be explicityly stated in front or back ends to override*
+   - Default options   *can be stated in front or back ends to override*
    ```
    defaults
         log     global
