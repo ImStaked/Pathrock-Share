@@ -44,6 +44,39 @@
    ```
    CONFIG_FILE=/etc/haproxy/haproxy.cfg
    ```
+
+   - Global Options
+   ```
+   global
+        log /dev/log    local0
+        log /dev/log    local1 notice
+   #    log /var/lib/haproxy/dev/log local2 warn
+        chroot /var/lib/haproxy
+        stats socket /run/haproxy/admin.sock mode 660 level admin
+        stats timeout 30s
+        user haproxy
+        group haproxy
+        daemon
+   ```
+
+   - Default Settings
+   ```
+   log     global
+        mode    http
+        option  httplog
+        option  dontlognull
+        option  dontlog-normal
+        option  http-keep-alive
+        timeout connect         30s
+        timeout client         300s
+        timeout server           5s
+        timeout tunnel         600s
+        timeout http-keep-alive 60s
+        timeout http-request    15s
+        timeout queue           30s
+        timeout tarpit          60s
+   ```
+   
    - Stats Page
    ```
    ############### 
