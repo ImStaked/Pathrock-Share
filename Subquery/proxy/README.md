@@ -134,7 +134,7 @@
           # Upgraded connections are directed to specific backend
           use_backend astar_websocket_backend if hdr_connection_upgrade hdr_upgrade_websocket
    
-          # All other requests go to a different backend that requires different options than http backend
+          # All other requests go to default backend
           default_backend astar_backend
       
       backend astar_websocket_backend
