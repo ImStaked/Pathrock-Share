@@ -35,7 +35,7 @@
    EOF
    chmod +x /opt/update-certs.sh
    
-   # Schedule script to run daily
+   # Schedule script to run weekly “At 00:00 on Sunday.”
    crontab -e  
    0 0 * * 0 root bash /opt/update-certs.sh >> /root/scripts/update-cert.log
    ```
