@@ -73,7 +73,7 @@ services:
       - --indexer=http://node_qmzxpa9aezhzn1i:3100
       - --port=3100
       - --query-limit=200
-      - --max-connection=10
+      - --max-connection=500
 
 networks:
   default:
