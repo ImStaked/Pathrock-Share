@@ -10,7 +10,7 @@
   
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   ```  
-  - Compile the binary
+- Compile the binary
   ```
   git clone https://github.com/near/nearcore
   cd nearcore
@@ -19,7 +19,7 @@
   make release
   sudo cp target/release/neard /usr/local/bin/
   ```
-  - Setup the node
+- Setup the node
   ```
   sudo su near
   neard --home ~/.near init --chain-id mainnet --download-genesis --download-config
