@@ -1,0 +1,80 @@
+version: "3"
+
+services:
+  node_qmzxpa9aezhzn1i:
+    image: onfinality/subql-node-near:v3.4.1
+    container_name: node_qmzxpa9aezhzn1i
+    restart: always
+    cpus: 6
+    expose:
+      - 3100
+    environment:
+      DB_USER: postgres
+      DB_PASS: <*****>
+      DB_DATABASE: postgres
+      DB_HOST: sqidb1.pathrocknetwork.org
+      DB_PORT: 5432
+    volumes:
+      - /home/poi/QmZxPa9aezhZn1iEfL2o13Nwg84pZ6cTKrHbKqDmWTzsci:/home/poi/QmZxPa9aezhZn1iEfL2o13Nwg84pZ6cTKrHbKqDmWTzsci
+    command:
+      - -f=ipfs://QmZxPa9aezhZn1iEfL2o13Nwg84pZ6cTKrHbKqDmWTzsci
+      - -d=https://api.subquery.network/sq/subquery/near-dictionary
+      - --ipfs=https://rpc1.pathrocknetwork.org:5512/api/v0/
+      - --network-endpoint=https://archival-rpc.mainnet.near.org/
+      - --db-schema=schema_qmzxpa9aezhzn1i
+      - --port=3100
+      - --batch-size=75
+      - --timeout=10000
+      - --workers=1
+      - --dictionary-timeout=45
+      - --store-cache-async=true
+      - --store-flush-interval=10
+#      - --pg-ca=/home/poi/root.cert
+#      - --pg-key=/home/poi/server.key
+#      - --pg-cert=/home/poi/server.cert
+      - --log-level=info
+      - --store-cache-threshold=500
+      - --proof-of-index=true
+      - --subscription=true
+      - --mmr-store-type=postgres
+      - -m=/home/poi/QmZxPa9aezhZn1iEfL2o13Nwg84pZ6cTKrHbKqDmWTzsci/.mmr
+      - --disable-historical=false
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://node_qmzxpa9aezhzn1i:3100/ready"
+        ]
+      interval: 4s
+      timeout: 7s
+      retries: 500
+
+  query_qmzxpa9aezhzn1i:
+    image: onfinality/subql-query:v2.8.0
+    container_name: query_qmzxpa9aezhzn1i
+    expose:
+      - 3100
+    depends_on:
+      "node_qmzxpa9aezhzn1i":
+        condition: service_healthy
+    restart: always
+    environment:
+      DB_USER: postgres
+      DB_PASS: <******>
+      DB_DATABASE: postgres
+      DB_HOST: sqidb1.pathrocknetwork.org
+      DB_PORT: 5432
+    command:
+      - --name=schema_qmzxpa9aezhzn1i
+      - --playground
+      - --subscription=true
+      - --indexer=http://node_qmzxpa9aezhzn1i:3100
+      - --port=3100
+      - --query-limit=200
+      - --max-connection=10
+
+networks:
+  default:
+    name: indexer_services
