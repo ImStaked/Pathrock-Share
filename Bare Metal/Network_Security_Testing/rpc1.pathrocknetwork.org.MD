@@ -52,3 +52,19 @@
     Unfinished
     ```
   - Admin access is only via ipv4 so no need to scan from my admin ip
+
+
+### 12-7-23 Scan results = secure
+  ```
+  Nmap scan report for rpc1.pathrocknetwork.org (162.55.85.47)
+  Host is up (0.18s latency).
+  rDNS record for 162.55.85.47: static.47.85.55.162.clients.your-server.de
+  Not shown: 994 filtered ports
+  PORT      STATE  SERVICE
+  22/tcp    open   ssh
+  53/tcp    closed domain
+  4001/tcp  open   ipfs
+  8080/tcp  closed http-proxy
+  9999/tcp  closed abyss
+  12345/tcp open   squid
+  ```
