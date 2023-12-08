@@ -34,3 +34,39 @@
     9100/tcp open  jetdirect
     ```
 
+
+## SCANNED 12-7-23
+  Problem found. Ports 8000 and 8010 open to all.
+  ```
+  Other addresses for sq.pathrocknetwork.org (not scanned): 2001:41d0:700:641e::
+  rDNS record for 141.95.97.30: ns3215867.ip-141-95-97.eu
+  Not shown: 991 closed ports
+  PORT     STATE    SERVICE
+  22/tcp   open     ssh
+  443/tcp  open     https
+  646/tcp  filtered ldp
+  1080/tcp open     socks
+  5432/tcp filtered postgresql
+  8000/tcp open     http-alt
+  8010/tcp filtered xmpp
+  8011/tcp filtered unknown
+  9100/tcp filtered jetdirect
+  ```
+ 
+  Problem corrected with rules in the forward table.  
+  I verified that admin ip addresses can connect and everyone else can not. 
+  ```
+  Other addresses for sq.pathrocknetwork.org (not scanned): 2001:41d0:700:641e::
+  rDNS record for 141.95.97.30: ns3215867.ip-141-95-97.eu
+  Not shown: 991 closed ports
+  PORT     STATE    SERVICE
+  22/tcp   open     ssh
+  443/tcp  open     https
+  646/tcp  filtered ldp
+  1080/tcp open     socks
+  5432/tcp filtered postgresql
+  8000/tcp filtered http-alt
+  8010/tcp filtered xmpp
+  8011/tcp filtered unknown
+  9100/tcp filtered jetdirect
+  ```
