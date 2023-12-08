@@ -54,7 +54,7 @@
   - Admin access is only via ipv4 so no need to scan from my admin ip
 
 
-### 12-7-23 Scan results = secure
+### 12-7-23 Scan results = secure except port 22 is open 
   ```
   Nmap scan report for rpc1.pathrocknetwork.org (162.55.85.47)
   Host is up (0.18s latency).
