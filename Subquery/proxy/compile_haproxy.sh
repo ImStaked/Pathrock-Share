@@ -22,5 +22,21 @@ make install
 git clone https://github.com/haproxy/haproxy.git && cd haproxy
 git checkout $HAPROXY_Ver
 
-make -j8 CPU="arm64" TARGET="linux-glibc" ADDLIB="-ljemalloc" USE_PROMEX=1 USE_OPENSSL=1 USE_GETADDRINFO=1 USE_IPFREEBIND=1 DEFINE=-DTCP_USER_TIMEOUT=18 USE_SYSTEMD=1 USE_TFO=1 USE_NS=1 USE_LUA=1 USE_SLZ=1 USE_OT=1 USE_PCRE2=1 USE_PCRE2_JIT=1
-cp haproxy /usr/sbin/haproxy
+make CPU=aarm64 TARGET=linux-glibc  ADDLIB="-ljemalloc" \
+    USE_LUA=1 \
+    USE_THREAD=1 \
+    USE_LIBCRYPT=1 \
+    USE_TFO=1 \
+    USE_SYSTEMD=1 \
+    USE_NS=1 USE_OT=1 \
+    USE_LINUX_TPROXY=1 \
+    USE_PROMEX=1 \
+    USE_QUIC=1 \
+    USE_OPENSSL=1 \
+    USE_PCRE2=1 USE_PCRE2_JIT=1 \
+    USE_LINUX_SPLICE=1 \
+    USE_GETADDRINFO=1 USE_IPFREEBIND=1 DEFINE=-DTCP_USER_TIMEOUT=18 \
+    SSL_INC=/opt/quictls/include \
+    SSL_LIB=/opt/quictls/lib LDFLAGS="-Wl,-rpath,/usr/local/lib" 
+
+cp haproxy /usr/sbin/
