@@ -1,0 +1,47 @@
+Name: whitelist
+Type: hash:ip
+Revision: 5
+Header: family inet hashsize 4096 maxelem 65536 bucketsize 12 initval 0xfecf3f9c
+Size in memory: 1392
+References: 1
+Number of entries: 28
+Members:
+147.135.102.200
+15.204.141.67
+141.95.94.20
+141.95.94.21
+162.19.232.109
+168.119.212.48
+15.204.140.80
+162.19.232.110
+15.204.52.131
+15.235.144.206
+135.148.211.149
+139.99.53.189
+15.235.144.191
+51.81.232.143
+135.148.211.147
+15.204.52.125
+162.19.232.108
+144.76.58.93
+135.148.211.148
+15.204.198.207
+147.135.102.151
+139.99.67.135
+15.204.52.134
+65.109.138.245
+141.95.94.19
+139.99.53.186
+65.108.68.51
+15.235.144.207
+
+Name: admin-list
+Type: hash:ip
+Revision: 5
+Header: family inet hashsize 1024 maxelem 65536 bucketsize 12 initval 0x1c9e2230
+Size in memory: 280
+References: 0
+Number of entries: 2
+Members:
+5.161.49.184
+37.24.110.30
