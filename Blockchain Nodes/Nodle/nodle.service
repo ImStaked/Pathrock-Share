@@ -1,0 +1,15 @@
+[Unit]
+Description=Nodle Archive Node
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+User=nodle
+Type=simple
+Restart=always
+RestartSec=30
+ExecStart=nodle-parachain
+
+[Install]
+WantedBy=default.target
