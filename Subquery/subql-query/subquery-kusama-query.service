@@ -1,0 +1,27 @@
+[Unit]
+Description="Subquery Kusama Indexer Node"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+User=subquery
+SyslogIdentifier=subquery-kusama
+SyslogFacility=local7
+KillSignal=SIGHUP
+ExecStart=/usr/bin/subql-query \
+     --aggregate true \
+     --indexer 127.0.0.1:3001 \
+     --max-connection 10 \
+     --name schema_qmxwfcf8858yy92 \
+     --port 4000 \
+     --playground true \
+     --query-timeout 2500 \
+     --subscription \
+     --log-level info \
+     --log-path /home/subquery/subquery/logs/kusama-query.log 
+
+[Install]
+WantedBy=multi-user.target
