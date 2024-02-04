@@ -1,5 +1,5 @@
 [Unit]
-Description="Subquery Kusama Indexer Node"
+Description="Subquery Kusama Query Node"
 After=network.target
 StartLimitIntervalSec=0
 
