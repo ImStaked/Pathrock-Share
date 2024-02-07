@@ -5,6 +5,7 @@ StartLimitIntervalSec=0
 
 [Service]
 Type=simple
+EnvironmentFile=/home/subquery/subquery/.env
 Restart=on-failure
 RestartSec=10
 User=subquery
