@@ -129,12 +129,20 @@ ss://devpro.imstaked.com:9976                HTTP/3
 
 ### aleph-zero
 --------------------------------------
-
 ```
 node_qmxp3mdcjzyusmx
 query_qmxp3mdcjzyusmx
 ```
 
-
+### IPFS
+--------------------------------------
+- Admin
+```
+https://sgd.proxy.pathrocknetwork.org:5111/webui
+```
+- RPC
+```
+https://sgd.proxy.pathrocknetwork.org:5112/api/v1
+```
 
 
