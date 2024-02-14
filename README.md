@@ -11,8 +11,8 @@ indexer_cache                 redis:7-alpine
 ----------------------------------------
 - QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
 ```
-node_qmbtst8uscutbwe
-query_qmbtst8uscutbwe
+node_qmbtst8uscutbwe     v3.5.0
+query_qmbtst8uscutbwe    v3.5.0
 ```
 - Endpoint
 ```
@@ -136,7 +136,7 @@ query_qmxwfcf8858yy92
 - Endpoints
 ```
 https://sgd.proxy.pathrocknetwork.org:5321    Normal  HTTP/1,HTTP/2
-ss://devpro.imstaked.com:9976                HTTP/3
+wss://devpro.imstaked.com:9976                HTTP/3
 ```
 
 
