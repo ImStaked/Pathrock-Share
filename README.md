@@ -7,6 +7,19 @@ indexer_cache                 redis:7-alpine
 ```
 
 
+### FetcjAi (indexing)
+----------------------------------------
+- QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
+```
+node_qmbtst8uscutbwe
+query_qmbtst8uscutbwe
+```
+- Endpoint
+```
+https://rpc-fetchhub.fetch.ai:443
+```
+
+
 
 ### MoonBase - (Indexing)  
 -------------------------------------
