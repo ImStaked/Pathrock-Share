@@ -32,17 +32,6 @@ https://rpc-fetchhub.fetch.ai:443
 ```
 
 
-
-### MoonBase - (Indexing)  
--------------------------------------
-- Indexers
-```
-node_qmugn2ep1nvaecs     v3.5.3
-query_qmugn2ep1nvaecs    v2.9.0
-```
-
-
-
 ### NEAR - (Indexing)  
 -------------------------------------
 ```
@@ -116,6 +105,18 @@ query_qmumnkphce6jwgm    v2.9.0
 - Endpoints
 ```
 wss://sgd.proxy.pathrocknetwork.org:8844
+```
+
+### MoonBase - (Indexing)  
+-------------------------------------
+- Indexers
+```
+node_qmugn2ep1nvaecs     v3.5.3
+query_qmugn2ep1nvaecs    v2.9.0
+```
+- Endpoint
+```
+https://sgd.proxy.pathrocknetwork.org:9233
 ```
 
 
