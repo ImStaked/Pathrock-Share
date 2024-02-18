@@ -1,5 +1,6 @@
 # Subquery 
 ----------------------------------------
+- /home/subquery/subquery-indexer/docker-compose.yml
 ```
 indexer_proxy                 v1.3.9  
 indexer_coordinator           v1.4.10  
