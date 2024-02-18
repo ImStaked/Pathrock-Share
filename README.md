@@ -22,6 +22,8 @@ https://sgd.proxy.pathrocknetwork.org:5112/api/v1
 ### FetcjAi 
 ----------------------------------------
 - QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
+- /home/subquery/subquery/.projects/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8/docker-compose.yml
+- /home/poi/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
 ```
 node_qmbtst8uscutbwe     v3.5.0
 query_qmbtst8uscutbwe    v3.5.0
@@ -162,12 +164,14 @@ wss://devpro.imstaked.com:9976                HTTP/3 (testing)
 
 ### aleph-zero
 --------------------------------------
-- Indexers
+- QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
+- /home/subquery/subquery/.projects/QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
+- /home/poi/QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
 ```
 node_qmxp3mdcjzyusmx     v3.5.3
 query_qmxp3mdcjzyusmx    v2.9.0
 ```
-- Endpoins
+- Endpoints
 ```
 https://sgd.proxy.pathrocknetwork.org:9095
 ```
@@ -175,8 +179,10 @@ https://sgd.proxy.pathrocknetwork.org:9095
 
 
 ### Westend
-```````````````````````````````````````
-- Indexers
+--------------------------------------
+- Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW
+- /home/subquery/subquery/.projects/Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW/docker-compose.yml
+- /home/poi/Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW
 ```
 node_qma6besqghrhp5a
 query_qma6besqghrhp5a
