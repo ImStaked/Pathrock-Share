@@ -31,7 +31,7 @@ query_qmbtst8uscutbwe    v3.5.0
 ```
 - Endpoint
 ```
-https://rpc-fetchhub.fetch.ai:443
+https://sgd.proxy.pathrocknetwork.org:18888
 ```
 
 
