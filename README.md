@@ -64,7 +64,9 @@ wss://devpro.imstaked.com:9966
 
 ### Shiden
 -------------------------------------
-- /home/subquery/subquery-indexer/.projects/
+- QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW
+- /home/subquery/subquery-indexer/.projects/QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW/docker-compose.yml
+- /home/poi/QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW
 ```
 node_qmv25wvpgdmagrc     v3.5.0
 query_qmv25wvpgdmagrc    v2.9.0
@@ -77,7 +79,9 @@ wss://rpc.shiden.astar.network
 
 ### Bifrost
 -------------------------------------
-- /home/subquery/subquery-indexer/.projects/
+- QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy
+- /home/subquery/subquery-indexer/.projects/QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy/docker-compose.yml
+- /home/poi/QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy
 ```
 node_qmuwd1o3bjb5qsr     v3.5.0
 query_qmuwd1o3bjb5qsr    v2.9.0
@@ -90,7 +94,9 @@ wss://bifrost-rpc.dwellir.com
 
 ### Nodle  
 ------------------------------
-- /home/subquery/subquery-indexer/.projects/
+- QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y
+- /home/subquery/subquery-indexer/.projects/QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y/docker-compose.yml
+- /home/poi/QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y
 ```
 node_qmqtmshojeyucxk     v3.5.3
 query_qmqtmshojeyucxk    v2.9.0
@@ -161,7 +167,9 @@ wss://sgd.proxy.pathrocknetwork.org:9876
 
 ### Kusama
 --------------------------------------
-- /home/subquery/subquery-indexer/.projects/
+- QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn
+- /home/subquery/subquery-indexer/.projects/QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn/docker-compose.yml
+- /home/poi/QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn
 ```
 node_qmxwfcf8858yy92     v3.5.3
 query_qmxwfcf8858yy92    v2.9.0
