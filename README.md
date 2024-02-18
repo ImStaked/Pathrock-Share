@@ -46,7 +46,9 @@ query_qmzxpa9aezhzn1i    v2.2.1-0
 
 ### Polkadot 
 -------------------------------------
-- /home/subquery/subquery-indexer/.projects/
+- QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
+- /home/subquery/subquery-indexer/.projects/QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm/docker-compose.yml
+- /home/poi/QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
 ```
 node_qmzgazq7e1ozgfu     v3.5.3
 query_qmzgazq7e1ozgfu    v2.9.0
