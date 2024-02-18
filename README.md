@@ -32,6 +32,7 @@ query_qmbtst8uscutbwe    v3.5.0
 - Endpoint
 ```
 https://sgd.proxy.pathrocknetwork.org:18888
+wss://sgd.proxy.pathrocknetwork.org:18888/websocket
 ```
 
 
