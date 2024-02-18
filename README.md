@@ -19,7 +19,7 @@ https://sgd.proxy.pathrocknetwork.org:5112/api/v1
 ```
 
 
-### FetcjAi (indexing)
+### FetcjAi 
 ----------------------------------------
 - QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
 ```
@@ -82,7 +82,7 @@ wss://bifrost-rpc.dwellir.com
 ```
 
 
-### Nodle -
+### Nodle  
 ------------------------------
 - Indexers
 ```
@@ -107,7 +107,7 @@ query_qmumnkphce6jwgm    v2.9.0
 wss://sgd.proxy.pathrocknetwork.org:8844
 ```
 
-### MoonBase - (Indexing)  
+### MoonBase    
 -------------------------------------
 - Indexers
 ```
