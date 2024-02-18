@@ -156,7 +156,7 @@ query_qmxwfcf8858yy92    v2.9.0
 - Endpoints
 ```
 https://sgd.proxy.pathrocknetwork.org:5321    Normal  HTTP/1,HTTP/2
-wss://devpro.imstaked.com:9976                HTTP/3
+wss://devpro.imstaked.com:9976                HTTP/3 (testing)
 ```
 
 
@@ -169,7 +169,7 @@ query_qmxp3mdcjzyusmx    v2.9.0
 ```
 - Endpoins
 ```
-
+https://sgd.proxy.pathrocknetwork.org:9095
 ```
 
 
