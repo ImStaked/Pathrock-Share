@@ -20,18 +20,18 @@ https://sgd.proxy.pathrocknetwork.org:5112/api/v1
 ```
 
 
-### FetcjAi 
+### FetchAi 
 ----------------------------------------
 - QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
 - /home/subquery/subquery-indexer/.projects/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8/docker-compose.yml
 - /home/poi/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
 ```
 node_qmbtst8uscutbwe     v3.5.0
-query_qmbtst8uscutbwe    v3.5.0
+query_qmbtst8uscutbwe    v2.9.0
 ```
-- Endpoint
+- Endpoints
 ```
-https://sgd.proxy.pathrocknetwork.org:18888
+https://rpc-fetchhub.fetch.ai:443
 wss://sgd.proxy.pathrocknetwork.org:18888/websocket
 ```
 
