@@ -110,7 +110,9 @@ http://rpc1.pathrocknetwork.org:9995
 
 ### Astar 
 ------------------------------------
-- /home/subquery/subquery-indexer/.projects/
+- QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
+- /home/subquery/subquery-indexer/.projects/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH/
+- /home/poi/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
 ```
 node_qmumnkphce6jwgm     v3.5.3
 query_qmumnkphce6jwgm    v2.9.0
@@ -132,6 +134,8 @@ query_qmugn2ep1nvaecs    v2.9.0
 - Endpoint
 ```
 https://sgd.proxy.pathrocknetwork.org:9233
+https://moonbase-rpc.dwellir.com
+wss://moonbase.unitedbloc.com
 ```
 
 
@@ -178,7 +182,6 @@ query_qmxwfcf8858yy92    v2.9.0
 - Endpoints
 ```
 https://sgd.proxy.pathrocknetwork.org:5321    Normal  HTTP/1,HTTP/2
-wss://devpro.imstaked.com:9976                HTTP/3 (testing)
 ```
 
 
