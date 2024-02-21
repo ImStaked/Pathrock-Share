@@ -57,7 +57,7 @@ query_qmzgazq7e1ozgfu    v2.9.0
 - Endpoints
 ```
 wss://sgd.proxy.pathrocknetwork.org:9966
-wss://devpro.imstaked.com:9966
+https://sgd.proxy.pathrocknetwork.org:9966
 ```
 
 
