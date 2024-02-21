@@ -15,15 +15,18 @@ ExecStart=/usr/local/bin/acala \
     --base-path=/home/acala/.acala/data \
     --chain=acala \
     --name="PathrockNetwork-1" \
-    --pruning=archive \
-    --ws-external \
+    --state-pruning=archive \
+    --blocks-pruning=archive
+    --port=16333 \
+    --unsafe-rpc-external \
     --rpc-external \
     --rpc-cors=all \
     --ws-port=9944 \
     --rpc-port=9933 \
-    --ws-max-connections=1000 \
+    --rpc-max-connections=1000 \
     --execution=wasm \
     --relay-chain-rpc-urls=wss://sgd.pathrocknetwork.org:5321
+
 
 [Install]
 WantedBy=multi-user.target
