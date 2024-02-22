@@ -11,25 +11,22 @@ User=kilt
 SyslogIdentifier=kilt
 SyslogFacility=local7
 KillSignal=SIGHUP
-ExecStart=/usr/local/bin/kilt \
-    --base-path=/home/kilt/.kilt/data \
-    --chain=kilt \
-    --port 16433 \
-    --database rocksdb \
-    --name="PathrockNetwork-1" \
+ExecStart=/usr/local/bin/kilt-parachain \
+    --port=40666 \
+    --chain=spiritnet \
     --state-pruning=archive \
     --blocks-pruning=archive \
-    --unsafe-rpc-external \
-    --rpc-external \
+    --runtime=spiritnet \
+    --rpc-port=9914 \
     --rpc-cors=all \
-    --rpc-port=9984 \
-    --rpc-max-connections=1000 \
-    --prometheus-external \
-    --prometheus-port 7705 \
+    --rpc-methods=unsafe \
+    --name="Pathrock-1" \
     --execution=wasm \
+    --listen-addr=/ip4/0.0.0.0/tcp/40666 \
+    --base-path=/home/kilt/data/parachain \
     --no-private-ip \
     --no-mdns \
-    --relay-chain-rpc-urls=
+    --relay-chain-rpc-urls=wss://sgd.proxy.pathrocknetwork.org:9966
 
 [Install]
 WantedBy=multi-user.target
