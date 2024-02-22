@@ -8,6 +8,14 @@ indexer_cache                 redis:7-alpine
 ```
 
 
+### Acala
+--------------------------------------
+- Endpoints
+```
+https://sgd.proxy.pathrocknetwork.org:18998
+wss://sgd.proxy.pathrocknetwork.org:18998
+```
+
 ### IPFS
 --------------------------------------
 - Admin
