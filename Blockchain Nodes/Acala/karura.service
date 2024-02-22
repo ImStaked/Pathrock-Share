@@ -22,10 +22,10 @@ ExecStart=/usr/local/bin/karura \
     --unsafe-rpc-external \
     --rpc-external \
     --rpc-cors=all \
-    --rpc-port=9933 \
+    --rpc-port=18999 \
     --rpc-max-connections=1000 \
     --prometheus-external \
-    --prometheus-port 9727 \
+    --prometheus-port 9929 \
     --execution=wasm \
     --no-private-ip \
     --no-mdns \
