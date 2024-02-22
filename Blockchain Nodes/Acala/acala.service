@@ -23,6 +23,7 @@ ExecStart=/usr/local/bin/acala \
     --rpc-external \
     --rpc-cors=all \
     --rpc-port=9933 \
+    --rpc-methods=unsafe \
     --rpc-max-connections=1000 \
     --prometheus-external \
     --prometheus-port 9727 \
