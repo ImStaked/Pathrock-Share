@@ -14,12 +14,16 @@ KillSignal=SIGHUP
 ExecStart=/usr/local/bin/kilt-parachain \
     --port=40666 \
     --chain=spiritnet \
+    --runtime=spiritnet \
     --state-pruning=archive \
     --blocks-pruning=archive \
-    --runtime=spiritnet \
+    --rpc-external \
     --rpc-port=9914 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
+    --rpc-max-connections=1000 \
+    --prometheus-external \
+    --prometheus-port 9707 \
     --name="Pathrock-1" \
     --execution=wasm \
     --listen-addr=/ip4/0.0.0.0/tcp/40666 \
