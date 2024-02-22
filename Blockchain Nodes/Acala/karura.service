@@ -1,0 +1,35 @@
+[Unit]
+Description="Karura systemd service"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+User=karura
+SyslogIdentifier=karura
+SyslogFacility=local7
+KillSignal=SIGHUP
+ExecStart=/usr/local/bin/karura \
+    --base-path=/home/karura/.karura/data \
+    --chain=karura \
+    --port 16633 \
+    --database rocksdb \
+    --name="PathrockNetwork-1" \
+    --state-pruning=archive \
+    --blocks-pruning=archive \
+    --unsafe-rpc-external \
+    --rpc-external \
+    --rpc-cors=all \
+    --rpc-port=9933 \
+    --rpc-max-connections=1000 \
+    --prometheus-external \
+    --prometheus-port 9727 \
+    --execution=wasm \
+    --no-private-ip \
+    --no-mdns \
+    --relay-chain-rpc-urls=wss://sgd.proxy.pathrocknetwork.org:5321
+
+[Install]
+WantedBy=multi-user.target
