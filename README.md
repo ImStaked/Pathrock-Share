@@ -223,6 +223,7 @@ query_qma6besqghrhp5a
 ```
 - Endpoints
 ```
+wss://westend-rpc.polkadot.io
 https://sgd.proxy.pathrocknetwork.org:9814
 wss://sgd.proxy.pathrocknetwork.org:9814
 ```
@@ -242,6 +243,7 @@ query_
 ```
 https://sgd.proxy.pathrocknetwork.org:18998
 wss://sgd.proxy.pathrocknetwork.org:18998
+https://rpc.evm.acala.network
 ```
 
 ### Karura
@@ -271,6 +273,7 @@ query_
 ```
 - Endpoints
 ```
+https://rpc.evm.karura.network
 https://sgd.proxy.pathrocknetwork.org:7001
 wss://sgd.proxy.pathrocknetwork.org:7001
 ```
