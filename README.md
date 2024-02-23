@@ -75,47 +75,83 @@
 
 ### Shiden
 -------------------------------------
-- QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW
-- /home/subquery/subquery-indexer/.projects/QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW/docker-compose.yml
-- /home/poi/QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW
-```
-node_qmv25wvpgdmagrc     v3.5.0
-query_qmv25wvpgdmagrc    v2.9.0
-```
-- Endpoints
-```
-wss://rpc.shiden.astar.network
-```
+- HTTP
+  ```
+  
+  ```
+- Websocket
+  ```
+  
+  ```
+- Paths
+  ```
+  QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW
+  /home/subquery/subquery-indexer/.projects/QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW/docker-compose.yml
+  /home/poi/QmV25WVPgdmAgRCqkbGUU49xdeg9td3CK5LbtBjeQEMxTW
+  ```
+- Containers
+  ```
+  node_qmv25wvpgdmagrc     v3.5.0
+  query_qmv25wvpgdmagrc    v2.9.0
+  ```
+- Public Endpoints
+  ```
+  wss://rpc.shiden.astar.network
+  ```
 
 
 ### Bifrost
 -------------------------------------
-- QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy
-- /home/subquery/subquery-indexer/.projects/QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy/docker-compose.yml
-- /home/poi/QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy
-```
-node_qmuwd1o3bjb5qsr     v3.5.0
-query_qmuwd1o3bjb5qsr    v2.9.0
-```
-- Endpoints
-```
-wss://bifrost-rpc.dwellir.com
-```
+- HTTP
+  ```
+  
+  ```
+- Websocket
+  ```
+  
+  ```
+- Paths
+  ```
+  QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy
+  /home/subquery/subquery-indexer/.projects/QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy/docker-compose.yml
+  /home/poi/QmUWd1o3BJb5qSR1ZaAhSw1duVgQ5bsczdfRNakNUL5cJy
+  ```
+- Containers
+  ```
+  node_qmuwd1o3bjb5qsr     v3.5.0
+  query_qmuwd1o3bjb5qsr    v2.9.0
+  ```
+- Public Endpoints
+  ```
+  wss://bifrost-rpc.dwellir.com
+  ```
 
 
 ### Nodle  
 ------------------------------
-- QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y
-- /home/subquery/subquery-indexer/.projects/QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y/docker-compose.yml
-- /home/poi/QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y
-```
-node_qmqtmshojeyucxk     v3.5.3
-query_qmqtmshojeyucxk    v2.9.0
-```
-- Endpoints
-```
-http://rpc1.pathrocknetwork.org:9995
-```
+- HTTP
+  ```
+  https://rpc1.pathrocknetwork.org:9995
+  ```
+- Websocket
+  ```
+  wss://rpc1.pathrocknetwork.org:9995
+  ```
+- Paths
+  ```
+  QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y
+  /home/subquery/subquery-indexer/.projects/QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y/docker-compose.yml
+  /home/poi/QmQtmsHoJEYUcxKE4tBqr9Z8kudcgkczQPfhkAxVExQX5y
+  ```
+- Containers
+  ```
+  node_qmqtmshojeyucxk     v3.5.3
+  query_qmqtmshojeyucxk    v2.9.0
+  ```
+- Public Endpoints
+  ```
+  http://rpc1.pathrocknetwork.org:9995
+  ```
 
 
 ### Astar 
