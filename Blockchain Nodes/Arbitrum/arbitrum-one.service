@@ -1,5 +1,5 @@
 [Unit]
-Description=Arbitrum One Archive Node
+Description=Arbitrum One Classic Archive Node
 
 [Service]
 Type=simple
@@ -7,8 +7,18 @@ User=arbitrum
 Restart=always
 RestartSec=12
 ExecStart=
-    --parent-chain.connection.url=https://sqd.proxy.pathrocknetwork.org:8515 \
+    --l1.url=https://sqd.proxy.pathrocknetwork.org:8515 \ 
+    --l2.chain-id= \
+    --node.caching.archive \
+    --node.cache.allow-slow-lookup \
+    --core.checkpoint-gas-frequency=156250000 \
     --chain.name=arb1 \
+    --http.api \
+    --http.corsdomain * \
+    --http.vhosts * \
+    --http.addr 0.0.0.0 \
+    # --node.feed.input.url=<feed address> https://docs.arbitrum.io/node-running/how-tos/running-a-feed-relay
+    --init.url="https://snapshot.arbitrum.foundation/arb1/classic-archive.tar" # Classic Archive
     --ws.port=8548 \
     --ws.addr=0.0.0.0 \
     --ws.origins=* \
