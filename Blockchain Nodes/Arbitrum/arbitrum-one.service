@@ -1,0 +1,17 @@
+[Unit]
+Description=Arbitrum One Archive Node
+
+[Service]
+Type=simple
+User=arbitrum
+Restart=always
+RestartSec=12
+ExecStart=
+    --parent-chain.connection.url=https://sqd.proxy.pathrocknetwork.org:8515 \
+    --chain.name=arb1 \
+    --ws.port=8548 \
+    --ws.addr=0.0.0.0 \
+    --ws.origins=* \
+
+[Install]
+WantedBy=default.target
