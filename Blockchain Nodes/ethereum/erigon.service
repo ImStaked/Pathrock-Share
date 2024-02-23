@@ -1,0 +1,29 @@
+[Unit]
+Description=Erigon
+
+[Service]
+Type=simple
+User=ethereum
+Restart=always
+RestartSec=12
+ExecStart=/usr/local/bin/erigon \
+    --datadir /home/ethereum/.ethereum/consensus \
+    --chain=mainnet \
+    --internalcl \
+    --etl.bufferSize 512MB \
+    --identity ImStaked \
+    --db.read.concurrency 4096 \
+    --metrics \
+    --port 31316 \
+    --nat none  \
+    --ws \
+#    --ws.addr=0.0.0.0 \
+    --ws.port=7575 \
+    --http \
+    --http.addr=0.0.0.0 \
+    --http.port 7676 \
+    --http.api=eth,erigon,web3,net,debug,trace,txpool \
+    --http.corsdomain "*" 
+
+[Install]
+WantedBy=default.target
