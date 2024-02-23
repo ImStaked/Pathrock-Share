@@ -7,15 +7,6 @@ indexer_coordinator           v1.4.10
 indexer_cache                 redis:7-alpine  
 ```
 
-
-### Acala
---------------------------------------
-- Endpoints
-```
-https://sgd.proxy.pathrocknetwork.org:18998
-wss://sgd.proxy.pathrocknetwork.org:18998
-```
-
 ### IPFS
 --------------------------------------
 - Admin
@@ -26,7 +17,6 @@ https://sgd.proxy.pathrocknetwork.org:5111/webui
 ```
 https://sgd.proxy.pathrocknetwork.org:5112/api/v1
 ```
-
 
 ### FetchAi 
 ----------------------------------------
@@ -51,7 +41,6 @@ wss://sgd.proxy.pathrocknetwork.org:18888/websocket
 node_qmzxpa9aezhzn1i     v3.4.1
 query_qmzxpa9aezhzn1i    v2.2.1-0
 ```
-
 
 ### Polkadot 
 -------------------------------------
