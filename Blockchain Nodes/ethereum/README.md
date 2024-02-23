@@ -1,3 +1,4 @@
+# Geth
 ```
 useradd -U -s /bin/bash -m -d /home/ethereum ethereum
 
@@ -15,3 +16,17 @@ cd /home/ethereum/.ethereum
 
 chown -R ethereum:ethereum /home/ethereum
 ```
+
+# Erigon
+```
+wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+
+apt install build-essential make jq clang curl libssl-dev llvm libudev-dev protobuf-compiler cmake
+git clone https://github.com/ledgerwatch/erigon.git && cd erigon
+git checkout v2.58.1
+make erigon
+```
+
+
