@@ -1,0 +1,15 @@
+[Unit]
+Description=Astar Archive node
+
+[Service]
+User=astar
+Group=astar
+  
+ExecStart=/usr/local/bin/astar-collator --chain=astar --pruning=archive --in-peers-light=20 --in-peers=30 --out-peers=30 --base-path=/var/lib/astar --rpc-cors=all --rpc-external --enable-evm-rpc --wasm-runtime-overrides=/var/lib/astar/wasm --execution=wasm --wasm-execution=compiled --rpc-methods=Safe --rpc-max-request-size=256 --rpc-max-response-size=156 --telemetry-url="wss://telemetry.polkadot.io/submit 0" --port=30333 --rpc-port=9933 --runtime-cache-size=64 --rpc-max-connections=5000 --unsafe-rpc-external --prometheus-external --prometheus-port=9615 --name=PathrockNetwork-4 -- --port=29334 --prometheus-external --prometheus-port=9616 --name="PathrockNetwork-4-embedded-relay --ethapi='txpool,debug,trace' --ethapi-trace-max-count=1000 "
+
+
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
