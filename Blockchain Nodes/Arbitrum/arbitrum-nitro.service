@@ -11,6 +11,7 @@ ExecStart=
     --chain.id= \
     --execution.caching.archive \
     --chain.name= \
+    --parent-chain.blob-client.beacon-url=https://sqd.proxy.pathrocknetwork.org:8515 \
     --http.api \
     --http.corsdomain * \
     --http.vhosts * \
