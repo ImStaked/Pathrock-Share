@@ -1,0 +1,28 @@
+[Unit]
+Description=Geth
+
+[Service]
+Type=simple
+User=ethereum
+Restart=always
+RestartSec=12
+ExecStart=/usr/bin/geth \
+    --datadir=/home/ethereum/.ethereum/consensus \
+    --mainnet \
+    --identity=ImStaked \
+    --syncmode=snap \
+    --metrics \
+    --port=31316 \
+    --nat=none  \
+    --authrpc.jwtsecret=/home/ethereum/.ethereum/jwt.hex \
+    --authrpc.addr=localhost \
+    --authrpc.vhosts="localhost" \
+    --authrpc.port=8551 \
+    --http \
+    --http.addr=0.0.0.0 \
+    --http.port=7676 \
+    --http.api=eth,web3,net,txpool,engine,admin \
+    --http.corsdomain="*" 
+
+[Install]
+WantedBy=default.target
