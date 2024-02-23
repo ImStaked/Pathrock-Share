@@ -1,0 +1,18 @@
+[Unit]
+Description=prysm
+
+[Service]
+Type=simple
+User=ethereum
+Restart=always
+RestartSec=12
+ExecStart=/home/ethereum/.ethereum/prysm.sh beacon-chain \
+    --execution-endpoint=http://localhost:8551 \
+    --mainnet \
+    --jwt-secret=/home/ethereum/.ethereum/jwt.hex \
+    --checkpoint-sync-url=https://beaconstate.info \
+    --genesis-beacon-api-url=https://beaconstate.info \
+    --accept-terms-of-use=true
+
+[Install]
+WantedBy=default.target
