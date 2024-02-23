@@ -10,7 +10,7 @@ ExecStart=/usr/bin/geth \
     --datadir=/home/ethereum/.ethereum/consensus \
     --mainnet \
     --identity=ImStaked \
-    --syncmode=snap \
+    --syncmode=full \
     --metrics \
     --port=31316 \
     --nat=none  \
