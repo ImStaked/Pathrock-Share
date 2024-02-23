@@ -66,6 +66,7 @@ query_qmzgazq7e1ozgfu    v2.9.0
 ```
 wss://sgd.proxy.pathrocknetwork.org:9966
 https://sgd.proxy.pathrocknetwork.org:9966
+wss://rpc.polkadot.io
 ```
 
 
@@ -189,7 +190,8 @@ query_qmxwfcf8858yy92    v2.9.0
 ```
 - Endpoints
 ```
-https://sgd.proxy.pathrocknetwork.org:5321    Normal  HTTP/1,HTTP/2
+https://sgd.proxy.pathrocknetwork.org:5321
+wss://kusama-rpc.polkadot.io
 ```
 
 
@@ -205,6 +207,7 @@ query_qmxp3mdcjzyusmx    v2.9.0
 - Endpoints
 ```
 https://sgd.proxy.pathrocknetwork.org:9095
+wss://sgd.proxy.pathrocknetwork.org:9095
 ```
 
 
@@ -221,5 +224,57 @@ query_qma6besqghrhp5a
 - Endpoints
 ```
 https://sgd.proxy.pathrocknetwork.org:9814
+wss://sgd.proxy.pathrocknetwork.org:9814
 ```
 
+
+
+### Acala
+--------------------------------------
+- 
+- /home/subquery/subquery-indexer/.projects/  /docker-compose.yml
+- /home/poi/
+```
+node_
+query_
+```
+- Endpoints
+```
+https://sgd.proxy.pathrocknetwork.org:18998
+wss://sgd.proxy.pathrocknetwork.org:18998
+```
+
+### Karura
+--------------------------------------
+- 
+- /home/subquery/subquery-indexer/.projects/  /docker-compose.yml
+- /home/poi/
+```
+node_
+query_
+```
+- Endpoints
+```
+https://sgd.proxy.pathrocknetwork.org:18999
+wss://sgd.proxy.pathrocknetwork.org:18999
+```
+
+
+### Kilt Spiritnet
+--------------------------------------
+- 
+- /home/subquery/subquery-indexer/.projects/  /docker-compose.yml
+- /home/poi/
+```
+node_
+query_
+```
+- Endpoints
+```
+https://sgd.proxy.pathrocknetwork.org:7001
+wss://sgd.proxy.pathrocknetwork.org:7001
+```
+
+## Ethereum
+--------------------------------------
+- Endpoints
