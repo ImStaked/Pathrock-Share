@@ -10,3 +10,7 @@ apt install parity-keyring
 # Install polkadot
 apt install polkadot
 
+cat <<EOF | sudo tee /etc/default/polkadot
+POLKADOT_CLI_ARGS="--db paritydb-experimental --chain polkadot --sync full --state-pruning=archive --blocks-pruning=archive --name PathrockNetwork3 --execution=wasm --wasm-execution=compiled --max-runtime-instances=16 --port 32330 --rpc-port=9937 --rpc-max-connections 2500 --rpc-cors all --prometheus-external --prometheus-port=9702 --unsafe-rpc-external  --rpc-methods=Safe --rpc-max-request-size=128 --rpc-max-response-size=128 --telemetry-url='wss://telemetry.polkadot.io/submit/ 0 --no-beefy "
+
+EOF
