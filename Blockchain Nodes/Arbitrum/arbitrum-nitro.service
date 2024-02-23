@@ -1,0 +1,25 @@
+[Unit]
+Description=Arbitrum One Nitro Archive Node
+
+[Service]
+Type=simple
+User=arbitrum
+Restart=always
+RestartSec=12
+ExecStart=
+    --parent-chain.connection.url=https://sqd.proxy.pathrocknetwork.org:8515 \ 
+    --chain.id= \
+    --execution.caching.archive \
+    --chain.name= \
+    --http.api \
+    --http.corsdomain * \
+    --http.vhosts * \
+    --http.addr 0.0.0.0 \
+    # --node.feed.input.url=<feed address> https://docs.arbitrum.io/node-running/how-tos/running-a-feed-relay
+    --init.url="https://snapshot.arbitrum.foundation/arb1/nitro-archive.tar"
+    --ws.port=8548 \
+    --ws.addr=0.0.0.0 \
+    --ws.origins=* \
+
+[Install]
+WantedBy=default.target 
