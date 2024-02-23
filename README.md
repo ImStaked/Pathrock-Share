@@ -1,63 +1,75 @@
 # Subquery 
 ----------------------------------------
-- /home/subquery/subquery-indexer/docker-compose.yml
-```
-indexer_proxy                 v1.3.9  
-indexer_coordinator           v1.4.10  
-indexer_cache                 redis:7-alpine  
-```
+  - /home/subquery/subquery-indexer/docker-compose.yml
+  ```
+  indexer_proxy                 v1.3.9  
+  indexer_coordinator           v1.4.10  
+  indexer_cache                 redis:7-alpine  
+  ```
 
-### IPFS
+## IPFS
 --------------------------------------
-- Admin
-```
-https://sgd.proxy.pathrocknetwork.org:5111/webui
-```
+- Admin UI
+  ```
+  https://sgd.proxy.pathrocknetwork.org:5111/webui
+  ```
 - RPC
-```
-https://sgd.proxy.pathrocknetwork.org:5112/api/v1
-```
+  ```
+  https://sgd.proxy.pathrocknetwork.org:5112/api/v1
+  ```
 
-### FetchAi 
+## FetchAi 
 ----------------------------------------
-- QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
-- /home/subquery/subquery-indexer/.projects/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8/docker-compose.yml
-- /home/poi/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
-```
-node_qmbtst8uscutbwe     v3.5.0
-query_qmbtst8uscutbwe    v2.9.0
-```
-- Endpoints
-```
-https://rpc-fetchhub.fetch.ai:443
-wss://sgd.proxy.pathrocknetwork.org:18888/websocket
-```
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:18888
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:18888/websocket
+  ```
+- Paths
+  ```
+  QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
+  /home/subquery/subquery-indexer/.projects/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8/docker-compose.yml
+  /home/poi/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
+  ```
+- Containers
+  ```
+  node_qmbtst8uscutbwe     v3.5.0
+  query_qmbtst8uscutbwe    v2.9.0
+  ```
+- Public Endpoints
+  ```
+  https://rpc-fetchhub.fetch.ai:443
+  ```
 
 
-### NEAR - (Indexing)  
+## Polkadot 
 -------------------------------------
-- /home/subquery/subquery-indexer/.projects/
-```
-node_qmzxpa9aezhzn1i     v3.4.1
-query_qmzxpa9aezhzn1i    v2.2.1-0
-```
-
-### Polkadot 
--------------------------------------
-- QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
-- /home/subquery/subquery-indexer/.projects/QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm/docker-compose.yml
-- /home/poi/QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
-```
-node_qmzgazq7e1ozgfu     v3.5.3
-query_qmzgazq7e1ozgfu    v2.9.0
-```
-- Endpoints
-```
-wss://sgd.proxy.pathrocknetwork.org:9966
-https://sgd.proxy.pathrocknetwork.org:9966
-wss://rpc.polkadot.io
-```
-
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:9966
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:9966
+  ```
+- Paths
+  ```
+  QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
+  /home/subquery/subquery-indexer/.projects/QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm/docker-compose.yml
+  /home/poi/QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
+  ```
+- Containers
+  ```
+  node_qmzgazq7e1ozgfu     v3.5.3
+  query_qmzgazq7e1ozgfu    v2.9.0
+  ```
+- Public Endpoints
+  ```
+  wss://rpc.polkadot.io
+  ```
 
 
 
@@ -270,3 +282,29 @@ wss://sgd.proxy.pathrocknetwork.org:7001
 ## Ethereum
 --------------------------------------
 - Endpoints
+
+
+
+## NEAR - (Indexing)  
+-------------------------------------\
+- HTTP
+  ```
+  ```
+- Websocket
+  ```
+  ```
+- Paths
+  ```
+  QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
+  /home/subquery/subquery-indexer/.projects/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8/docker-compose.yml
+  /home/poi/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
+  ```
+- Containers
+  ```
+  node_qmzxpa9aezhzn1i     v3.4.1
+  query_qmzxpa9aezhzn1i    v2.2.1-0  
+  ```
+- Public Endpoints
+  ```
+  https://archival-rpc.mainnet.near.org
+  ```
