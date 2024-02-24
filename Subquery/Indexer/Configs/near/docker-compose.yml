@@ -1,0 +1,72 @@
+version: "3"
+
+services:
+  node_qmskrk3bpzjwzkf:
+    image: onfinality/subql-node-near:v3.8.0
+    container_name: node_qmskrk3bpzjwzkf
+    restart: always
+    cpus: 4
+    expose:
+      - 3100
+    environment:
+      DB_USER: postgres
+      DB_PASS: gPfpuTq4xRHkRJqLd
+      DB_DATABASE: postgres
+      DB_HOST: sqidb1.pathrocknetwork.org
+      DB_PORT: 5432
+    volumes:
+      - /home/poi/QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41:/home/poi/QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41
+    command:
+      - -f=ipfs://QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41
+      - -d=
+      - --ipfs=https://sgd.proxy.pathrocknetwork.org:5512/api/v0
+      - --network-endpoint=https://archival-rpc.mainnet.near.org/
+      - --network-endpoint=https://near-rpc.pathrocknetwork.org
+      - --primary-network-endpoint=https://archival-rpc.mainnet.near.org/
+      - --db-schema=schema_qmskrk3bpzjwzkf
+      - --port=3100
+      - --batch-size=99
+      - --timeout=1800
+      - --workers=4
+      - --store-cache-threshold=500
+      - --proof-of-index=true
+      - --mmr-store-type=file
+      - -m=/home/poi/QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41/.mmr
+      - --disable-historical=false
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://node_qmskrk3bpzjwzkf:3100/ready"
+        ]
+      interval: 3s
+      timeout: 5s
+      retries: 100
+
+  query_qmskrk3bpzjwzkf:
+    image: onfinality/subql-query:v2.9.0
+    container_name: query_qmskrk3bpzjwzkf
+    expose:
+      - 3100
+    depends_on:
+      "node_qmskrk3bpzjwzkf":
+        condition: service_healthy
+    restart: always
+    environment:
+      DB_USER: postgres
+      DB_PASS: gPfpuTq4xRHkRJqLd
+      DB_DATABASE: postgres
+      DB_HOST: sqidb1.pathrocknetwork.org
+      DB_PORT: 5432
+    command:
+      - --name=schema_qmskrk3bpzjwzkf
+      - --playground
+      - --indexer=http://node_qmskrk3bpzjwzkf:3100
+      - --port=3100
+      - --query-limit=2000
+
+networks:
+  default:
+    name: indexer_services
