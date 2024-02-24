@@ -1,10 +1,10 @@
 ## BlastApi Whitelist
 
-- **Create an ipset for blast api whitelist and add the ip's**  
+- **Create an ipset for blast api whitelist**  
   ```
   ipset create blast_api hash:ip
   ```
-
+  
 - **Add the ip addresses to the whitelist**  
   [BlastApi Whitelist](https://docs.blastapi.io/running-a-node/ip-whitelist)
   ```
@@ -38,6 +38,33 @@
   *Example:*  
   ```
   iptables -A INPUT -m set --match-set blast_api src -p tcp -m tcp --dport 443 -j ACCEPT
+  ```
+
+- **Create an ipset for hosted servers**  
+  ```
+  ipset create servers hash:ip
+  ```
+- **Add server ip addresses**
+  ```
+  ipset add servers 65.109.38.38
+  ipset add servers 65.108.68.51 
+  ipset add servers 144.76.58.93
+  ipset add servers 141.95.97.30
+  ipset add servers 162.55.85.47
+  ipset add servers 46.4.123.170
+  ipset add servers 168.119.212.48
+  ipset add servers 65.109.138.245
+  ipset add servers 65.108.159.138
+  ```
+
+- **Create an ipset for systems admins**  
+  ```
+  ipset create admins hash:ip
+  ```
+
+- **Add admin ip addresses**
+  ```
+  ipset add admins 5.161.49.184
   ```
   
 - **Install package to make ipset persistent**  
