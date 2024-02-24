@@ -1,11 +1,11 @@
 ## BlastApi Whitelist
 
-- Create an ipset for blast api whitelist and add the ip's  
+- **Create an ipset for blast api whitelist and add the ip's**  
   ```
   ipset create blast_api hash:ip
   ```
 
-- Add the ip addresses to the whitelist  
+- **Add the ip addresses to the whitelist**  
   [BlastApi Whitelist](https://docs.blastapi.io/running-a-node/ip-whitelist)
   ```
   ipset add blast_api 162.19.232.109
@@ -33,8 +33,21 @@
   ipset add blast_api 147.135.102.200
   ipset add blast_api 51.81.232.143
   ```
-- **Create firewall rules as needed**  
-  *Example:*
+  
+- **Create firewall rules as needed**    
+  *Example:*  
   ```
   iptables -A INPUT -m set --match-set blast_api src -p tcp -m tcp --dport 443 -j ACCEPT
   ```
+  
+- **Install package to make ipset persistent**  
+  ```
+  sudo apt install ipset-persistent
+  ```
+
+- **Save the IPset**
+  ```
+  ipset save > /etc/iptables/ipsets
+  ```
+
+  
