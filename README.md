@@ -251,37 +251,54 @@ wss://sgd.proxy.pathrocknetwork.org:9095
 
 ### Westend
 --------------------------------------
-- Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW
-- /home/subquery/subquery-indexer/.projects/Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW/docker-compose.yml
-- /home/poi/Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW
-```
-node_qma6besqghrhp5a
-query_qma6besqghrhp5a
-```
-- Endpoints
-```
-wss://westend-rpc.polkadot.io
-https://sgd.proxy.pathrocknetwork.org:9814
-wss://sgd.proxy.pathrocknetwork.org:9814
-```
-
-
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:9814
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:9814
+  ```
+- Paths
+  ```
+  Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW
+  /home/subquery/subquery-indexer/.projects/Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW/docker-compose.yml
+  /home/poi/Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW
+  ```
+- Containers
+  ```
+  node_qma6besqghrhp5a
+  query_qma6besqghrhp5a
+  ```
+- Public Endpoints
+  ```
+  wss://westend-rpc.polkadot.io
+  ```
 
 ### Acala
 --------------------------------------
-- 
-- /home/subquery/subquery-indexer/.projects/  /docker-compose.yml
-- /home/poi/
-```
-node_
-query_
-```
-- Endpoints
-```
-https://sgd.proxy.pathrocknetwork.org:18998
-wss://sgd.proxy.pathrocknetwork.org:18998
-https://rpc.evm.acala.network
-```
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:18998
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:18998
+  ```
+- Paths
+  ```
+  /home/subquery/subquery-indexer/.projects/  /docker-compose.yml
+  /home/poi/
+  ```
+- Containers
+  ```
+  node_
+  query_
+  ```
+- Public Endpoints
+  ```
+  https://rpc.evm.acala.network
+  ```
 
 ### Karura
 --------------------------------------
@@ -301,25 +318,40 @@ wss://sgd.proxy.pathrocknetwork.org:18999
 
 ### Kilt Spiritnet
 --------------------------------------
-- 
-- /home/subquery/subquery-indexer/.projects/  /docker-compose.yml
-- /home/poi/
-```
-node_
-query_
-```
-- Endpoints
-```
-https://rpc.evm.karura.network
-https://sgd.proxy.pathrocknetwork.org:7001
-wss://sgd.proxy.pathrocknetwork.org:7001
-```
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:7001
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:7001
+  ```  
+- Paths
+  ```https://app.subquery.network/explorer/project/0x03/overview
+  /home/subquery/subquery-indexer/.projects/  /docker-compose.yml
+  /home/poi/
+  ```
+- Containers
+  ```
+  node_
+  query_
+  ```
+- Public Endpoints
+  ```
+  https://rpc.evm.karura.network
+  ```
 
-## Ethereum
+## Ethereum Full Node
 --------------------------------------
-- Endpoints
-
-
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:5781
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:5781
+  ```
+  
 
 ## NEAR - (Indexing)  
 -------------------------------------\
