@@ -14,7 +14,7 @@ FLAGS:
     -V, --version    Prints version information
 
 OPTIONS:
-        --bootstrap <bootstrap>...               Bootstrap seeds for p2p network with MultiAddr style
+        --bootstrap /ip4/8.219.198.62/quic/7370,/ip4/167.235.2.206/quic/7370,/ip4/116.202.82.81/quic/7370,/ip4/157.90.33.62/quic/7370,/ip4/49.13.124.193/quic/7370,/ip4/5.9.61.237/quic/7370,/ip4/5.9.186.198/quic/7370,/ip4/185.246.85.43/quic/7370,/ip4/185.246.86.7/quic/7370,/ip4/65.109.30.26/quic/7370,/ip4/65.108.71.82/quic/7370,/ip4/135.181.232.227/quic/7370,/ip4/37.27.12.144/quic/7370,/ip4/37.27.27.85/quic/7370,/ip4/65.108.131.99/quic/7370,/ip4/62.171.152.211/quic/7370,/ip4/5.161.205.253/quic/7370,/ip4/142.215.53.18/quic/7370,/ip4/142.215.53.21/quic/7370,/ip4/212.68.160.177/quic/7370,/ip4/85.239.242.145/quic/7370,/ip4/207.148.117.171/quic/7370
         --endpoint <endpoint>                    Endpoint of this service [default: http://0.0.0.0:8080]
         --free-plan <free-limit>                 Free query for consumer limit everyday [default: 60]
         --host <host>                            IP address for the server [default: 0.0.0.0]
