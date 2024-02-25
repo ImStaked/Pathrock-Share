@@ -1,0 +1,33 @@
+[Unit]
+Description="Subquery Indexer Proxy"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+EnvironmentFile=/home/subquery/subquery/.env
+Restart=on-failure
+RestartSec=10
+User=subquery
+SyslogIdentifier=indexer_proxy
+SyslogFacility=local7
+KillSignal=SIGHUP
+ExecStart=/usr/local/bin/subql-indexer-proxy \
+    --auth \
+    --port=1080 \
+    --p2p-port=7370 \
+    --bootstrap <bootstrap> \  # Bootstrap seeds for p2p network with MultiAddr style
+    --coordinator-endpoint=http://127.0.0.1:8001 \  
+    --free-plan=500 \
+    --jwt-secret=MyNewJWTkey3 \
+    --secret-key=MyNewJWTkey3 \
+    --metrics-token=ffsdt5$ \
+    --network=mainnet \
+    --network-endpoint=https://mainnet.base.org \
+    --coordinator-endpoint=http://indexer_coordinator:8000 \
+    --redis-endpoint=redis://indexer_cache:6379 \
+    --token-duration 12 
+    #   --telemetry <telemetry>                          Open telemetry for SubQuery [default: true]
+
+[Install]
+WantedBy=multi-user.target
