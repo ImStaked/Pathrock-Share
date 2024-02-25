@@ -1,0 +1,46 @@
+[Unit]
+Description="Subquery Astar Indexer Node"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+EnvironmentFile=/home/subquery/subquery/.env
+Restart=on-failure
+RestartSec=10
+User=subquery
+SyslogIdentifier=subquery-astar
+SyslogFacility=local7
+KillSignal=SIGHUP
+ExecStart=/usr/bin/subql-node --subquery ipfs://QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq \
+     --db-schema schema_qmapq6cnkptze1j \
+     --subscription true \
+     --batch-size 50 \
+     --scale-batch-size=false \
+     --store-cache-async=false \
+     --store-cache-threshold=60 \
+     --store-get-cache-size=100 \
+     --store-flush-interval=7 \
+     --timeout 5000 \
+     --debug false \
+     --profiler false \
+     --network-endpoint wss://devpro.imstaked.com:9976 \
+     --network-endpoint wss://rpc1.pathrocknetwork.org:5321 \
+     --dictionary-resolver='https://kepler-auth.subquery.network' \
+     --network-dictionary https://api.subquery.network/sq/subquery/kusama-dictionary \
+     --dictionary-timeout 15 \
+     --proof-of-index true \
+     --ipfs https://rpc1.pathrocknetwork.org:5512/api/v0 \
+     --port 3001 \
+     --disable-historical false \
+     --workers 4 \
+     --multi-chain false \
+     --mmr-store-type=postgres \
+#     -m=/home/poi/QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq/.mmr    
+     --disable-historical=false \
+     --proof-of-index=true \
+     --output-fmt json \
+     --log-level info 
+     
+[Install]
+WantedBy=multi-user.target
