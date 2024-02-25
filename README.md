@@ -160,17 +160,29 @@
 
 ### Astar 
 ------------------------------------
-- QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
-- /home/subquery/subquery-indexer/.projects/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH/
-- /home/poi/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
-```
-node_qmumnkphce6jwgm     v3.5.3
-query_qmumnkphce6jwgm    v2.9.0
-```
-- Endpoints
-```
-wss://sgd.proxy.pathrocknetwork.org:8844
-```
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:8844
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:8844
+  ```
+- Paths
+  ```
+  QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
+  /home/subquery/subquery-indexer/.projects/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH/
+  /home/poi/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
+  ```
+- Containers
+  ```
+  node_qmumnkphce6jwgm     v3.5.3
+  query_qmumnkphce6jwgm    v2.9.0
+  ```
+- Public Endpoints
+  ```
+
+  ```
 
 ### MoonBase    
 -------------------------------------
@@ -207,65 +219,123 @@ wss://sgd.proxy.pathrocknetwork.org:8844
 
 ### Moonbeam
 --------------------------------------
-- QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
-- /home/subquery/subquery-indexer/.projects/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
-- /home/poi/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
-```
-node_qmeeqbhdvu7iynh     v3.5.3
-query_qmeeqbhdvu7iynh    v2.9.0
-```
-- Endpoints
-```
-https://moonbeam.unitedbloc.com
-wss://moonbeam.unitedbloc.com
-```
+- HTTP
+  ```
+  https://rpc1.pathrocknetwork.org:9995
+  ```
+- Websocket
+  ```
+  wss://rpc1.pathrocknetwork.org:9995
+  ```
+- Dictionaray URL
+  ```
+  https://api.subquery.network/sq/subquery/moonbeam-dictionary
+  ```
+- Paths
+  ```
+  QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
+  /home/subquery/subquery-indexer/.projects/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
+  /home/poi/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
+  ```
+- Containers
+  ```
+  node_qmeeqbhdvu7iynh     v3.5.3
+  query_qmeeqbhdvu7iynh    v2.9.0
+  ```
+- Public Endpoints
+  ```
+  https://moonbeam.unitedbloc.com
+  wss://moonbeam.unitedbloc.com
+  ```
 
 
 ### Moonriver
 --------------------------------------
-- QmXCr6uZFdY1YcGTa4u6ZieQPXK4VHE1Pjy7CBr7ubFwKR
-- /home/subquery/subquery-indexer/.projects/QmXCr6uZFdY1YcGTa4u6ZieQPXK4VHE1Pjy7CBr7ubFwKR
-- /home/poi/QmXCr6uZFdY1YcGTa4u6ZieQPXK4VHE1Pjy7CBr7ubFwKR
-```
-node_qmxcr6uzfdy1ycg
-query_qmxcr6uzfdy1ycg
-```
-- Endpoints
-```
-wss://sgd.proxy.pathrocknetwork.org:9876
-```
+- HTTP
+  ```
+  https://rpc1.pathrocknetwork.org:9995
+  ```
+- Websocket
+  ```
+  wss://rpc1.pathrocknetwork.org:9995
+  ```
+- Dictionary URL
+  ```
+  https://api.subquery.network/sq/subquery/moonriver-dictionary
+  ```
+- Paths
+  ```
+  QmXCr6uZFdY1YcGTa4u6ZieQPXK4VHE1Pjy7CBr7ubFwKR
+  /home/subquery/subquery-indexer/.projects/QmXCr6uZFdY1YcGTa4u6ZieQPXK4VHE1Pjy7CBr7ubFwKR
+  /home/poi/QmXCr6uZFdY1YcGTa4u6ZieQPXK4VHE1Pjy7CBr7ubFwKR
+  ```
+- Containers
+  ```
+  node_qmxcr6uzfdy1ycg
+  query_qmxcr6uzfdy1ycg
+  ```
+- Public Endpoints
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:9876
+  ```
 
 
 ### Kusama
 --------------------------------------
-- QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn
-- /home/subquery/subquery-indexer/.projects/QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn/docker-compose.yml
-- /home/poi/QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn
-```
-node_qmxwfcf8858yy92     v3.5.3
-query_qmxwfcf8858yy92    v2.9.0
-```
-- Endpoints
-```
-https://sgd.proxy.pathrocknetwork.org:5321
-wss://kusama-rpc.polkadot.io
-```
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:5321
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:5321
+  ```
+- Dictionary URL
+  ```
+  https://api.subquery.network/sq/subquery/kusama-dictionary
+  ```
+- Paths
+  ```
+  QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn
+  /home/subquery/subquery-indexer/.projects/QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn/docker-compose.yml
+  /home/poi/QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn
+  ```
+- Containers
+  ```
+  node_qmxwfcf8858yy92     v3.5.3
+  query_qmxwfcf8858yy92    v2.9.0
+  ```
+- Public Endpoints
+  ```
+  wss://kusama-rpc.polkadot.io
+  ```
 
 
 ### aleph-zero
 --------------------------------------
-- QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
-- /home/subquery/subquery-indexer/.projects/QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
-- /home/poi/QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
-```
-node_qmxp3mdcjzyusmx     v3.5.3
-query_qmxp3mdcjzyusmx    v2.9.0
-```
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:9095
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:9095
+  ```
+- Paths
+  ```
+  QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
+  /home/subquery/subquery-indexer/.projects/QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
+  /home/poi/QmXp3MdCjZyUsmXhFXJTisxQiP1P96sm81WGmu2ew7v8WN
+  ```
+- Containers
+  node_qmxp3mdcjzyusmx     v3.5.3
+  query_qmxp3mdcjzyusmx    v2.9.0
+  ```
 - Endpoints
-```
-https://sgd.proxy.pathrocknetwork.org:9095
-wss://sgd.proxy.pathrocknetwork.org:9095
-```
+  ```
+  https://sgd.proxy.pathrocknetwork.org:9095
+  wss://sgd.proxy.pathrocknetwork.org:9095
+  ```
 
 
 
