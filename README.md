@@ -55,6 +55,10 @@
   ```
   wss://sgd.proxy.pathrocknetwork.org:9966
   ```
+- Dictionary URL
+  ```
+  https://api.subquery.network/sq/subquery/polkadot-dictionary
+  ```
 - Paths
   ```
   QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
@@ -170,19 +174,35 @@ wss://sgd.proxy.pathrocknetwork.org:8844
 
 ### MoonBase    
 -------------------------------------
-- QmUgn2eP1nvAECSe9HE9zTHTHwkQMDwSN7rpB1aXcsthfe
-- /home/subquery/subquery-indexer/.projects/QmUgn2eP1nvAECSe9HE9zTHTHwkQMDwSN7rpB1aXcsthfe
-- /home/poi/QmUgn2eP1nvAECSe9HE9zTHTHwkQMDwSN7rpB1aXcsthfe
-```
-node_qmugn2ep1nvaecs     v3.5.3
-query_qmugn2ep1nvaecs    v2.9.0
-```
-- Endpoint
-```
-https://sgd.proxy.pathrocknetwork.org:9233
-https://moonbase-rpc.dwellir.com
-wss://moonbase.unitedbloc.com
-```
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:9233
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:9233   
+  ```
+- Dictionary URL
+  ```
+  https://api.subquery.network/sq/subquery/moonbase-alpha-dictionary
+  ```
+- Paths
+  ```
+  QmUgn2eP1nvAECSe9HE9zTHTHwkQMDwSN7rpB1aXcsthfe
+  /home/subquery/subquery-indexer/.projects/QmUgn2eP1nvAECSe9HE9zTHTHwkQMDwSN7rpB1aXcsthfe
+  /home/poi/QmUgn2eP1nvAECSe9HE9zTHTHwkQMDwSN7rpB1aXcsthfe
+  ```
+- Docker Containers
+  ```
+  node_qmugn2ep1nvaecs     v3.5.3
+  query_qmugn2ep1nvaecs    v2.9.0
+  ```
+- Public Endpoints
+  ```
+  https://moonbase-rpc.dwellir.com
+  wss://moonbase.unitedbloc.com
+  wss://moonbeam-alpha.api.onfinality.io/public-ws
+  ```
 
 
 ### Moonbeam
