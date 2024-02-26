@@ -431,8 +431,11 @@ wss://sgd.proxy.pathrocknetwork.org:18999
   https://rpc.evm.karura.network
   ```
 
-## Ethereum Full Node
+### Ethereum Full Node
 --------------------------------------
+##    [Subquery Project](https://app.subquery.network/explorer/project/0x03/overview) 
+--------------------------------------
+
 - HTTP
   ```
   https://sgd.proxy.pathrocknetwork.org:5781
@@ -441,10 +444,13 @@ wss://sgd.proxy.pathrocknetwork.org:18999
   ```
   wss://sgd.proxy.pathrocknetwork.org:5781
   ```
-  
 
-## NEAR - (Indexing)  
--------------------------------------\
+    ```
+    https://app.subquery.network/explorer/project/0x03/overview
+    ```
+
+### NEAR - (Indexing)  
+-------------------------------------
 - HTTP
   ```
   ```
