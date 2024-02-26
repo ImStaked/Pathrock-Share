@@ -445,9 +445,7 @@ wss://sgd.proxy.pathrocknetwork.org:18999
   wss://sgd.proxy.pathrocknetwork.org:5781
   ```
 
-    ```
-    https://app.subquery.network/explorer/project/0x03/overview
-    ```
+  
 
 ## NEAR - (Indexing)  
 -------------------------------------
