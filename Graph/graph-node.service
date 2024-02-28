@@ -1,0 +1,18 @@
+[Unit]
+Description=Graph Node
+After=network.target
+StartLimitIntervalSec=6
+StartLimitBurst=3
+
+[Service]
+User=graph
+Type=simple
+Restart=always
+RestartSec=30
+ExecStart=cargo run -p 
+  --postgres-url postgr
+  --ethereum-rpc [NETWO
+  --ipfs https://ipfs.n
+
+[Install]
+WantedBy=default.target
