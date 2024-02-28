@@ -1,84 +1,11 @@
 version: "3"
 
 services:
-  node_qmskrk3bpzjwzkf:
-    image: onfinality/subql-node-near:v3.8.0
-    container_name: node_qmskrk3bpzjwzkf
-    restart: always
-    cpus: 4
-    expose:
-      - 3100
-    environment:
-      DB_USER: postgres
-      DB_PASS: gPfpuTq4xRHkRJqLd
-      DB_DATABASE: postgres
-      DB_HOST: sqidb1.pathrocknetwork.org
-      DB_PORT: 5432
-    volumes:
-      - /home/poi/QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41:/home/poi/QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41
-    command:
-      - -f=ipfs://QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41
-      - -d=
-      - --ipfs=https://sgd.proxy.pathrocknetwork.org:5512/api/v0
-      - --network-endpoint=https://archival-rpc.mainnet.near.org/
-      - --network-endpoint=https://near-rpc.pathrocknetwork.org
-      - --primary-network-endpoint=https://archival-rpc.mainnet.near.org/
-      - --db-schema=schema_qmskrk3bpzjwzkf
-      - --port=3100
-      - --batch-size=99
-      - --timeout=1800
-      - --workers=4
-      - --store-cache-threshold=500
-      - --proof-of-index=true
-      - --mmr-store-type=file
-      - -m=/home/poi/QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41/.mmr
-      - --disable-historical=false
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "curl",
-          "-f",
-          "http://node_qmskrk3bpzjwzkf:3100/ready"
-        ]
-      interval: 3s
-      timeout: 5s
-      retries: 100
-
-  query_qmskrk3bpzjwzkf:
-    image: onfinality/subql-query:v2.9.0
-    container_name: query_qmskrk3bpzjwzkf
-    expose:
-      - 3100
-    depends_on:
-      "node_qmskrk3bpzjwzkf":
-        condition: service_healthy
-    restart: always
-    environment:
-      DB_USER: postgres
-      DB_PASS: gPfpuTq4xRHkRJqLd
-      DB_DATABASE: postgres
-      DB_HOST: sqidb1.pathrocknetwork.org
-      DB_PORT: 5432
-    command:
-      - --name=schema_qmskrk3bpzjwzkf
-      - --playground
-      - --indexer=http://node_qmskrk3bpzjwzkf:3100
-      - --port=3100
-      - --query-limit=2000
-
-networks:
-  default:
-    name: indexer_services
-root@arthera:/home/subquery/subquery-indexer/.projects/QmSKrk3BpzjWzKfS8sZRS5vyjmtXvkJnK8nHUVBhiCmz41# cat ../QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH/docker-compose.yml 
-version: "3"
-
-services:
-  node_qmumnkphce6jwgm:
+  node_qmapq6cnkptze1j:
     image: subquerynetwork/subql-node-substrate:v3.6.0
-    container_name: node_qmumnkphce6jwgm
+    container_name: node_qmapq6cnkptze1j
     restart: always
-    cpus: 2
+    cpus: 12
     expose:
       - 3100
     environment:
@@ -88,21 +15,28 @@ services:
       DB_HOST: sqidb1.pathrocknetwork.org
       DB_PORT: 5432
     volumes:
-      - /home/poi/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH:/home/poi/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
+      - /home/poi/QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq:/home/poi/QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq
     command:
-      - -f=ipfs://QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
+      - -f=ipfs://QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq
       - -d=
       - --ipfs=https://sgd.proxy.pathrocknetwork.org:5512/api/v0
-      - --network-endpoint=wss://rpc1.pathrocknetwork.org:8844
-      - --db-schema=schema_qmumnkphce6jwgm
+#      - --network-endpoint=wss://sgd.proxy.pathrocknetwork.org:8844
+      - --network-endpoint=ws://162.55.85.47:9933
+      - --network-endpoint=ws://46.4.123.170:9933
+      - --db-schema=schema_qmapq6cnkptze1j
       - --port=3100
-      - --batch-size=50
-      - --timeout=1800
-      - --workers=1
-      - --store-cache-threshold=300
+      - --scale-batch-size=false
+      - --batch-size=25
+      - --timeout=5000
+      - --workers=2
+      - --store-cache-async=true
+      - --store-cache-threshold=500
+      - --store-get-cache-size=500
+      - --store-flush-interval=15
       - --proof-of-index=true
+      - --subscription=true
       - --mmr-store-type=postgres
-      - -m=/home/poi/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH/.mmr
+      - -m=/home/poi/QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq/.mmr
       - --disable-historical=false
     healthcheck:
       test:
@@ -110,20 +44,20 @@ services:
           "CMD",
           "curl",
           "-f",
-          "http://node_qmumnkphce6jwgm:3100/ready"
+          "http://node_qmapq6cnkptze1j:3100/ready"
         ]
       interval: 3s
       timeout: 5s
       retries: 100
 
-  query_qmumnkphce6jwgm:
-    image: subquerynetwork/subql-query:v2.9.0
-    container_name: query_qmumnkphce6jwgm
+  query_qmapq6cnkptze1j:
+    image: onfinality/subql-query:v2.9.0
+    container_name: query_qmapq6cnkptze1j
     expose:
       - 3100
-    depends_on:
-      "node_qmumnkphce6jwgm":
-        condition: service_healthy
+#    depends_on:
+#      "node_qmapq6cnkptze1j":
+#        condition: service_healthy
     restart: always
     environment:
       DB_USER: postgres
@@ -132,11 +66,12 @@ services:
       DB_HOST: sqidb1.pathrocknetwork.org
       DB_PORT: 5432
     command:
-      - --name=schema_qmumnkphce6jwgm
+      - --name=schema_qmapq6cnkptze1j
       - --playground
-      - --indexer=http://node_qmumnkphce6jwgm:3100
+      - --indexer=http://node_qmapq6cnkptze1j:3100
       - --port=3100
       - --query-limit=2000
+      - --subscription=true
 
 networks:
   default:
