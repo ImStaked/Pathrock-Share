@@ -9,10 +9,10 @@ User=graph
 Type=simple
 Restart=always
 RestartSec=30
-ExecStart=cargo run -p 
-  --postgres-url postgr
-  --ethereum-rpc [NETWO
-  --ipfs https://ipfs.n
+ExecStart=cargo run -p graph-node --release -- \
+  --postgres-url postgresql://graph:adsf5y655ae4@localhost:5432/graph-node \
+  --ethereum-rpc ethereum:archive:10.10.10.1 \
+  --ipfs https://ipfs.network.thegraph.com
 
 [Install]
 WantedBy=default.target
