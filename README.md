@@ -7,6 +7,106 @@
   indexer_cache                 redis:7-alpine  
   ```
 
+
+## Kusama
+--------------------------------------
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:5321
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:5321
+  ```
+- Dictionary URL
+  ```
+  https://api.subquery.network/sq/subquery/kusama-dictionary
+  ```
+- Paths
+  ```
+  /Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
+  /home/subquery/subquery-indexer/.projects/Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
+  /home/poi//Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
+  ```
+- Docker-Compose
+  
+  [/home/subquery/subquery-indexer/.projects/Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8/docker-compose.yml](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/Kusama/docker-compose.yml)
+- Containers
+  ```
+  node_qmbe5g5vbejyyaf     subquerynetwork/subql-node-substrate:v3.6.0
+  query_qmxwfcf8858yy92    onfinality/subql-query:v2.9.0
+  ```
+- Public Endpoints
+  ```
+  wss://kusama-rpc.polkadot.io
+  ```
+
+
+## Westend
+--------------------------------------
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:9814
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:9814
+  ```
+- Paths
+  ```
+  QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
+  /home/poi/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN  
+  /home/subquery/subquery-indexer/.projects/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
+  ```
+- Docker-Compose
+  
+  [/home/subquery/subquery-indexer/.projects/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN/docker-compose.yml](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/Westend/docker-compose.yml)
+
+- Containers
+  ```
+  node_qmp1bmjoyj5ifq6
+  query_qmp1bmjoyj5ifq6
+  ```
+- Public Endpoints
+  ```
+  wss://westend-rpc.polkadot.io
+  ```
+
+
+
+## Astar 
+------------------------------------
+- HTTP
+  ```
+  https://sgd.proxy.pathrocknetwork.org:8844
+  ```
+- Websocket
+  ```
+  wss://sgd.proxy.pathrocknetwork.org:8844
+  ```
+- Paths
+  ```
+  QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq
+  /home/subquery/subquery-indexer/.projects/QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq/
+  /home/poi/QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq
+  ```
+- Docker Compose
+  
+  [/home/subquery/subquery-indexer/.projects/QmapQ6cNKPtZE1jkeUp5V6xy7sPSiJiZpoqZcRRtyc4Stq/docker-compose.yml](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/Astar/docker-compose.yml)
+
+  
+- Containers
+  ```
+  node_qmumnkphce6jwgm     v3.5.3
+  query_qmumnkphce6jwgm    v2.9.0
+  ```
+- Public Endpoints
+  ```
+
+  ```
+
+
+
 ## IPFS
 --------------------------------------
 - Admin UI
@@ -30,14 +130,11 @@
   ```
 - Paths
   ```
-  QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
-  /home/subquery/subquery-indexer/.projects/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8/docker-compose.yml
-  /home/poi/QmbtSt8USCUTBWeAqevN1AwmUhKzqmtvhSdFYHYA1BviC8
+
   ```
 - Containers
   ```
-  node_qmbtst8uscutbwe     v3.5.0
-  query_qmbtst8uscutbwe    v2.9.0
+
   ```
 - Public Endpoints
   ```
@@ -158,31 +255,6 @@
   ```
 
 
-## Astar 
-------------------------------------
-- HTTP
-  ```
-  https://sgd.proxy.pathrocknetwork.org:8844
-  ```
-- Websocket
-  ```
-  wss://sgd.proxy.pathrocknetwork.org:8844
-  ```
-- Paths
-  ```
-  QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
-  /home/subquery/subquery-indexer/.projects/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH/
-  /home/poi/QmUmnKPhcE6JwGMYvY3Yitb5j8qxbQBMxgpkHpVQuXqxDH
-  ```
-- Containers
-  ```
-  node_qmumnkphce6jwgm     v3.5.3
-  query_qmumnkphce6jwgm    v2.9.0
-  ```
-- Public Endpoints
-  ```
-
-  ```
 
 ## MoonBase    
 -------------------------------------
@@ -280,40 +352,6 @@
   ```
 
 
-## Kusama
---------------------------------------
-- HTTP
-  ```
-  https://sgd.proxy.pathrocknetwork.org:5321
-  ```
-- Websocket
-  ```
-  wss://sgd.proxy.pathrocknetwork.org:5321
-  ```
-- Dictionary URL
-  ```
-  https://api.subquery.network/sq/subquery/kusama-dictionary
-  ```
-- Paths
-  ```
-  /Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
-  /home/subquery/subquery-indexer/.projects/Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
-  /home/poi//Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
-  ```
-- Docker-Compose
-  
-  [/home/subquery/subquery-indexer/.projects/Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8/docker-compose.yml](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/Kusama/docker-compose.yml)
-- Containers
-  ```
-  node_qmbe5g5vbejyyaf     subquerynetwork/subql-node-substrate:v3.6.0
-  query_qmxwfcf8858yy92    onfinality/subql-query:v2.9.0
-  ```
-- Public Endpoints
-  ```
-  wss://kusama-rpc.polkadot.io
-  ```
-
-
 ## aleph-zero
 --------------------------------------
 - HTTP
@@ -341,36 +379,6 @@
   ```
 
 
-
-## Westend
---------------------------------------
-- HTTP
-  ```
-  https://sgd.proxy.pathrocknetwork.org:9814
-  ```
-- Websocket
-  ```
-  wss://sgd.proxy.pathrocknetwork.org:9814
-  ```
-- Paths
-  ```
-  QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
-  /home/poi/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN  
-  /home/subquery/subquery-indexer/.projects/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
-  ```
-- Docker-Compose
-  
-  [/home/subquery/subquery-indexer/.projects/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN/docker-compose.yml](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/Westend/docker-compose.yml)
-
-- Containers
-  ```
-  node_qmp1bmjoyj5ifq6
-  query_qmp1bmjoyj5ifq6
-  ```
-- Public Endpoints
-  ```
-  wss://westend-rpc.polkadot.io
-  ```
 
 ### Acala
 --------------------------------------
