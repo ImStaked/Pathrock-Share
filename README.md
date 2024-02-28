@@ -351,14 +351,18 @@
   ```
 - Paths
   ```
-  Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW
-  /home/subquery/subquery-indexer/.projects/Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW/docker-compose.yml
-  /home/poi/Qma6BeSQGHrhP5aydmkQcJCR25TEwuNMogS5boovBBwoeW
+  QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
+  /home/poi/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN  
+  /home/subquery/subquery-indexer/.projects/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
   ```
+- Docker-Compose
+  
+  [/home/subquery/subquery-indexer/.projects/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN/docker-compose.yml](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/Westend/docker-compose.yml)
+
 - Containers
   ```
-  node_qma6besqghrhp5a
-  query_qma6besqghrhp5a
+  node_qmp1bmjoyj5ifq6
+  query_qmp1bmjoyj5ifq6
   ```
 - Public Endpoints
   ```
