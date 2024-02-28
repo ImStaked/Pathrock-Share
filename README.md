@@ -296,14 +296,17 @@
   ```
 - Paths
   ```
-  QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn
-  /home/subquery/subquery-indexer/.projects/QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn/docker-compose.yml
-  /home/poi/QmXwfCF8858YY924VHgNLsxRQfBLosVbB31mygRLhgJbWn
+  /Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
+  /home/subquery/subquery-indexer/.projects/Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
+  /home/poi//Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8
   ```
+- Docker-Compose
+  
+  [/home/subquery/subquery-indexer/.projects/Qmbe5g5vbEJYYAfpjcwNDzuhjeyaEQPQbxKyKx6PveYnR8/docker-compose.yml](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/Kusama/docker-compose.yml)
 - Containers
   ```
-  node_qmxwfcf8858yy92     v3.5.3
-  query_qmxwfcf8858yy92    v2.9.0
+  node_qmbe5g5vbejyyaf     subquerynetwork/subql-node-substrate:v3.6.0
+  query_qmxwfcf8858yy92    onfinality/subql-query:v2.9.0
   ```
 - Public Endpoints
   ```
