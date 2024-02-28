@@ -1,0 +1,74 @@
+services:
+  node_qmp1bmjoyj5ifq6:
+    image: subquerynetwork/subql-node-substrate:v3.6.0
+    container_name: node_qmp1bmjoyj5ifq6
+    restart: always
+    cpus: 8
+    expose:
+      - 3100
+    environment:
+      DB_USER: postgres
+      DB_PASS: gPfpuTq4xRHkRJqLd
+      DB_DATABASE: postgres
+      DB_HOST: sqidb1.pathrocknetwork.org
+      DB_PORT: 5432
+    volumes:
+      - /home/poi/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN:/home/poi/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
+    command:
+      - -f=ipfs://QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
+      - -d=
+      - --ipfs=https://sgd.proxy.pathrocknetwork.org:5512/api/v0
+      - --network-endpoint=wss://sgd.proxy.pathrocknetwork.org:9814
+      - --network-endpoint=https://sgd.proxy.pathrocknetwork.org:9814
+      - --db-schema=schema_qmp1bmjoyj5ifq6
+      - --port=3100
+      - --scale-batch-size=true
+      - --batch-size=125
+      - --timeout=3000
+      - --workers=4
+      - --store-cache-async=true
+      - --store-get-cache-size=500
+      - --store-flush-interval=15
+      - --store-cache-threshold=2000
+      - --query-limit=250
+      - --proof-of-index=true
+      - --mmr-store-type=postgres
+      - -m=/home/poi/QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN/.mmr
+      - --disable-historical=false
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://node_qmp1bmjoyj5ifq6:3100/ready"
+        ]
+      interval: 3s
+      timeout: 5s
+      retries: 100
+
+  query_qmp1bmjoyj5ifq6:
+    image: onfinality/subql-query:v2.9.0
+    container_name: query_qmp1bmjoyj5ifq6
+    expose:
+      - 3100
+    depends_on:
+      "node_qmp1bmjoyj5ifq6":
+        condition: service_healthy
+    restart: always
+    environment:
+      DB_USER: postgres
+      DB_PASS: gPfpuTq4xRHkRJqLd
+      DB_DATABASE: postgres
+      DB_HOST: sqidb1.pathrocknetwork.org
+      DB_PORT: 5432
+    command:
+      - --name=schema_qmp1bmjoyj5ifq6
+      - --playground
+      - --indexer=http://node_qmp1bmjoyj5ifq6:3100
+      - --port=3100
+      - --query-limit=2000
+
+networks:
+  default:
+    name: indexer_services
