@@ -147,6 +147,7 @@
 - HTTP
   ```
   https://sgd.proxy.pathrocknetwork.org:9966
+  https://falling-late-night.dot-mainnet.quiknode.pro/e7807ceaf00ac435ce8b72587cc762c560dd6bdc
   ```
 - Websocket
   ```
