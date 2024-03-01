@@ -45,8 +45,10 @@
   ```
 
 
-## Westend
---------------------------------------
+## Westend  
+------------------------------------  
+  **( INDEX COMPLETE )**  
+
 - HTTP
   ```
   https://sgd.proxy.pathrocknetwork.org:9814
@@ -77,8 +79,11 @@
 
 
 
-## Astar 
-------------------------------------
+## Astar  
+------------------------------------  
+  **( INDEX COMPLETE )** 
+
+[Explorer](https://app.subquery.network/explorer/project/0x09/overview)
 - HTTP
   ```
   https://sgd.proxy.pathrocknetwork.org:8844
@@ -100,8 +105,8 @@
   
 - Containers
   ```
-  node_qmumnkphce6jwgm     v3.5.3
-  query_qmumnkphce6jwgm    v2.9.0
+  node_qmapq6cnkptze1j     v3.5.3
+  query_qmapq6cnkptze1j    v2.9.0
   ```
 - Public Endpoints
   ```
