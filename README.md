@@ -1,3 +1,5 @@
+
+
 # Subquery 
 ----------------------------------------
  - https://dict-tyk.subquery.network/query/base-mainnet
@@ -144,15 +146,18 @@
 
 
 ## Polkadot 
--------------------------------------
-- HTTP
+-------------------------------------  
+[Subquery Explorer](https://app.subquery.network/explorer/project/0x01/overview)
+
+- Archive Node HTTP
   ```
   https://sgd.proxy.pathrocknetwork.org:9966
-  https://falling-late-night.dot-mainnet.quiknode.pro/e7807ceaf00ac435ce8b72587cc762c560dd6bdc
+  https://devpro.imstaked.com:9966
   ```
-- Websocket
+- Archive Node Websocket
   ```
   wss://sgd.proxy.pathrocknetwork.org:9966
+  wss://devpro.imstaked.com:9966
   ```
 - Dictionary URL
   ```
@@ -160,15 +165,18 @@
   ```
 - Paths
   ```
-  QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
-  /home/subquery/subquery-indexer/.projects/QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm/docker-compose.yml
-  /home/poi/QmZGAZQ7e1oZgfuK4V29Fa5gveYK3G2zEwvUzTZKNvSBsm
+  QmUGBdhQKnzE8q6x6MPqP6LNZGa8gzXf5gkdmhzWjdFGfL
+  /home/subquery/subquery-indexer/.projects/QmUGBdhQKnzE8q6x6MPqP6LNZGa8gzXf5gkdmhzWjdFGfL/docker-compose.yml
+  /home/poi/QmUGBdhQKnzE8q6x6MPqP6LNZGa8gzXf5gkdmhzWjdFGfL
   ```
 - Containers
   ```
-  node_qmzgazq7e1ozgfu     v3.5.3
-  query_qmzgazq7e1ozgfu    v2.9.0
+  node_qmugbdhqknze8q6           subquerynetwork/subql-node-substrate:v3.6.0  
+  query_qmugbdhqknze8q6          onfinality/subql-query:v2.9.0   
   ```
+- Docker Compose
+  
+  [/home/subquery/subquery-indexer/.projects/QmUGBdhQKnzE8q6x6MPqP6LNZGa8gzXf5gkdmhzWjdFGfL/docker-compose.yml](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/Polkadot/docker-compose.yml)
 - Public Endpoints
   ```
   wss://rpc.polkadot.io
