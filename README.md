@@ -45,6 +45,44 @@
   ```
 
 
+
+## Moonbeam
+--------------------------------------
+  **( INDEX COMPLETE )**   
+
+[Explorer](https://app.subquery.network/explorer/project/0x07)
+- HTTP
+  ```
+  https://rpc1.pathrocknetwork.org:9995
+  ```
+- Websocket
+  ```
+  wss://rpc1.pathrocknetwork.org:9995
+  ```
+- Dictionaray URL
+  ```
+  https://api.subquery.network/sq/subquery/moonbeam-dictionary
+  ```
+- Paths
+  ```
+  QmUHAsweQYXYrY5Swbt1eHkUwnE5iLc7w9Fh62JY6guXEK
+  /home/subquery/subquery-indexer/.projects/QmUHAsweQYXYrY5Swbt1eHkUwnE5iLc7w9Fh62JY6guXEK
+  /home/poi/QmUHAsweQYXYrY5Swbt1eHkUwnE5iLc7w9Fh62JY6guXEK
+  ```
+- Containers
+  ```
+  node_qmuhasweqyxyry5             subquerynetwork/subql-node-substrate:v3.6.0
+  query_qmuhasweqyxyry5            onfinality/subql-query:v2.9.0
+- Docker-Compose
+  
+  [/home/subquery/subquery-indexer/.projects/QmUHAsweQYXYrY5Swbt1eHkUwnE5iLc7w9Fh62JY6guXEK](https://github.com/ImStaked/Pathrock-Share/blob/main/Subquery/Indexer/Configs/moonbeam/docker-compose-yml)
+- Public Endpoints
+  ```
+  https://moonbeam.unitedbloc.com
+  wss://moonbeam.unitedbloc.com
+  ```
+
+
 ## Westend  
 ------------------------------------  
   **( INDEX COMPLETE )**  
@@ -304,36 +342,6 @@
   ```
 
 
-## Moonbeam
---------------------------------------
-- HTTP
-  ```
-  https://rpc1.pathrocknetwork.org:9995
-  ```
-- Websocket
-  ```
-  wss://rpc1.pathrocknetwork.org:9995
-  ```
-- Dictionaray URL
-  ```
-  https://api.subquery.network/sq/subquery/moonbeam-dictionary
-  ```
-- Paths
-  ```
-  QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
-  /home/subquery/subquery-indexer/.projects/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
-  /home/poi/QmeeqBHdVu7iYnhVE9ZiYEKTWe4jXVUD5pVoGXT6LbCP2t
-  ```
-- Containers
-  ```
-  node_qmeeqbhdvu7iynh     v3.5.3
-  query_qmeeqbhdvu7iynh    v2.9.0
-  ```
-- Public Endpoints
-  ```
-  https://moonbeam.unitedbloc.com
-  wss://moonbeam.unitedbloc.com
-  ```
 
 
 ## Moonriver
