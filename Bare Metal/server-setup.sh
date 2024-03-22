@@ -3,6 +3,7 @@
 apt update && apt upgrade -y
 wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/ubuntu18.04/sshd_config
 sudo apt install bash-completion zip unzip lz4 bzip2 smartmontools cpufrequtils jq htop nmon nload net-tools whois snapd lm-sensors lshw lsof zfsutils-linux linux-tools-generic linux-tools-common -y
+sudo apt install linux-generic-hwe-22.04-edge linux-tools-generic-hwe-22.04-edge linux-headers-generic-hwe-22.04-edge
 snap install lxd
 snap install certbot --classic
 
