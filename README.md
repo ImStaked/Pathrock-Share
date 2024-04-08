@@ -9,7 +9,7 @@
   ```
 - Websocket
   ```
-  wss://10.0.1.80:5781
+  ws://10.0.1.80:5781
   ```
 
 ## Nodle
@@ -17,12 +17,10 @@
 - HTTP
   ```
   http://10.0.0.4:9595
-  https://sgd.proxy.pathrocknetwork.org:9595
   ```
 - Websocket
   ```
   ws://10.0.0.4:9595
-  https://sgd.proxy.pathrocknetwork.org:9595
   ```
 - Dictionary URL
   ```
@@ -38,12 +36,10 @@
 - HTTP
   ```
   http://10.0.0.4:9967
-  https://sgd.proxy.pathrocknetwork.org:9966
   ```
 - Websocket
   ```
   ws://10.0.0.4:9967
-  https://sgd.proxy.pathrocknetwork.org:9966
   ```
 - Dictionary URL
   ```
@@ -58,12 +54,10 @@
 --------------------------------------
 - HTTP
   ```
-  https://sgd.proxy.pathrocknetwork.org:5321
   http://10.0.0.4:9976
   ```
 - Websocket
   ```
-  wss://sgd.proxy.pathrocknetwork.org:5321
   ws://10.0.0.4:9976
   ```
 - Dictionary URL
