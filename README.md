@@ -22,7 +22,7 @@
   ```
 - Websocket
   ```
-  ws:10.0.0.4:8844
+  ws://10.0.0.4:8844
   ```
 - Public Endpoints
   ```
@@ -97,7 +97,25 @@
   wss://kusama-rpc.polkadot.io
   ```
 
-
+## Nodle
+----------------------------------------
+- HTTP
+  ```
+  http://10.0.0.4:9595
+  ```
+- Websocket
+  ```
+  ws://10.0.0.4:9595
+  ```
+- Dictionary URL
+  ```
+  
+  ```
+- Public Endpoints
+  ```
+  wss://nodle-parachain.api.onfinality.io/public-ws
+  ```
+  
 ## Westend  
 ------------------------------------  
 
@@ -222,25 +240,6 @@
   https://rpc.evm.acala.network
   ```
 
-
-## Nodle
-----------------------------------------
-- HTTP
-  ```
-  http://10.0.0.4:9595
-  ```
-- Websocket
-  ```
-  ws://10.0.0.4:9595
-  ```
-- Dictionary URL
-  ```
-  
-  ```
-- Public Endpoints
-  ```
-  wss://nodle-parachain.api.onfinality.io/public-ws
-  ```
 
 ## Kilt Spiritnet
 --------------------------------------
