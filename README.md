@@ -12,23 +12,51 @@
   ws://10.0.1.80:5781
   ```
 
-## Nodle
-----------------------------------------
+
+## Astar  
+------------------------------------  
+
 - HTTP
   ```
-  http://10.0.0.4:9595
+  http://10.0.0.4:8844
   ```
 - Websocket
   ```
-  ws://10.0.0.4:9595
-  ```
-- Dictionary URL
-  ```
-  
+  ws:10.0.0.4:8844
   ```
 - Public Endpoints
   ```
-  wss://nodle-parachain.api.onfinality.io/public-ws
+  https://evm.astar.network
+  wss://rpc.astar.network
+  ```
+- Blast API
+  ```
+  https://blast1.pathrocknetwork.org:8844
+  wss://blast1.pathrocknetwork.org:8844
+  ```
+
+## MoonRiver
+--------------------------------------
+- HTTP
+  ```
+  http://10.0.0.4:9876
+  ```
+- Websocket
+  ```
+  ws://10.0.0.4:9876
+  ```
+- Dictionaray URL
+  ```
+  ```
+- Public Endpoints
+  ```
+  wss://moonriver.unitedbloc.com:2001
+  https://moonriver.unitedbloc.com:2000
+  ```
+- Blast API
+  ```
+  https://blast1.pathrocknetwork.org:9222
+  wss://blast1.pathrocknetwork.org:9222
   ```
 
 ## Polkadot
@@ -70,33 +98,6 @@
   ```
 
 
-
-## MoonRiver
---------------------------------------
-- HTTP
-  ```
-  https://rpc1.pathrocknetwork.org:9222
-  https://blast1.pathrocknetwork.org:9222
-  https://sgd.proxy.pathrocknetwork.org:9876
-  http://10.0.0.4:9876
-  ```
-- Websocket
-  ```
-  wss://rpc1.pathrocknetwork.org:9222
-  wss://blast1.pathrocknetwork.org:9222
-  wss://sgd.proxy.pathrocknetwork.org:9876
-  ws://10.0.0.4:9876
-  ```
-- Dictionaray URL
-  ```
-  ```
-- Public Endpoints
-  ```
-  wss://moonriver.unitedbloc.com:2001
-  https://moonriver.unitedbloc.com:2000
-  ```
-
-
 ## Westend  
 ------------------------------------  
 
@@ -110,28 +111,7 @@
   ```
   wss://westend-rpc.polkadot.io
   ```
-
-
-
-## Astar  
-------------------------------------  
-
-- HTTP
-  ```
-  https://sgd.proxy.pathrocknetwork.org:8844
-  https://rpc1.pathrocknetwork.org:8844
-  ```
-- Websocket
-  ```
-  wss://sgd.proxy.pathrocknetwork.org:8844
-  wss://rpc1.pathrocknetwork.org:8844
-  ```
-- Public Endpoints
-  ```
-  https://evm.astar.network
-  wss://rpc.astar.network
-  ```
-
+  
 ## IPFS
 --------------------------------------
 - Admin UI
@@ -243,6 +223,24 @@
   ```
 
 
+## Nodle
+----------------------------------------
+- HTTP
+  ```
+  http://10.0.0.4:9595
+  ```
+- Websocket
+  ```
+  ws://10.0.0.4:9595
+  ```
+- Dictionary URL
+  ```
+  
+  ```
+- Public Endpoints
+  ```
+  wss://nodle-parachain.api.onfinality.io/public-ws
+  ```
 
 ## Kilt Spiritnet
 --------------------------------------
