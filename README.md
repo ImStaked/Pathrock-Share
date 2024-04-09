@@ -131,7 +131,18 @@
   ```
   wss://westend-rpc.polkadot.io
   ```
-  
+
+## Juno
+- Public Endpoints
+- Earliest Height: 4136532
+  ```
+  wss://rpc-archive.junonetwork.io/websocket
+  ```
+- Earliest Height: 10993669
+  ```
+  wss://rpc.juno.chaintools.tech/websocket
+  ```
+
 ## IPFS
 --------------------------------------
 - Admin UI
@@ -162,7 +173,7 @@
   ```
 
 
-## Shiden
+##  Shiden
 -------------------------------------
 - HTTP
   ```
