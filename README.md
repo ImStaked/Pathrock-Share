@@ -17,7 +17,7 @@
 ------------------------------------  
 
 - HTTP
-  ```
+  ```QmP1BMJoyJ5iFq6XLSfTJ3D23iWuTG1tnsEffJpNieQnwN
   http://10.0.0.4:8844
   ```
 - Websocket
@@ -121,9 +121,11 @@
 
 - HTTP
   ```
+  http://10.0.0.4:4848
   ```
 - Websocket
   ```
+  ws://10.0.0.4:4848
   ```
 - Public Endpoints
   ```
