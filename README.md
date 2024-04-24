@@ -33,7 +33,7 @@
   ```
 - Websocket
   ```
-  ws://10.0.1.50.26657/websocket
+  ws://10.0.1.50:26657/websocket
   ```
 
 - Public Endpoints
