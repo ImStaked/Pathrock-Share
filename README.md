@@ -36,7 +36,6 @@
   ws://10.0.1.50.26657/websocket
   ```
 
-  ```
 - Public Endpoints
   ```
   https://rpc-fetchhub.fetch.ai:443
