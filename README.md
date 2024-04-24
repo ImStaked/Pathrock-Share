@@ -23,7 +23,26 @@
   ```
   ws://10.0.1.122:8546
   ```
-  
+
+
+## FetchAi 
+----------------------------------------
+- HTTP
+  ```
+  http://10.0.1.50:26657
+  ```
+- Websocket
+  ```
+  ws://10.0.1.50.26657/websocket
+  ```
+
+  ```
+- Public Endpoints
+  ```
+  https://rpc-fetchhub.fetch.ai:443
+  wss://rpc-fetchhub.fetch.ai:443/websocket
+  ```
+
 ## Astar  
 ------------------------------------  
 
@@ -164,25 +183,6 @@
   ```
   https://sgd.proxy.pathrocknetwork.org:5112/api/v1
   ```
-
-## FetchAi 
-----------------------------------------
-- HTTP
-  ```
-  
-  ```
-- Websocket
-  ```
-  
-  ```
-
-  ```
-- Public Endpoints
-  ```
-  https://rpc-fetchhub.fetch.ai:443
-  wss://rpc-fetchhub.fetch.ai:443/websocket
-  ```
-
 
 ##  Shiden
 -------------------------------------
