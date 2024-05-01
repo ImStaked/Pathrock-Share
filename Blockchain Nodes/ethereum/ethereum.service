@@ -9,20 +9,35 @@ RestartSec=12
 ExecStart=/usr/bin/geth \
     --datadir=/home/ethereum/.ethereum/consensus \
     --mainnet \
+    --gcmode=full \
+    --history.state=2350000 \
     --identity=ImStaked \
     --syncmode=snap \
     --metrics \
+    --metrics.addr=127.0.0.1 \
     --port=31316 \
+    --discovery.portt=31316 \
+    --maxpeers-35 \
     --nat=none  \
+    --cache=8192 \
+    --fdlimit=100000 \
     --authrpc.jwtsecret=/home/ethereum/.ethereum/jwt.hex \
-    --authrpc.addr=localhost \
-    --authrpc.vhosts="localhost" \
+    --authrpc.addr=10.165.140.78 \
+    --authrpc.vhosts="10.165.140.0/24" \
     --authrpc.port=8551 \
+    --nousb \
+    --ws \
+    --ws.addr=0.0.0.0 \
+    --ws.port=7575 \
+    --ws.api=eth,web3,net,txpool,engine,admin
+    --ws.origins="*" 
     --http \
     --http.addr=0.0.0.0 \
     --http.port=7676 \
     --http.api=eth,web3,net,txpool,engine,admin \
-    --http.corsdomain="*" 
+    --http.corsdomain="*" \
+    --http.vhosts="*" \
+    --rpc.evmtimeout=7s
 
 [Install]
 WantedBy=default.target
