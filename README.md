@@ -1,5 +1,7 @@
 # Subquery Endpoint List
 
+This is an old repo none of the systems are still in use.
+
 ## Ethereum Full Node
 --------------------------------------
 
